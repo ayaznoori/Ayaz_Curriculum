@@ -26,8 +26,10 @@ A Flipkart-style shopping app shows a cart total before the customer pays. The r
 
 **The one risk:** that short rule lives as pasted lines in many analysts' notebooks. One wrong copy, and one customer sees the wrong bill.
 
-> <font color="red">**🎯 Instructor Note**</font> Flipkart is only the setting. Do not claim it uses these numbers; the 120 carts in `data/flipkart_carts.csv` and the tax rates are invented for teaching.
-> Share the file before class and upload it to the Colab session. Carts with an item value of Rs 500 or more have free delivery, and there is one furniture cart.
+Think of a lunch counter: one recipe card on the wall beats five staff members each remembering the steps differently.
+
+> <font color="red">**🎯 Instructor Note**</font> Flipkart is only the setting. Do not claim it uses these numbers; the tax rates are invented for teaching.
+> The full 120-row cart file is in `data/flipkart_carts.csv` for mentor upload only. Learners work from the five sample carts written as lists in Colab.
 
 ---
 
@@ -75,46 +77,47 @@ flowchart LR
 
 ## <font color='blue'>Topic 1: Write the Cart Total Once</font> `25 min`
 
-> <font color='purple'>**Last session you used loops and if/elif/else in Colab. Three analysts typed the same total rule three ways. How do we write it once?**</font>
+> <font color='purple'>**Last session you traced loops over lists in Colab. Three analysts typed the same total rule three ways. How do we write it once, like one recipe card instead of three scribbled copies?**</font>
 
-Earlier you ran Colab cells, stored values in variables and used arithmetic operators. A function packs those same steps under one name.
+In **Variables and Condition Logic in Colab** you stored values and used arithmetic. A function packs those same steps under one name.
 
-### <font color='green'>Example: look at the carts</font>
+### <font color='green'>Example: look at the sample carts</font>
 
-> <font color='purple'>**What does each row of the cart file hold?**</font>
+> <font color='purple'>**What does each cart hold in our notebook lists?**</font>
 
-`pandas` is a library that reads tables. Today we only use `pd.read_csv` to load the file and `df["column"][i]` to read one cell from row `i`.
+We keep five carts as parallel lists. Each index is one row: id, price, quantity, tax rate and delivery fee.
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expected: 120 rows and 6 columns. Common guess: learners forget that the cart id counts as a column.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `5 sample carts` and three printed rows. Common guess: learners forget delivery fee in the print line.
 
 ```python
-import pandas as pd
-
-df = pd.read_csv("data/flipkart_carts.csv")
-print(df.shape)
-print(df.head(3))
+cart_ids = ["C001", "C002", "C003", "C004", "C005"]
+unit_prices = [499, 1999, 499, 299, 199]
+qtys = [2, 1, 2, 1, 1]
+gst_pcts = [18, 18, 18, 18, 5]
+delivery_fees = [0, 0, 0, 40, 40]
+print(len(cart_ids), "sample carts in the notebook")
+for i in range(3):
+    print(cart_ids[i], unit_prices[i], qtys[i], gst_pcts[i], delivery_fees[i])
 ```
 
 **Output**
 
 ```
-(120, 6)
-  cart_id     category  unit_price  qty  gst_pct  delivery_fee
-0    C001  Accessories         499    2       18             0
-1    C002  Electronics        1999    1       18             0
-2    C003  Accessories         499    2       18             0
+5 sample carts in the notebook
+C001 499 2 18 0
+C002 1999 1 18 0
+C003 499 2 18 0
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Loads pandas, which reads tables.
-- **Line 3** Reads the cart file into a table called `df`.
-- **Line 4** Prints the size as (rows, columns).
-- **Line 5** Shows the first 3 carts.
+- **Lines 1 to 5** Five parallel lists hold the same fields the mentor file has for every cart.
+- **Line 6** `len(cart_ids)` counts how many carts sit in the notebook.
+- **Lines 7 and 8** The loop prints the first three carts, one field at a time.
 
-> <font color='green'>**Result**</font> Each row is one cart: a price, a quantity, a tax percentage and a delivery fee.
+> <font color='green'>**Result**</font> Each cart has a price, a quantity, a tax percentage and a delivery fee. The mentor file has 120 carts; we practise on five.
 
 ### <font color='green'>Example: the cart total as a function</font>
 
@@ -153,16 +156,16 @@ print(cart_total(499, 2, 18))
 
 > <font color='green'>**Result**</font> One call gave Rs 1,177.64, the same as the hand answer. The rule is written once and can be called again and again.
 
-### <font color='green'>Extending it: call the function on real carts</font>
+### <font color='green'>Extending it: call the function on all five sample carts</font>
 
-> <font color='purple'>**What if we call the same function for the first five carts in the file?**</font>
+> <font color='purple'>**What if we call the same function for every cart in our lists?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask: "Will C001 and C003 give the same total?" Give learners 30 seconds to respond in chat. Expected: yes, both are Rs 499, 2 items, 18%.
 
 ```python
-for i in range(5):
-    t = cart_total(df["unit_price"][i], df["qty"][i], df["gst_pct"][i])
-    print(df["cart_id"][i], t)
+for i in range(len(cart_ids)):
+    t = cart_total(unit_prices[i], qtys[i], gst_pcts[i])
+    print(cart_ids[i], t)
 ```
 
 **Output**
@@ -177,8 +180,8 @@ C005 208.95
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Loops over rows 0 to 4, the first five carts.
-- **Line 2** Reads price, quantity and tax from row `i` and passes them as arguments. The returned value is stored in `t`.
+- **Line 1** Loops over index 0 through 4, one pass per sample cart.
+- **Line 2** Reads price, quantity and tax from the lists at index `i` and passes them as arguments. The returned value is stored in `t`.
 - **Line 3** Prints the cart id and its total.
 
 <p align="center"><img src="images/01_cart_totals.png" alt="Stacked bar chart of the first five carts: item value in blue and tax in orange, with the total in rupees printed above each bar" width="900"></p>
@@ -220,12 +223,12 @@ None 1177.64
 
 ### <font color='green'>Extending it: use the returned value</font>
 
-> <font color='purple'>**What is the total of all 120 carts, tax included?**</font>
+> <font color='purple'>**What is the total of all five sample carts, tax included?**</font>
 
 ```python
 grand = 0
-for i in range(len(df)):
-    row_total = cart_total(df["unit_price"][i], df["qty"][i], df["gst_pct"][i])
+for i in range(len(cart_ids)):
+    row_total = cart_total(unit_prices[i], qtys[i], gst_pcts[i])
     grand += row_total
 print(round(grand, 2))
 ```
@@ -233,18 +236,18 @@ print(round(grand, 2))
 **Output**
 
 ```
-436824.77
+5275.87
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
 - **Line 1** Starts the running total at 0.
-- **Line 2** Loops over all 120 rows.
-- **Line 3** Calls the function for row `i` and stores the returned total in `row_total`.
+- **Line 2** Loops over every sample cart.
+- **Line 3** Calls the function for index `i` and stores the returned total in `row_total`.
 - **Line 4** Adds that total to `grand`.
-- **Line 5** Prints the sum of all 120 totals, rounded to 2 decimals.
+- **Line 5** Prints the sum of the five totals, rounded to 2 decimals.
 
-> <font color='green'>**Result**</font> The 120 carts add up to Rs 436,824.77 before delivery. This works only because the function returns a value.
+> <font color='green'>**Result**</font> The five sample carts add up to Rs 5,275.87 before delivery. This works only because the function returns a value.
 
 > <font color='#b45309'>**Common mistake**</font> Writing `print` inside the function instead of `return`. The call then gives back `None`, and `grand += None` fails.
 
@@ -390,27 +393,27 @@ TypeError: cart_total() got an unexpected keyword argument 'gst'
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Ask which tax rate is the most common in the file. Expected: 18, with 57 of the 120 carts.
+> <font color="red">**🎯 Instructor Note**</font> Ask which tax rate is most common in the mentor file. Expected: 18% on 57 of the 120 carts.
 
 ```python
-print(df["gst_pct"].value_counts())
+for rate in (18, 12, 5):
+    n = sum(1 for g in gst_pcts if g == rate)
+    if n:
+        print(rate, n)
 ```
 
 **Output**
 
 ```
-gst_pct
-18    57
-12    38
-5     25
-Name: count, dtype: int64
+18 4
+5 1
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Counts how many carts use each tax percentage, most common first.
+- **Lines 1 to 4** Count how many sample carts use each tax rate and print only rates that appear.
 
-> <font color='green'>**Result**</font> 18% is the most common rate (57 carts), so it is a good default value.
+> <font color='green'>**Result**</font> In the notebook sample, 18% is the most common rate (4 carts), so it is a good default value.
 
 A default value is written in the `def` line as `parameter=value`. If the caller leaves that argument out, the default is used.
 
@@ -440,7 +443,7 @@ print(cart_total(499, 2, 12))
 
 ### <font color='green'>Extending it: a second default and an override by keyword</font>
 
-> <font color='purple'>**Delivery is free on 74 of the 120 carts and Rs 40 on the other 46. How do we add it?**</font>
+> <font color='purple'>**Some carts include a Rs 40 delivery fee. How do we add it with a default of free delivery?**</font>
 
 **Predict before running: What will happen?**
 
@@ -475,12 +478,12 @@ print(cart_total(100, 2, delivery=40))
 
 ### <font color='green'>Extending it: how often do the defaults fit?</font>
 
-> <font color='purple'>**For how many carts do both defaults, 18% tax and free delivery, already match?**</font>
+> <font color='purple'>**For how many sample carts do both defaults, 18% tax and free delivery, already match?**</font>
 
 ```python
 fits = 0
-for i in range(len(df)):
-    if df["gst_pct"][i] == 18 and df["delivery_fee"][i] == 0:
+for i in range(len(cart_ids)):
+    if gst_pcts[i] == 18 and delivery_fees[i] == 0:
         fits += 1
 print(fits)
 ```
@@ -488,20 +491,20 @@ print(fits)
 **Output**
 
 ```
-41
+3
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
 - **Line 1** Starts a counter at 0.
-- **Line 2** Loops over every cart.
+- **Line 2** Loops over every sample cart.
 - **Line 3** Checks the two conditions together with `and`.
 - **Line 4** Adds 1 when both defaults match.
 - **Line 5** Prints the count.
 
 <p align="center"><img src="images/03_defaults_fit.png" alt="Two bar charts: carts by tax rate (18 percent is 57, 12 percent is 38, 5 percent is 25) and carts by delivery fee (0 rupees is 74, 40 rupees is 46)" width="900"></p>
 
-> <font color='green'>**Result**</font> For 41 of the 120 carts the call can leave out both values. The other carts pass what differs, by keyword.
+> <font color='green'>**Result**</font> For 3 of the 5 sample carts the call can leave out both values. In the full mentor file, 41 carts match both defaults.
 
 ### <font color='purple'>Quiz 2</font>
 
@@ -707,7 +710,7 @@ print(Cart)
 
 ### <font color='green'>Example: instances built from the blueprint</font>
 
-> <font color='purple'>**How do we build real carts from the blueprint and the rows of the file?**</font>
+> <font color='purple'>**How do we build real carts from the blueprint and our lists?**</font>
 
 **Predict before running: What will happen?**
 
@@ -715,8 +718,7 @@ print(Cart)
 
 ```python
 def make_cart(i):
-    return Cart(df["cart_id"][i], int(df["unit_price"][i]),
-                int(df["qty"][i]), int(df["gst_pct"][i]))
+    return Cart(cart_ids[i], unit_prices[i], qtys[i], gst_pcts[i])
 
 c1, c2 = make_cart(0), make_cart(3)
 print(c1.cart_id, c1.price, c1.subtotal())
@@ -734,10 +736,10 @@ False
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Lines 1 to 3** A function, like the one from Topic 1, that builds a `Cart` from row `i`. Calling `Cart(...)` creates an instance, one real cart.
-- **Line 5** Builds two instances from rows 0 and 3 of the file: C001 and C004.
-- **Lines 6 and 7** Each instance has its own attributes, and `.subtotal()` calls the method on that cart.
-- **Line 8** `is` asks whether two names point to the same object.
+- **Lines 1 and 2** A helper function builds a `Cart` from index `i` in the lists. Calling `Cart(...)` creates an instance, one real cart.
+- **Line 4** Builds two instances from indices 0 and 3: C001 and C004.
+- **Lines 5 and 6** Each instance has its own attributes, and `.subtotal()` calls the method on that cart.
+- **Line 7** `is` asks whether two names point to the same object.
 
 <p align="center"><img src="images/05_class_and_instances.png" alt="Diagram: the Cart blueprint box on the left lists cart_id, price, qty, gst_pct and subtotal; two instance boxes on the right show C001 with price 499 and qty 2 and C004 with price 299 and qty 1" width="900"></p>
 
@@ -792,11 +794,11 @@ C003 998
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Loops over rows 0, 1 and 2.
+- **Line 1** Loops over indices 0, 1 and 2.
 - **Line 2** Each pass builds a fresh instance from the same class.
 - **Line 3** Prints the cart id and the subtotal of that instance.
 
-> <font color='green'>**Result**</font> One class definition can make as many instances as there are rows, here three of the 120.
+> <font color='green'>**Result**</font> One class definition can make as many instances as there are rows in the lists.
 
 ### <font color='green'>Extending it: ask the class for an instance value</font>
 
@@ -862,29 +864,27 @@ Pass the inputs by keyword, `cart_total(price=499, qty=2, gst_pct=18)`, so the o
 
 No. `base` is local and disappears after the call (Topic 3), so no analyst can depend on it by mistake. Only the returned total comes out.
 
-> <font color='purple'>**4. Can the whole file be priced the same way, with the shared blueprint?**</font>
+> <font color='purple'>**4. Can every cart in the lists be priced the same way, with the shared blueprint?**</font>
 
 ```python
 grand = 0
-for i in range(len(df)):
+for i in range(len(cart_ids)):
     c = make_cart(i)
-    fee = int(df["delivery_fee"][i])
-    grand += cart_total(c.price, c.qty, c.gst_pct, fee)
+    grand += cart_total(c.price, c.qty, c.gst_pct, delivery_fees[i])
 print(round(grand, 2))
 ```
 
 **Output**
 
 ```
-438664.77
+5355.87
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 3** Builds an instance of the `Cart` class for row `i` (Topic 4).
-- **Line 4** Reads this cart's delivery fee, 0 or 40.
-- **Line 5** Calls the one function (Topic 1) with attributes of the instance as positional arguments (Topic 2). The fee replaces the default delivery.
-- **Line 6** Prints the sum of all 120 totals, delivery included.
+- **Line 3** Builds an instance of the `Cart` class for index `i` (Topic 4).
+- **Line 4** Calls the one function (Topic 1) with attributes of the instance as positional arguments (Topic 2). The delivery fee comes from the list.
+- **Line 5** Prints the sum of all five sample totals, delivery included.
 
 <p align="center"><img src="images/06_totals_by_category.png" alt="Bar chart of the total in rupees by category, including delivery, from tallest to shortest: Electronics, Accessories, Fashion, Kitchen, Furniture, Grocery and Books" width="900"></p>
 
@@ -894,7 +894,9 @@ print(round(grand, 2))
 |:--|:-:|:-:|
 | Total shown for C001 | Rs 998, Rs 9,161.64 or Rs 1,177.64 | Rs 1,177.64 for everyone |
 | Places to fix a wrong rule | 3 notebooks | 1 function |
-| Total for all 120 carts with delivery | Depends on whose copy | Rs 438,664.77 |
+| Total for all sample carts with delivery | Depends on whose copy | Rs 5,355.87 |
+
+> <font color="red">**🎯 Instructor Note**</font> The mentor file's 120 carts sum to Rs 438,664.77 with delivery. Use that number when discussing the full dataset offline.
 
 > <font color='green'>**Therefore,**</font> write the total rule once as a function with a `return`, call it by keyword so the order cannot slip, let defaults cover the common case, and build carts from one shared `Cart` blueprint. Every analyst then gets Rs 1,177.64 for C001. The trade-off: a mistake in the one function reaches every notebook, so test it once, carefully.
 
@@ -905,10 +907,10 @@ print(round(grand, 2))
 | Learning objective | Takeaway |
 |:--|:--|
 | Write a function that takes arguments and returns a computed value | `def` with parameters and `return` gives back one value, for example Rs 1,177.64 |
-| Positional and keyword arguments | Positional matches by place, keyword matches by name, and positional values come first |
-| Default parameter values | `gst_pct=18` fills in when the caller says nothing, and a keyword overrides it |
-| Scope of a local variable | `base` exists only inside the call, so the notebook gets a `NameError` |
-| Class definition and instance | The class is the blueprint, and each `Cart(...)` is one instance with its own values |
+| Call a function using positional and keyword arguments | Positional matches by place, keyword matches by name, and positional values come first |
+| Write a function with default parameter values | `gst_pct=18` fills in when the caller says nothing, and a keyword overrides it |
+| Explain why a variable defined inside a function is not visible outside it | `base` exists only inside the call, so the notebook gets a `NameError` |
+| Explain the difference between a class definition and an instance created from it | The class is the blueprint, and each `Cart(...)` is one instance with its own values |
 | **Practical value** | One tested function replaces pasted copies, so everyone's numbers match |
 
 ---
