@@ -8,9 +8,9 @@ The lecture runs as four topics. Each topic ends with a quiz.
 
 | Topic | What we do | Learning objectives covered | Minutes |
 |:-:|:--|:--|:-:|
-| 1 | Read the SKU list by position | Write a list and access its elements using positive and negative indexing<br>Extract a sub-list using slice notation with start, stop and step | 28 |
-| 2 | Add late SKUs and rank prices | Apply append and extend to add items to the end of a list<br>Apply sorted to order a list, controlling direction with the reverse flag | 30 |
-| 3 | Cut the SKU code apart | Extract a substring using indexing and slicing | 22 |
+| 1 | Read the product code list by position | Write a list and access its elements using positive and negative indexing<br>Extract a sub-list using slice notation with start, stop and step | 28 |
+| 2 | Add late product codes and rank prices | Apply append and extend to add items to the end of a list<br>Apply sorted to order a list, controlling direction with the reverse flag | 30 |
+| 3 | Cut a product code apart | Extract a substring using indexing and slicing | 22 |
 | 4 | Clean the title text | Apply string methods to normalise casing and whitespace in a text value | 30 |
 | — | Closing: Outcome & Summary | | 10 |
 | | **Total** | | **120** |
@@ -25,15 +25,15 @@ The lecture runs as four topics. Each topic ends with a quiz.
 **The risk:** a Meesho-style reselling app lets small sellers check a product list in a Colab notebook before uploading it. One wrong list or one badly typed title, and the product never appears in the catalogue that day.
 
 > <font color="red">**🎯 Instructor Note**</font> Meesho is only the setting. Do not claim Meesho uses this data; the 120 seller rows in `data/seller_skus.csv` are invented for teaching.
-> Share the file before class. It has messy SKU text, messy titles, four blank titles, tied prices and prices from ₹49 to ₹4,999.
+> Share the file before class. It has messy product code text, messy titles, four blank titles, tied prices and prices from ₹49 to ₹4,999.
 
 ---
 
 ## <font color='blue'>Problem Statement</font>
 
-Seller SLR-201 pasted ten SKU codes into one Python list. Later, three more SKUs arrived in a second list. She joined them with the wrong call, so the last item in her list was itself a list. The catalogue could not read that item. Several titles were also typed with extra spaces and mixed capitals, such as `  graphic TEE `. No product went live that day.
+Seller SLR-201 pasted ten product codes into one Python list. Later, three more product codes arrived in a second list. She joined them with the wrong call, so the last item in her list was itself a list. The catalogue could not read that item. Several titles were also typed with extra spaces and mixed capitals, such as `  graphic TEE `. No product went live that day.
 
-> <font color='purple'>**How do we turn a seller's messy SKU text and price list into one clean, ordered list that the catalogue accepts?**</font>
+> <font color='purple'>**How do we turn a seller's messy product code text and price list into one clean, ordered list that the catalogue accepts?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Poll: "Which call put a list inside the list: append, extend or sorted?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
 
@@ -41,7 +41,7 @@ Seller SLR-201 pasted ten SKU codes into one Python list. Later, three more SKUs
 
 ## <font color='blue'>What We Will Use</font>
 
-A list holds many values in order under one name. A string holds text. Today you pick items and pieces by position, add items, sort, and clean text.
+A list holds many values in order under one name. A string holds text. A **product code** is a short text label for one item on the seller list, like `KRT-0412-RD`. Today you pick items and pieces by position, add items, sort, and clean text.
 
 | Topic | Tools | In one line |
 |:-:|:--|:--|
@@ -56,8 +56,8 @@ A list holds many values in order under one name. A string holds text. Today you
 
 ```mermaid
 flowchart LR
-    A["Topic 1<br>Read the SKU list"] --> B["Topic 2<br>Add and rank"]
-    B --> C["Topic 3<br>Cut the SKU code"]
+    A["Topic 1<br>Read product codes"] --> B["Topic 2<br>Add and rank"]
+    B --> C["Topic 3<br>Cut the product code"]
     C --> D["Topic 4<br>Clean the titles"]
     D --> E["Closing<br>Catalogue-ready list"]
     style A fill:#2563eb,stroke:#1d4ed8,color:#ffffff
@@ -69,15 +69,15 @@ flowchart LR
 
 ---
 
-## <font color='blue'>Topic 1: Read the SKU List by Position</font> `28 min`
+## <font color='blue'>Topic 1: Read the Product Code List by Position</font> `28 min`
 
-> <font color='purple'>**Seller SLR-201 has ten SKUs in one list. How do we point at one SKU, and then at a few?**</font>
+> <font color='purple'>**Seller SLR-201 has ten product codes in one list. How do we point at one product code, and then at a few?**</font>
 
 In Variables and Condition Logic in Colab you kept one value under one name. In Loops and Tracing What Runs you walked over a string one character at a time. A list keeps many values under one name, and every value has a position, so you can ask for any of them directly.
 
-### <font color='green'>Example: write the list and read the first and last SKU</font>
+### <font color='green'>Example: write the list and read the first and last product code</font>
 
-> <font color='purple'>**Which SKU is first, which is last, and how many are there?**</font>
+> <font color='purple'>**Which product code is first, which is last, and how many are there?**</font>
 
 Positions start at 0 from the front. From the back they start at -1, so -1 is always the last item.
 
@@ -91,13 +91,13 @@ Positions start at 0 from the front. From the back they start at -1, so -1 is al
 > <font color="red">**🎯 Instructor Note**</font> Expected: `KRT-0412-RD` first and `SHO-0621-BK` last. Common wrong guess: position 1 is the first item.
 
 ```python
-skus = ["KRT-0412-RD", "KRT-0413-BL", "TEE-0207-WH", " tee-0208-bk ",
+product_codes = ["KRT-0412-RD", "KRT-0413-BL", "TEE-0207-WH", " tee-0208-bk ",
         "JNS-0331-BL", "jns-0332-bk", "SAR-0905-RD", " bag-0118-gn",
         "SHO-0620-WH", "SHO-0621-BK"]
-print(skus[0])
-print(skus[-1])
-print(skus[-2])
-print(len(skus))
+print(product_codes[0])
+print(product_codes[-1])
+print(product_codes[-2])
+print(len(product_codes))
 ```
 
 **Output**
@@ -111,23 +111,23 @@ SHO-0620-WH
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Lines 1 to 3** Square brackets with commas make a list of ten texts and store it in the name `skus`. These are rows 1 to 10 of `data/seller_skus.csv`.
-- **Line 4** `skus[0]` is the item at position 0, the first one.
-- **Line 5** `skus[-1]` counts from the back, so it is the last item.
-- **Line 6** `skus[-2]` is the second item from the back.
+- **Lines 1 to 3** Square brackets with commas make a list of ten texts and store it in the name `product_codes`. These are rows 1 to 10 of `data/seller_skus.csv`.
+- **Line 4** `product_codes[0]` is the item at position 0, the first one.
+- **Line 5** `product_codes[-1]` counts from the back, so it is the last item.
+- **Line 6** `product_codes[-2]` is the second item from the back.
 - **Line 7** `len` counts the items in a list. It also counts the characters in a text.
 
-> <font color='green'>**Result**</font> The first SKU is `KRT-0412-RD`, the last is `SHO-0621-BK`, the second from the back is `SHO-0620-WH`, and the list holds 10 items.
+> <font color='green'>**Result**</font> The first product code is `KRT-0412-RD`, the last is `SHO-0621-BK`, the second from the back is `SHO-0620-WH`, and the list holds 10 items.
 
 ### <font color='green'>Extending it: ask for a position that does not exist</font>
 
-> <font color='purple'>**Is `skus[9]` the same item as `skus[-1]`, and what does `skus[10]` give?**</font>
+> <font color='purple'>**Is `product_codes[9]` the same item as `product_codes[-1]`, and what does `product_codes[10]` give?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask learners for a prediction. Give learners 30 seconds to respond in chat. Expected: `True`, then an error, because the last position is 9.
 
 ```python
-print(skus[9] == skus[-1])
-print(skus[10])
+print(product_codes[9] == product_codes[-1])
+print(product_codes[10])
 ```
 
 **Output**
@@ -145,20 +145,20 @@ IndexError: list index out of range
 
 ### <font color='green'>Example: pick a sub-list with a slice</font>
 
-> <font color='purple'>**Which SKUs sit at positions 2 to 7, which are the first three, and which are the last three?**</font>
+> <font color='purple'>**Which product codes sit at positions 2 to 7, which are the first three, and which are the last three?**</font>
 
-A slice `skus[start:stop:step]` returns a new list. It starts at `start`, moves by `step` (1 if you leave it out), and stops before `stop`.
+A slice `product_codes[start:stop:step]` returns a new list. It starts at `start`, moves by `step` (1 if you leave it out), and stops before `stop`.
 
 $$\boxed{\text{start} \le i < \text{stop}}$$
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expected: `skus[2:8]` gives 6 items, positions 2 to 7. Common wrong guess: 7 items, because 8 is also included.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `product_codes[2:8]` gives 6 items, positions 2 to 7. Common wrong guess: 7 items, because 8 is also included.
 
 ```python
-print(skus[2:8])
-print(skus[:3])
-print(skus[-3:])
+print(product_codes[2:8])
+print(product_codes[:3])
+print(product_codes[-3:])
 ```
 
 **Output**
@@ -175,20 +175,20 @@ print(skus[-3:])
 - **Line 2** Leaving out `start` means start at the front. This gives the first three.
 - **Line 3** `-3` as the start means three from the back. Leaving out `stop` means go to the end.
 
-> <font color='green'>**Result**</font> `skus[2:8]` returns six SKUs, `skus[:3]` the first three, and `skus[-3:]` the last three.
+> <font color='green'>**Result**</font> `product_codes[2:8]` returns six product codes, `product_codes[:3]` the first three, and `product_codes[-3:]` the last three.
 
-<p align="center"><img src="images/01_list_positions_and_slices.png" alt="Ten SKUs drawn as boxes with positions 0 to 9 above and -10 to -1 below, and the slice skus[2:8:2] highlighted at positions 2, 4 and 6" width="900"></p>
+<p align="center"><img src="images/01_list_positions_and_slices.png" alt="Ten product codes drawn as boxes with positions 0 to 9 above and -10 to -1 below, and the slice product_codes[2:8:2] highlighted at positions 2, 4 and 6" width="900"></p>
 
 ### <font color='green'>Extending it: add a step</font>
 
-> <font color='purple'>**What do we get if we take every second SKU from position 2 to 7, every third from the whole list, or the list reversed?**</font>
+> <font color='purple'>**What do we get if we take every second product code from position 2 to 7, every third from the whole list, or the list reversed?**</font>
 
-> <font color="red">**🎯 Instructor Note**</font> Ask for the positions picked by `skus[2:8:2]` before running. Expected: 2, 4 and 6. A step of -1 walks from the back.
+> <font color="red">**🎯 Instructor Note**</font> Ask for the positions picked by `product_codes[2:8:2]` before running. Expected: 2, 4 and 6. A step of -1 walks from the back.
 
 ```python
-print(skus[2:8:2])
-print(skus[::3])
-print(skus[::-1])
+print(product_codes[2:8:2])
+print(product_codes[::3])
+print(product_codes[::-1])
 ```
 
 **Output**
@@ -203,14 +203,14 @@ print(skus[::-1])
 
 ### <font color='green'>Extending it: slice past the end</font>
 
-> <font color='purple'>**A slice may ask for more than the list holds. Does that fail like `skus[10]`?**</font>
+> <font color='purple'>**A slice may ask for more than the list holds. Does that fail like `product_codes[10]`?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Give learners 30 seconds to respond in chat. Expected: no error, only the items that exist.
 
 ```python
-part = skus[8:20]
+part = product_codes[8:20]
 print(part)
-print(len(skus))
+print(len(product_codes))
 ```
 
 **Output**
@@ -224,7 +224,7 @@ print(len(skus))
 
 ### <font color='purple'>Quiz 1</font>
 
-**Question:** For the ten-item list `skus`, which positions does `skus[1:9:2]` pick?
+**Question:** For the ten-item list `product_codes`, which positions does `product_codes[1:9:2]` pick?
 
 **Options:**
 - A) Positions 1, 3, 5, 7 and 9
@@ -242,23 +242,23 @@ print(len(skus))
 
 ---
 
-## <font color='blue'>Topic 2: Add Late SKUs and Rank Prices</font> `30 min`
+## <font color='blue'>Topic 2: Add Late Product Codes and Rank Prices</font> `30 min`
 
-> <font color='purple'>**Three late SKUs arrived after the first ten. How do we add them without breaking the list, and which prices should the seller check first?**</font>
+> <font color='purple'>**Three late product codes arrived after the first ten. How do we add them without breaking the list, and which prices should the seller check first?**</font>
 
-The list from Topic 1 can be read by position. Now the seller has a second list, `late`, with the three late SKUs. Both `append` and `extend` add to the end of a list, but they treat what you give them in different ways.
+The list from Topic 1 can be read by position. Now the seller has a second list, `late`, with the three late product codes. Both `append` and `extend` add to the end of a list, but they treat what you give them in different ways.
 
 ### <font color='green'>Example: append the whole late list</font>
 
-> <font color='purple'>**How many items does a copy of `skus` have after we append the list `late`?**</font>
+> <font color='purple'>**How many items does a copy of `product_codes` have after we append the list `late`?**</font>
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expected: 11, not 13. Common wrong guess: 13, because learners expect the three SKUs to be added one by one.
+> <font color="red">**🎯 Instructor Note**</font> Expected: 11, not 13. Common wrong guess: 13, because learners expect the three product codes to be added one by one.
 
 ```python
 late = ["SAR-0910-GN", "TEE-0210-YL", "SAR-0911-RD"]
-trial = skus[:]
+trial = product_codes[:]
 trial.append(late)
 print(len(trial))
 print(trial[-1])
@@ -273,23 +273,23 @@ print(trial[-1])
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** The three late SKUs are rows 11 to 13 of `data/seller_skus.csv`.
-- **Line 2** `skus[:]` is a slice of the whole list, so it makes a copy. We test on the copy and keep `skus` safe.
+- **Line 1** The three late product codes are rows 11 to 13 of `data/seller_skus.csv`.
+- **Line 2** `product_codes[:]` is a slice of the whole list, so it makes a copy. We test on the copy and keep `product_codes` safe.
 - **Line 3** `append` adds exactly one item to the end. Here that one item is the whole list `late`.
 - **Lines 4 and 5** The length is 11, and the last item is a list inside the list.
 
-> <font color='green'>**Result**</font> `append` added one item, the whole list `late`. This is the seller's bug: the catalogue sees a list where it expects a SKU text.
+> <font color='green'>**Result**</font> `append` added one item, the whole list `late`. This is the seller's bug: the catalogue sees a list where it expects a product code text.
 
 ### <font color='green'>Extending it: extend with the late list</font>
 
-> <font color='purple'>**Which call adds the three SKUs one by one?**</font>
+> <font color='purple'>**Which call adds the three product codes one by one?**</font>
 
-> <font color="red">**🎯 Instructor Note**</font> Ask learners for the new length. Give learners 30 seconds to respond in chat. Expected: 13, with the three late SKUs as the last three items.
+> <font color="red">**🎯 Instructor Note**</font> Ask learners for the new length. Give learners 30 seconds to respond in chat. Expected: 13, with the three late product codes as the last three items.
 
 ```python
-skus.extend(late)
-print(len(skus))
-print(skus[-3:])
+product_codes.extend(late)
+print(len(product_codes))
+print(product_codes[-3:])
 print(len(trial))
 ```
 
@@ -301,7 +301,7 @@ print(len(trial))
 11
 ```
 
-> <font color='green'>**Result**</font> `extend` walks through the list it receives and adds each item. `skus` now has 13 flat items, while the trial copy still has 11.
+> <font color='green'>**Result**</font> `extend` walks through the list it receives and adds each item. `product_codes` now has 13 flat items, while the trial copy still has 11.
 
 ### <font color='green'>Extending it: extend with a plain text</font>
 
@@ -324,9 +324,9 @@ print(demo)
 
 > <font color='green'>**Result**</font> `append` added the text as one item. `extend` split `"TEE"` into the items `'T'`, `'E'` and `'E'`.
 
-> <font color='#b45309'>**Common mistake**</font> Using `extend` for one SKU text. Use `append` for one item and `extend` for a list of items.
+> <font color='#b45309'>**Common mistake**</font> Using `extend` for one product code text. Use `append` for one item and `extend` for a list of items.
 
-<p align="center"><img src="images/02_append_vs_extend.png" alt="Bar chart of list length: skus has 10 items, a copy after append has 11 items with the last one a list, and skus after extend has 13 items" width="900"></p>
+<p align="center"><img src="images/02_append_vs_extend.png" alt="Bar chart of list length: product_codes has 10 items, a copy after append has 11 items with the last one a list, and product_codes after extend has 13 items" width="900"></p>
 
 ### <font color='green'>Example: sort the prices</font>
 
@@ -353,7 +353,7 @@ print(prices[:3])
 #### <font color='#c2410c'>Code Explanation</font>
 
 - **Line 1** The ten prices in rupees are rows 1 to 10. Two of them are 299, a tie.
-- **Line 2** `extend` adds the prices of the late SKUs, rows 11 to 13, one by one.
+- **Line 2** `extend` adds the prices of the late product codes, rows 11 to 13, one by one.
 - **Line 3** `sorted` returns a new list from smallest to largest.
 - **Line 4** The first three items of `prices` are still in the seller's order.
 
@@ -378,14 +378,14 @@ print(top[:3])
 
 > <font color='green'>**Result**</font> With `reverse=True` the largest price comes first, so the first three items are 4999, 1299 and 899. The slice from Topic 1 picks them.
 
-### <font color='green'>Extending it: sort the SKU text</font>
+### <font color='green'>Extending it: sort the product code text</font>
 
-> <font color='purple'>**Does `sorted` put the SKU texts in the order a person expects?**</font>
+> <font color='purple'>**Does `sorted` put the product code texts in the order a person expects?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask where `jns-0332-bk` will land. Expected: last, because small letters sort after capitals and a leading space sorts first.
 
 ```python
-ordered = sorted(skus)
+ordered = sorted(product_codes)
 print(ordered[:3])
 print(ordered[-1])
 ```
@@ -397,7 +397,7 @@ print(ordered[-1])
 jns-0332-bk
 ```
 
-> <font color='green'>**Result**</font> The two SKUs with a leading space come first, and `jns-0332-bk` comes last, far from `JNS-0331-BL`. `sorted` follows the exact characters, including spaces and capitals.
+> <font color='green'>**Result**</font> The two product codes with a leading space come first, and `jns-0332-bk` comes last, far from `JNS-0331-BL`. `sorted` follows the exact characters, including spaces and capitals.
 
 <p align="center"><img src="images/03_prices_sorted.png" alt="Bar chart of the 13 prices sorted from highest to lowest, with the highest 4999, the lowest 49 and the tied 299 prices highlighted" width="900"></p>
 
@@ -421,27 +421,27 @@ jns-0332-bk
 
 ---
 
-## <font color='blue'>Topic 3: Cut the SKU Code Apart</font> `22 min`
+## <font color='blue'>Topic 3: Cut a Product Code Apart</font> `22 min`
 
-> <font color='purple'>**The list is flat and ranked. Inside one SKU such as `KRT-0412-RD`, the first letters name the category. How do we cut a piece out of a text?**</font>
+> <font color='purple'>**The list is flat and ranked. Inside one product code such as `KRT-0412-RD`, the first letters name the category. How do we cut a piece out of a text?**</font>
 
 A text is ordered like a list: every character has a position, from 0 at the front and from -1 at the back. You already looped over a string one character at a time. Now you use the same positions to pick pieces, with the same slice rule as in Topic 1.
 
 ### <font color='green'>Example: category, style number and colour</font>
 
-> <font color='purple'>**What are the category, the style number and the colour code inside the first SKU?**</font>
+> <font color='purple'>**What are the category, the style number and the colour code inside the first product code?**</font>
 
-A clean SKU has 11 characters: three letters, a dash, four digits, a dash, and two letters.
+A clean product code has 11 characters: three letters, a dash, four digits, a dash, and two letters.
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expected: `KRT`, `0412` and `RD`. Common wrong guess: `sku[4:8]` includes the dash at position 8.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `KRT`, `0412` and `RD`. Common wrong guess: `item_code[4:8]` includes the dash at position 8.
 
 ```python
-sku = skus[0]
-print(sku[0])
-print(sku[:3], sku[4:8], sku[9:])
-print(sku[-2:])
+item_code = product_codes[0]
+print(item_code[0])
+print(item_code[:3], item_code[4:8], item_code[9:])
+print(item_code[-2:])
 ```
 
 **Output**
@@ -454,23 +454,23 @@ RD
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Takes the first item of the list with `skus[0]` and stores that text in `sku`.
-- **Line 2** `sku[0]` is the first character.
-- **Line 3** `sku[:3]` is the first three characters. `sku[4:8]` is positions 4 to 7, the four digits. `sku[9:]` runs from position 9 to the end.
-- **Line 4** `sku[-2:]` takes the last two characters, the same colour code.
+- **Line 1** Takes the first item of the list with `product_codes[0]` and stores that text in `item_code`.
+- **Line 2** `item_code[0]` is the first character.
+- **Line 3** `item_code[:3]` is the first three characters. `item_code[4:8]` is positions 4 to 7, the four digits. `item_code[9:]` runs from position 9 to the end.
+- **Line 4** `item_code[-2:]` takes the last two characters, the same colour code.
 
-> <font color='green'>**Result**</font> The SKU `KRT-0412-RD` splits into category `KRT`, style number `0412` and colour `RD`.
+> <font color='green'>**Result**</font> The product code `KRT-0412-RD` splits into category `KRT`, style number `0412` and colour `RD`.
 
-<p align="center"><img src="images/04_sku_anatomy.png" alt="The SKU KRT-0412-RD drawn as 11 character boxes with positions 0 to 10, coloured by the slices sku[:3], sku[4:8] and sku[9:]" width="900"></p>
+<p align="center"><img src="images/04_sku_anatomy.png" alt="The product code KRT-0412-RD drawn as 11 character boxes with positions 0 to 10, coloured by the slices item_code[:3], item_code[4:8] and item_code[9:]" width="900"></p>
 
-### <font color='green'>Extending it: the same slices on the last three SKUs</font>
+### <font color='green'>Extending it: the same slices on the last three product codes</font>
 
-> <font color='purple'>**Do the same slices work on the late SKUs we added in Topic 2?**</font>
+> <font color='purple'>**Do the same slices work on the late product codes we added in Topic 2?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask learners to predict the first line. Give learners 30 seconds to respond in chat. Expected: `SAR 0910 GN`.
 
 ```python
-for item in skus[-3:]:
+for item in product_codes[-3:]:
     print(item[:3], item[4:8], item[9:])
 ```
 
@@ -482,16 +482,16 @@ TEE 0210 YL
 SAR 0911 RD
 ```
 
-> <font color='green'>**Result**</font> Every clean SKU has the same layout, so one set of slices cuts all of them.
+> <font color='green'>**Result**</font> Every clean product code has the same layout, so one set of slices cuts all of them.
 
-### <font color='green'>Extending it: the same slices on a messy SKU</font>
+### <font color='green'>Extending it: the same slices on a messy product code</font>
 
 > <font color='purple'>**Does the same cut work on `" tee-0208-bk "`, which has a space at each end?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Expected: wrong pieces, because the extra space shifts every position by one.
 
 ```python
-messy = skus[3]
+messy = product_codes[3]
 print(messy[:3], messy[4:8], messy[9:])
 print(len(messy))
 ```
@@ -505,7 +505,7 @@ print(len(messy))
 
 > <font color='green'>**Result**</font> The pieces are ` te`, `-020` and `-bk `, which are not the category, number or colour. The length is 13, not 11, so the positions moved.
 
-> <font color='#b45309'>**Common mistake**</font> Slicing a SKU before its text is clean. Slice positions only work when the text has the layout you expect.
+> <font color='#b45309'>**Common mistake**</font> Slicing a product code before its text is clean. Slice positions only work when the text has the layout you expect.
 
 ### <font color='purple'>Quiz 3</font>
 
@@ -529,7 +529,7 @@ print(len(messy))
 
 ## <font color='blue'>Topic 4: Clean the Title Text</font> `30 min`
 
-> <font color='purple'>**The slice failed on `" tee-0208-bk "`, and `sorted` put a small-letter SKU last. How do we fix spaces and capitals in text before we use it?**</font>
+> <font color='purple'>**The slice failed on `" tee-0208-bk "`, and `sorted` put a small-letter product code last. How do we fix spaces and capitals in text before we use it?**</font>
 
 In Variables and Condition Logic in Colab you stored text in named variables. Now you change how that text looks with string methods. A method is a call written after the text, like `text.strip()`.
 
@@ -586,14 +586,14 @@ print(len(messy), len(tidy_title))
 
 > <font color='green'>**Result**</font> The chain gives `Cotton Kurta Set`. Each method works on the text the one before it returned, and the length fell from 20 to 16.
 
-### <font color='green'>Extending it: clean the SKU, then slice it</font>
+### <font color='green'>Extending it: clean the product code, then slice it</font>
 
 > <font color='purple'>**Does the Topic 3 slice work once `" tee-0208-bk "` is cleaned?**</font>
 
 > <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Expected: `TEE`, `0208` and `BK`, because the clean text has the layout the slices expect.
 
 ```python
-fixed = skus[3].strip().upper()
+fixed = product_codes[3].strip().upper()
 print(fixed)
 print(fixed[:3], fixed[4:8], fixed[9:])
 ```
@@ -605,7 +605,7 @@ TEE-0208-BK
 TEE 0208 BK
 ```
 
-> <font color='green'>**Result**</font> After `strip` and `upper` the SKU is `TEE-0208-BK`, and the same slices now return `TEE`, `0208` and `BK`.
+> <font color='green'>**Result**</font> After `strip` and `upper` the product code is `TEE-0208-BK`, and the same slices now return `TEE`, `0208` and `BK`.
 
 ### <font color='green'>Extending it: a title with only spaces</font>
 
@@ -750,12 +750,12 @@ print(blank)
 
 ## <font color='blue'>Closing: Outcome & Summary</font> `10 min`
 
-Back to seller SLR-201 and the question: how do we turn messy SKU text and a price list into one clean, ordered list the catalogue accepts?
+Back to seller SLR-201 and the question: how do we turn messy product code text and a price list into one clean, ordered list the catalogue accepts?
 
-> <font color='purple'>**1. Is the late batch now one flat list, and where do the late SKUs sit? (Topic 1 and Topic 2)**</font>
+> <font color='purple'>**1. Is the late batch now one flat list, and where do the late product codes sit? (Topic 1 and Topic 2)**</font>
 
 ```python
-print(len(skus), skus[-3:])
+print(len(product_codes), product_codes[-3:])
 ```
 
 **Output**
@@ -766,7 +766,7 @@ print(len(skus), skus[-3:])
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** `len` gives 13 items. The slice `[-3:]` from Topic 1 shows the three late SKUs at the end, added with `extend` from Topic 2.
+- **Line 1** `len` gives 13 items. The slice `[-3:]` from Topic 1 shows the three late product codes at the end, added with `extend` from Topic 2.
 
 > <font color='purple'>**2. Which three prices should the seller check first? (Topic 2)**</font>
 
@@ -784,14 +784,14 @@ print(sorted(prices, reverse=True)[:3])
 
 - **Line 1** `sorted(..., reverse=True)` from Topic 2 puts the highest price first, and the slice keeps three.
 
-> <font color='purple'>**3. Are the 13 SKUs clean, in order, and ready to cut apart? (Topic 2, Topic 3 and Topic 4)**</font>
+> <font color='purple'>**3. Are the 13 product codes clean, in order, and ready to cut apart? (Topic 2, Topic 3 and Topic 4)**</font>
 
 ```python
 clean = []
 fixed = 0
-for sku in skus:
-    clean.append(sku.strip().upper())
-    if clean[-1] != sku:
+for item_code in product_codes:
+    clean.append(item_code.strip().upper())
+    if clean[-1] != item_code:
         fixed += 1
 ordered = sorted(clean)
 print(fixed, ordered[:3])
@@ -809,12 +809,12 @@ TEE-0210-YL TEE 0210 YL
 #### <font color='#c2410c'>Code Explanation</font>
 
 - **Lines 1 and 2** An empty list `clean` and a counter `fixed` start the work.
-- **Lines 3 and 4** The loop visits each SKU. `strip` and `upper` from Topic 4 clean it, and `append` from Topic 2 adds it to `clean`.
-- **Lines 5 and 6** `clean[-1]` from Topic 1 is the SKU just added. If it differs from the raw text, `fixed` goes up by 1.
+- **Lines 3 and 4** The loop visits each product code. `strip` and `upper` from Topic 4 clean it, and `append` from Topic 2 adds it to `clean`.
+- **Lines 5 and 6** `clean[-1]` from Topic 1 is the product code just added. If it differs from the raw text, `fixed` goes up by 1.
 - **Lines 7 and 8** `sorted` from Topic 2 orders the clean list. The three first items show the order.
-- **Lines 9 and 10** The slices from Topic 3 cut the last SKU into category, number and colour.
+- **Lines 9 and 10** The slices from Topic 3 cut the last product code into category, number and colour.
 
-<p align="center"><img src="images/06_sorted_raw_vs_clean.png" alt="Two columns of the 13 SKUs: sorted as typed, with messy SKUs misplaced, and sorted after strip and upper, in a clean order" width="900"></p>
+<p align="center"><img src="images/06_sorted_raw_vs_clean.png" alt="Two columns of the 13 product codes: sorted as typed, with messy product codes misplaced, and sorted after strip and upper, in a clean order" width="900"></p>
 
 > <font color='purple'>**4. How many of the 120 titles does one tidy rule change? (Topic 4)**</font>
 
@@ -846,13 +846,13 @@ print(fixed, tidy("WOMEN'S PRINTED KURTI"))
 
 | | Seller's first upload | After today's fixes |
 |:--|:-:|:-:|
-| Items in the SKU list | 11, the last one a list | 13 single SKUs |
-| SKUs with stray spaces or small letters (of 13) | 3 | 0 |
+| Items in the product code list | 11, the last one a list | 13 single product codes |
+| product codes with stray spaces or small letters (of 13) | 3 | 0 |
 | Where `jns-0332-bk` sorts | last | 3rd, as `JNS-0332-BK` |
 | Titles that need a fix (of 120) | 84 | 0 |
 | Blank titles that go back to the seller | 4 | 4 |
 
-> <font color='green'>**Therefore,**</font> use `extend` to add late SKUs, strip and upper-case each SKU before sorting or slicing, and run one tidy rule over every title. The list is then flat, ordered and readable, and only the 4 blank titles need the seller.
+> <font color='green'>**Therefore,**</font> use `extend` to add late product codes, strip and upper-case each product code before sorting or slicing, and run one tidy rule over every title. The list is then flat, ordered and readable, and only the 4 blank titles need the seller.
 
 > <font color="red">**🎯 Instructor Note**</font> Poll reveal: `append` put the list inside the list; `extend` and `sorted` did not. Show the 11 versus 13 result from Topic 2.
 
@@ -864,7 +864,7 @@ print(fixed, tidy("WOMEN'S PRINTED KURTI"))
 | Extract a sub-list using slice notation | `[start:stop:step]` includes start, excludes stop, and returns a new list |
 | Apply append and extend | `append` adds one item; `extend` adds each item of a list |
 | Apply sorted with the reverse flag | `sorted` returns a new ordered list; `reverse=True` puts the largest first |
-| Extract a substring | The same positions and slices work on text, such as `sku[4:8]` |
+| Extract a substring | The same positions and slices work on text, such as `item_code[4:8]` |
 | Apply string methods to casing and whitespace | `strip`, `lower`, `upper`, `title` and `replace` clean text and return new text |
 | **Practical value** | Clean lists and text stop a bad upload before it reaches a catalogue, a report or a SQL table |
 

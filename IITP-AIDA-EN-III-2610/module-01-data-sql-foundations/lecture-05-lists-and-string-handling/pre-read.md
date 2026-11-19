@@ -7,7 +7,7 @@
 flowchart TB
   CUR["<b>Current Session</b><br/>Lists and String Handling"]
   Q["<b>The Big Question</b><br/><i>How does code pick one item from a long menu without retyping every name?</i>"]
-  CV["<b>Course use case</b><br/>Turn a 120-row SKU list into a clean upload for a SQL table"]
+  CV["<b>Course use case</b><br/>Turn a 120-row product code list into a clean upload for a SQL table"]
   RL["<b>Real-world example</b><br/>The college canteen board lists today’s dishes in order"]
 
   CUR ==> Q
