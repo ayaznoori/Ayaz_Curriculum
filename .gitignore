@@ -1,3 +1,16 @@
+# Local pipeline and tooling (never push)
+.claude/
+.cursor/
+preread/
+lecture/
+lecture-examples/
+tools/
+.local/
+
+# Legacy layout
+courses/
+
+# Environment and OS
 .DS_Store
 .env
 .env.*
