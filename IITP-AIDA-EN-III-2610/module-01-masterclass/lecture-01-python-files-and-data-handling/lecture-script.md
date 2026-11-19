@@ -24,11 +24,11 @@ The lecture runs as four topics. Each topic ends with a quiz.
 
 | Before (pasted in Colab) | After (files on disk) |
 |:--|:--|
-| Seller SLR-201 kept one long `catalog_blob` string in a cell | Same 120 product rows now live in `data/seller_product_codes.csv` |
+| Seller A kept one long `catalog_blob` string in a cell | Same 120 product rows now live in `data/seller_product_codes.csv` |
 | Upload reminders were retyped each morning | `data/upload_notes.txt` holds tomorrow's checklist |
 | Settlement events were pasted JSON text | `data/transactions.json` is read with `json.load` |
 
-A Flipkart-style marketplace upload team checks SLR-201's folder before the evening window. One wrong copy of the table file, and yesterday's prices go live again.
+A Flipkart-style marketplace upload team checks Seller A's folder before the evening window. One wrong copy of the table file, and yesterday's prices go live again.
 
 > <font color="red">**🎯 Instructor Note**</font> Flipkart is only the setting; do not claim it uses this data. All rows are invented for teaching.
 > Upload the whole `data/` folder to Colab. Run code with the notebook working folder set to this session folder.
@@ -37,11 +37,11 @@ A Flipkart-style marketplace upload team checks SLR-201's folder before the even
 
 ## <font color='blue'>Problem Statement</font>
 
-Seller SLR-201 still opened an old notebook that summed prices from a pasted table. She edited row 4 in the cell, not the saved CSV. The upload script read the file on disk, so the marketplace showed the old price. Her manager also found four blank titles in the shared catalogue file. Nothing was blocked, but three products went live with missing names.
+Seller A still opened an old notebook that summed prices from a pasted table. She edited row 4 in the cell, not the saved CSV. The upload script read the file on disk, so the marketplace showed the old price. Her manager also found four blank titles in the shared product table file. Nothing was blocked, but three products went live with missing names.
 
-> <font color='purple'>**How do we read SLR-201's saved text, table and JSON files, write a clean export, and trust an AI fix only after we re-run the script?**</font>
+> <font color='purple'>**How do we read Seller A's saved text, table and JSON files, write a clean export, and trust an AI fix only after we re-run the script?**</font>
 
-> <font color="red">**🎯 Instructor Note**</font> Poll: "How many product rows does seller SLR-201 have in seller_product_codes.csv: 13, 60, or 120?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
+> <font color="red">**🎯 Instructor Note**</font> Poll: "How many product rows does Seller A have in seller_product_codes.csv: 13, 60, or 120?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
 
 ---
 
@@ -58,7 +58,7 @@ Files on disk hold text, comma tables and JSON. The same list and dictionary ide
 
 ---
 
-## <font color='blue'>How: Walking Through SLR-201's Upload Folder</font>
+## <font color='blue'>How: Walking Through Seller A's Saved Folder</font>
 
 ```mermaid
 flowchart LR
@@ -98,7 +98,7 @@ print(len(notes), notes.splitlines()[0])
 **Output**
 
 ```
-343 Seller SLR-201 — upload checklist for 19 March 2026
+349 Seller A — upload checklist for 19 March 2026
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
@@ -137,19 +137,19 @@ print(len(rows) - 1, rows[1][2], rows[1][4])
 
 <p align="center"><img src="images/01_rows_by_seller.png" alt="Bar chart of row counts for each seller id in seller_product_codes.csv" width="900"></p>
 
-### <font color='green'>Extending it: keep only SLR-201 rows</font>
+### <font color='green'>Extending it: keep only Seller A rows</font>
 
-> <font color='purple'>**How many rows belong to SLR-201, and how many of those have a blank title?**</font>
+> <font color='purple'>**How many rows use shop code SHOP-A, and how many of those have a blank title?**</font>
 
 ```python
 import csv
-slr = []
+seller_a_rows = []
 with open("data/seller_product_codes.csv", newline="", encoding="utf-8") as f:
     for row in csv.DictReader(f):
-        if row["seller_id"] == "SLR-201":
-            slr.append(row)
-blanks = sum(1 for r in slr if not r["title_raw"].strip())
-print(len(slr), blanks, slr[0]["product_code_raw"])
+        if row["seller_id"] == "SHOP-A":
+            seller_a_rows.append(row)
+blanks = sum(1 for r in seller_a_rows if not r["title_raw"].strip())
+print(len(seller_a_rows), blanks, seller_a_rows[0]["product_code_raw"])
 ```
 
 **Output**
@@ -161,13 +161,13 @@ print(len(slr), blanks, slr[0]["product_code_raw"])
 #### <font color='#c2410c'>Code Explanation</font>
 
 - **Lines 3 to 5** `DictReader` uses the header row as keys, so `row["seller_id"]` is readable.
-- **Line 6** `strip()` treats spaces-only titles as blank; SLR-201 rows today all have text.
+- **Line 6** `strip()` treats spaces-only titles as blank; Seller A rows today all have text.
 
-> <font color='green'>**Result**</font> Thirteen rows are SLR-201's; the poll answer is 13, not 120.
+> <font color='green'>**Result**</font> Thirteen rows are Seller A's; the poll answer is 13, not 120.
 
-<p align="center"><img src="images/02_slr201_title_blanks.png" alt="Bar chart of titled versus blank rows for seller SLR-201" width="900"></p>
+<p align="center"><img src="images/02_shop_a_title_blanks.png" alt="Bar chart of titled versus blank rows for Seller A (shop code SHOP-A)" width="900"></p>
 
-### <font color='green'>Extending it: count blank titles in the full catalogue</font>
+### <font color='green'>Extending it: count blank titles in the full product table</font>
 
 > <font color='purple'>**The notes file mentions four blank titles in the shared file. Does the CSV match?**</font>
 
@@ -209,7 +209,7 @@ print(blanks, len(rows))
 
 ## <font color='blue'>Topic 2: Build clean_export.csv on Disk</font> `30 min`
 
-> <font color='purple'>**SLR-201 needs a smaller table file with a header row. How do we write her thirteen cleaned rows to clean_export.csv?**</font>
+> <font color='purple'>**Seller A needs a smaller table file with a header row. How do we write her thirteen cleaned rows to clean_export.csv?**</font>
 
 In Dictionaries and JSON with Tuples and Sets you held each product as a dictionary in a list. The same shape now becomes a file other tools can open.
 
@@ -226,7 +226,7 @@ import csv
 clean = []
 with open("data/seller_product_codes.csv", newline="", encoding="utf-8") as f:
     for r in csv.DictReader(f):
-        if r["seller_id"] == "SLR-201" and r["title_raw"].strip():
+        if r["seller_id"] == "SHOP-A" and r["title_raw"].strip():
             clean.append({"product_code": r["product_code_raw"].strip(), "title": r["title_raw"].strip().title(), "price_inr": r["price_inr"]})
 with open("data/clean_export.csv", "w", newline="", encoding="utf-8") as g:
     w = csv.DictWriter(g, fieldnames=["product_code", "title", "price_inr"])
@@ -245,9 +245,9 @@ with open("data/clean_export.csv", "w", newline="", encoding="utf-8") as g:
 - **Lines 7 to 10** `DictWriter` writes the header once, then every record.
 - **Line 11** confirms count and the first product code in list order.
 
-> <font color='green'>**Result**</font> SLR-201 gets a fresh export file with column names on line one.
+> <font color='green'>**Result**</font> Seller A gets a fresh export file with column names on line one.
 
-<p align="center"><img src="images/03_slr201_price_distribution.png" alt="Histogram of price_inr values for seller SLR-201" width="900"></p>
+<p align="center"><img src="images/03_shop_a_price_distribution.png" alt="Histogram of price_inr values for Seller A (shop code SHOP-A)" width="900"></p>
 
 ### <font color='green'>Extending it: read the export back</font>
 
@@ -323,7 +323,7 @@ KRT-0412-RD <class 'int'> 2026-03-19
 - **Lines 2 to 3** `json.load` reads the whole file and returns a dictionary.
 - **Line 4** shows string, integer, and date text fields.
 
-> <font color='green'>**Result**</font> One small JSON file carries the golden row SLR-201 checks against the CSV.
+> <font color='green'>**Result**</font> One small JSON file carries the golden row Seller A checks against the CSV.
 
 ### <font color='green'>Extending it: load the 120 settlement events</font>
 
@@ -421,7 +421,7 @@ print(stamp, n)
 
 ## <font color='blue'>Topic 4: Fix a Broken Total Script with AI Help</font> `22 min`
 
-> <font color='purple'>**SLR-201 wants the sum of all prices in seller_product_codes.csv. Her script crashes. How do we use an AI fix and only keep it after a test run?**</font>
+> <font color='purple'>**Seller A wants the sum of all prices in seller_product_codes.csv. Her script crashes. How do we use an AI fix and only keep it after a test run?**</font>
 
 In How AI and LLMs Work with Prompts you wrote task, context, format and constraints. Use the same pattern when you ask for a code fix: paste the error, the file name, and ask for a short explanation.
 
@@ -511,25 +511,25 @@ print(total, "all_sellers")
 
 ## <font color='blue'>Closing: Outcome & Summary</font> `10 min`
 
-Seller SLR-201 moved from pasted cells to a small folder on disk. Each topic added one piece: read text and the shared table, write her export, load JSON with a stdlib tally, then test an AI fix on the price sum.
+Seller A moved from pasted cells to a small folder on disk. Each topic added one piece: read text and the shared table, write her export, load JSON with a stdlib tally, then test an AI fix on the price sum.
 
 > <font color='purple'>**1. Did we answer the lecture question about text, table, JSON, export, and a tested AI fix?**</font>
 
-Yes. Notes came from `upload_notes.txt`, the 120-row catalogue from `seller_product_codes.csv`, the golden kurta row from `kurta_detail.json`, settlement checks from `transactions.json`, and the price total only after skipping the header.
+Yes. Notes came from `upload_notes.txt`, the 120-row product table from `seller_product_codes.csv`, the golden kurta row from `kurta_detail.json`, settlement checks from `transactions.json`, and the price total only after skipping the header.
 
-> <font color='purple'>**2. How many SLR-201 rows are in the export file?**</font>
+> <font color='purple'>**2. How many Seller A rows are in the export file?**</font>
 
 ```python
 import csv
 with open("data/clean_export.csv", newline="", encoding="utf-8") as f:
     n = sum(1 for _ in csv.DictReader(f))
-print("SLR-201 export rows:", n)
+print("Seller A export rows:", n)
 ```
 
 **Output**
 
 ```
-SLR-201 export rows: 13
+Seller A export rows: 13
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
@@ -542,14 +542,14 @@ SLR-201 export rows: 13
 
 | | Paste in a cell | Files in data/ |
 |:--|:-:|:-:|
-| Rows SLR-201 can upload | Hard to track | 13 in clean_export.csv |
-| Blank titles in full catalogue | Hidden in a long string | 4 found with `strip()` check |
+| Rows Seller A can upload | Hard to track | 13 in clean_export.csv |
+| Blank titles in full product table | Hidden in a long string | 4 found with `strip()` check |
 | Settlement events | Pasted JSON text | 120 in transactions.json |
 | Price sum script | Crashes on header | 79,980 after `next(rows)` |
 
-> <font color='green'>**Therefore,**</font> SLR-201 should keep one `data/` folder, write `clean_export.csv` after cleanup, and treat any AI fix as a draft until a re-run matches these checks.
+> <font color='green'>**Therefore,**</font> Seller A should keep one `data/` folder, write `clean_export.csv` after cleanup, and treat any AI fix as a draft until a re-run matches these checks.
 
-> <font color="red">**🎯 Instructor Note**</font> Reveal the poll answer: **13** SLR-201 product rows in `seller_product_codes.csv` (120 rows belong to all sellers combined).
+> <font color="red">**🎯 Instructor Note**</font> Reveal the poll answer: **13** Seller A product rows in `seller_product_codes.csv` (120 rows belong to all sellers combined).
 
 ### <font color='green'>Summary</font>
 
