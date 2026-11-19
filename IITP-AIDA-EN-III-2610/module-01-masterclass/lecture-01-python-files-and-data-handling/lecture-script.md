@@ -31,7 +31,7 @@ The lecture runs as four topics. Each topic ends with a quiz.
 A Flipkart-style marketplace upload team checks Seller A's folder before the evening window. One wrong copy of the table file, and yesterday's prices go live again.
 
 > <font color="red">**🎯 Instructor Note**</font> Flipkart is only the setting; do not claim it uses this data. All rows are invented for teaching.
-> Upload the whole `data/` folder to Colab. Run code with the notebook working folder set to this session folder.
+> **Colab setup:** File → Upload to session storage → upload the whole `data/` folder (or upload a zip of `data/` and unzip in a setup cell). Learners run **Run cell** on each code block; do not teach local terminal Python in this session.
 
 ---
 
@@ -47,14 +47,17 @@ Seller A still opened an old notebook that summed prices from a pasted table. Sh
 
 ## <font color='blue'>What We Will Use</font>
 
-Files on disk hold text, comma tables and JSON. The same list and dictionary ideas from earlier sessions now arrive through `open`, `with`, and three standard library tools.
+Everything below runs in **Google Colab** code cells. Upload the session `data/` folder to the notebook file browser (or zip and upload, then unzip) so paths like `data/upload_notes.txt` work from the notebook working folder.
+
+For Topic 4, learners use **ChatGPT**, **Claude**, or **Gemini** (free plans) to paste an error and a short fix prompt—same task, context, format and constraints pattern as the prompts session. They always **re-run the Colab cell** before accepting the change.
 
 | Topic | Tools | In one line |
 |:-:|:--|:--|
+| 0 | Google Colab, uploaded `data/` folder | Run each block in a cell; files live beside the notebook |
 | 1 | `with open`, `read()`, `csv.reader`, `csv.DictReader` | Read plain text and table rows safely from disk |
 | 2 | `csv.DictWriter`, `writeheader`, `writerows` | Save a list of dictionaries as a CSV with column titles |
 | 3 | `json.load`, `collections.Counter`, `datetime.strftime` | Load JSON from a file and summarise or stamp rows |
-| 4 | AI chat paste, re-run, compare output | Test a suggested fix before keeping it |
+| 4 | ChatGPT / Claude / Gemini, re-run in Colab | Test a suggested fix before keeping it |
 
 ---
 
@@ -79,7 +82,7 @@ flowchart LR
 
 > <font color='purple'>**The checklist lives in upload_notes.txt. How do we load it without retyping, then open the 120-row product table?**</font>
 
-In Lists and String Handling you split a `catalog_blob` string into lines. In Dictionaries and JSON with Tuples and Sets you parsed JSON text with `json.loads`. Today the same seller rows sit in named files, and Python reads them from disk.
+In **Variables and Condition Logic in Colab** you ran Python in notebook cells. In Lists and String Handling you split a `catalog_blob` string into lines. In Dictionaries and JSON with Tuples and Sets you parsed JSON text with `json.loads`. Today the same seller rows sit in named files on Colab disk, and each **code cell** reads them with `open` and `csv`.
 
 ### <font color='green'>Example: read the upload notes into one string</font>
 
@@ -446,7 +449,7 @@ print(total)
 
 ```
 Traceback (most recent call last):
-  File "<stdin>", line 5, in <module>
+  File "<cell>", line 5, in <module>
 ValueError: invalid literal for int() with base 10: 'price_inr'
 ```
 

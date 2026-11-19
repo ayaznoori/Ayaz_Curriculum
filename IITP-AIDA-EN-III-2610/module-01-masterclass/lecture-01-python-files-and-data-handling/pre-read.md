@@ -48,9 +48,9 @@ By the end of this session, you will be able to:
 
 ### <span style="color:#2F7DDE">Why You Are Learning This Topic</span>
 
-You used to paste one long product list into Colab.
-Now the same information sits in named files in a folder on your laptop.
-You need to read tables safely and save a cleaned copy for upload.
+You used to paste one long product list into one **Google Colab** cell.
+Now the same information sits in named files in a small folder you upload beside the notebook.
+You need to read tables safely in **code cells** and save a cleaned copy for upload.
 A <span style="color:#D9660B">**file**</span> is named text stored on your computer. It stays after you close the notebook.
 In this course, the product table now lives on disk, not only in a cell.
 You parsed JSON inside the notebook last time. Now the same shape can wait in a folder, like a marks sheet in Downloads.
