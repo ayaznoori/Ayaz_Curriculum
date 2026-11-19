@@ -58,7 +58,7 @@ A printed slip says `  veg PULAO  ` with extra spaces. The screen needs a clean 
 
 A **list** means an ordered row of values stored under one name.
 
-You will meet lists whenever you load rows from a sheet or build a column for SQL.
+You will meet lists whenever you sort names in a notebook or build one column of data.
 
 > <span style="color:#2F7DDE">**Think about it:**</span> What happens if you add one dish the wrong way and the whole board resets?
 
