@@ -138,7 +138,7 @@ print(len(rows) - 1, rows[1][2], rows[1][4])
 
 > <font color='green'>**Result**</font> The table has 120 product rows plus a header, matching the old `catalog_blob` size.
 
-<p align="center"><img src="images/01_rows_by_seller.png" alt="Bar chart of row counts for each seller id in seller_product_codes.csv" width="900"></p>
+<p align="center"><img src="images/01_rows_by_shop_code.png" alt="Bar chart of row counts per shop code SHOP-A through SHOP-L in seller_product_codes.csv" width="900"></p>
 
 ### <font color='green'>Extending it: keep only Seller A rows</font>
 
@@ -539,7 +539,7 @@ Seller A export rows: 13
 
 - **Lines 2 to 4** Topic 2's export is re-read to confirm the upload file row count.
 
-<p align="center"><img src="images/06_upload_prep_timeline.png" alt="Line chart of minutes elapsed across upload prep milestones in class" width="900"></p>
+<p align="center"><img src="images/06_seller_a_class_timeline.png" alt="Line chart of minutes elapsed for Seller A upload prep milestones in class" width="900"></p>
 
 ### <font color='green'>Outcome</font>
 
