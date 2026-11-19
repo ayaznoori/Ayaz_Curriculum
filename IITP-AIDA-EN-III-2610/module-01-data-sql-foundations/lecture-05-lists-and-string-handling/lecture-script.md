@@ -177,7 +177,7 @@ print(product_codes[-3:])
 
 > <font color='green'>**Result**</font> `product_codes[2:8]` returns six product codes, `product_codes[:3]` the first three, and `product_codes[-3:]` the last three.
 
-<p align="center"><img src="images/01_list_positions_and_slices.png" alt="Ten product codes drawn as boxes with positions 0 to 9 above and -10 to -1 below, and the slice product_codes[2:8:2] highlighted at positions 2, 4 and 6" width="900"></p>
+<p align="center"><img src="images/01_list_positions_and_slices.png" alt="Ten product codes in a row with positions 0 to 9 above and -10 to -1 below; blue shading for product_codes[2:8] (six items at positions 2 through 7); orange for every second pick in product_codes[2:8:2] at positions 2, 4 and 6" width="900"></p>
 
 ### <font color='green'>Extending it: add a step</font>
 
