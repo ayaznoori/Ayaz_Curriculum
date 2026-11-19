@@ -14,9 +14,9 @@ flowchart TB
   Q ==>|&nbsp;Used in the course&nbsp;| CV
   Q ==>|&nbsp;Seen in real life&nbsp;| RL
 
-  classDef currSes fill:#ffe0b2,stroke:#ef6c00,color:#4e342e,stroke-width:3px
-  classDef ask fill:#e3f2fd,stroke:#1565c0,color:#0d47a1,stroke-width:3px
-  classDef val fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef currSes fill:#ef6c00,stroke:#e65100,color:#ffffff,stroke-width:3px
+  classDef ask fill:#1565c0,stroke:#0d47a1,color:#ffffff,stroke-width:3px
+  classDef val fill:#2e7d32,stroke:#1b5e20,color:#ffffff,stroke-width:3px
 
   class CUR currSes
   class Q ask

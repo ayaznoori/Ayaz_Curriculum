@@ -60,11 +60,11 @@ flowchart LR
     B --> C["Topic 3<br>Cut the SKU code"]
     C --> D["Topic 4<br>Clean the titles"]
     D --> E["Closing<br>Catalogue-ready list"]
-    style A fill:#dbeafe,stroke:#2563eb
-    style B fill:#dcfce7,stroke:#16a34a
-    style C fill:#fef3c7,stroke:#d97706
-    style D fill:#ede9fe,stroke:#7c3aed
-    style E fill:#fee2e2,stroke:#dc2626
+    style A fill:#2563eb,stroke:#1d4ed8,color:#ffffff
+    style B fill:#16a34a,stroke:#15803d,color:#ffffff
+    style C fill:#d97706,stroke:#b45309,color:#ffffff
+    style D fill:#7c3aed,stroke:#6d28d9,color:#ffffff
+    style E fill:#dc2626,stroke:#b91c1c,color:#ffffff
 ```
 
 ---
