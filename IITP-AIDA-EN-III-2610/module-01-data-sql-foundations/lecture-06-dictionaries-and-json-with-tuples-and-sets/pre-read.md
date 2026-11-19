@@ -7,8 +7,8 @@
 flowchart TB
   CUR["<b>Current Session</b><br/>Dictionaries and JSON with Tuples and Sets"]
   Q["<b>The Big Question</b><br/><i>How does a payment app find one payee's details in a long list?</i>"]
-  CV["<b>Course use case</b><br/>Store one merchant's fields in a Python map before loading rows into SQL"]
-  RL["<b>Real-world example</b><br/>RupeeRing shows your saved UPI payees on the home screen"]
+  CV["<b>Course use case</b><br/>Store one merchant's fields in a labeled map for later analysis"]
+  RL["<b>Real-world example</b><br/>RupeeRing shows your saved payment contacts on the home screen"]
 
   CUR ==> Q
   Q ==>|&nbsp;Used in the course&nbsp;| CV
@@ -29,7 +29,7 @@ flowchart TB
 
 ### <span style="color:#2F7DDE">What You'll Learn</span>
 
-Have you ever wondered how RupeeRing opens Anita's UPI card without mixing her up with Arun?
+Have you ever wondered how RupeeRing opens Anita's payment card without mixing her up with Arun?
 
 By the end of this session, you will be able to:
 
@@ -38,7 +38,7 @@ By the end of this session, you will be able to:
 - <span style="color:#D9660B">**Check**</span> whether `shop@rupeering` sits on RupeeRing's allowed merchant list.
 - <span style="color:#D9660B">**Write**</span> one payment tuple and unpack its id, amount, and status into names.
 - <span style="color:#D9660B">**Construct**</span> a set from six favourite tags and count how many unique tags remain.
-- <span style="color:#D9660B">**Classify**</span> each field in a RupeeRing API message by the Python type it becomes.
+- <span style="color:#D9660B">**Classify**</span> each field in a payment text message from the server by the Python type it becomes.
 
 > <span style="color:#2F7DDE">**Topics you will meet:**</span> Dictionary (key and value); Safe lookup with get; Search with in; Tuple and unpacking; Set (remove duplicates); JSON as a dictionary.
 >
@@ -49,10 +49,10 @@ By the end of this session, you will be able to:
 ### <span style="color:#2F7DDE">Why You Are Learning This Topic</span>
 
 You open RupeeRing to pay your college canteen. You tap a saved payee, not a search box.
-The app must match one UPI id to one row of details. It must also skip repeat tags in your history.
+The app must match one payment id to one row of details. It must also skip repeat tags in your history.
 Sometimes the server sends a text blob that your notebook must turn into Python values.
 A <span style="color:#D9660B">**dictionary**</span> is a labeled box: each label points to one value.
-In this course you will meet the same shapes inside files and SQL steps later.
+In this course you will meet the same shapes inside saved files and database steps later.
 You already used lists and strings; now you add labeled records and deduped tags.
 
 > <span style="color:#2F7DDE">**Think about it:**</span> What breaks if two payees share the same label?
@@ -63,7 +63,7 @@ You already used lists and strings; now you add labeled records and deduped tags
 
 RupeeRing stores three recent payees for your phone.
 
-| Payee label on screen | UPI id |
+| Payee label on screen | Payment id |
 |:---------------------:|:------:|
 | Anita | anita@rupeering |
 | Canteen | canteen@rupeering |
@@ -71,7 +71,7 @@ RupeeRing stores three recent payees for your phone.
 
 <span style="color:#D9660B">**What you want to happen:**</span>
 
-- Tap Anita and see her UPI id, not the canteen's id.
+- Tap Anita and see her payment id, not the canteen's id.
 - Mark `metro@rupeering` as allowed without scanning the whole list by hand.
 - Show three unique spend tags when the history lists `food` twice.
 
