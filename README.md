@@ -31,4 +31,4 @@ Session folders are created when pre-reads and lecture scripts are added. Option
 
 **Templates** under `templates/` are reference skeletons only. Session files in batch folders are the source of truth.
 
-**Remote:** [github.com/ayaznoori/AIML](https://github.com/ayaznoori/AIML)
+**Remote:** [github.com/ayaznoori/Ayaz_Curriculum](https://github.com/ayaznoori/Ayaz_Curriculum/tree/main)
