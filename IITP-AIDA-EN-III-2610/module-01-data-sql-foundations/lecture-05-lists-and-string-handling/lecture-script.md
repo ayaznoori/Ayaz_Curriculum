@@ -1,68 +1,65 @@
 # <font color='#1d4ed8'>Lecture Script: Lists and String Handling</font>
 
+---
+
 ## <font color='blue'>Agenda</font>
 
 The lecture runs as four topics. Each topic ends with a quiz.
 
 | Topic | What we do | Learning objectives covered | Minutes |
-|:-:|:-|:-|:-:|
-| 1 | Open the SKU list with indexes and slices | Write a list and access its elements using positive and negative indexing<br>Extract a sub-list using slice notation with start, stop and step | 32 |
-| 2 | Grow and rank the catalog list | Apply append and extend to add items to the end of a list<br>Apply sorted to order a list, controlling direction with the reverse flag | 32 |
-| 3 | Cut product titles apart | Extract a substring using indexing and slicing | 28 |
-| 4 | Clean messy listing text | Apply string methods to normalise casing and whitespace in a text value | 18 |
+|:-:|:--|:--|:-:|
+| 1 | Read the SKU list by position | Write a list and access its elements using positive and negative indexing<br>Extract a sub-list using slice notation with start, stop and step | 28 |
+| 2 | Add late SKUs and rank prices | Apply append and extend to add items to the end of a list<br>Apply sorted to order a list, controlling direction with the reverse flag | 30 |
+| 3 | Cut the SKU code apart | Extract a substring using indexing and slicing | 22 |
+| 4 | Clean the title text | Apply string methods to normalise casing and whitespace in a text value | 30 |
 | — | Closing: Outcome & Summary | | 10 |
 | | **Total** | | **120** |
 
-> <font color="red">**🎯 Instructor Note**</font> Pace: keep indexing quick; spend time on slice stop rules and append versus extend.
-> Give learners 30 seconds to respond in chat after each poll.
+> <font color="red">**🎯 Instructor Note**</font> Pace: keep indexing quick (one example) and spend the time on slice stop and step in Topic 1, and on append versus extend in Topic 2.
+> Topic 4 is the longest hands-on part: let learners run each method on the messy titles.
 
 ---
 
 ## <font color='blue'>Scenario</font>
 
-A Flipkart-style marketplace onboarded 127 new sellers this week. Each seller pastes a **SKU list** and a **product title** into a Colab checker before upload.
+**The risk:** a Meesho-style reselling app lets small sellers check a product list in a Colab notebook before uploading it. One wrong list or one badly typed title, and the product never appears in the catalogue that day.
 
-| Seller ID | SKUs uploaded (first five shown) | Title pasted |
-|:-:|:-|:-|
-| SLR-8841 | FK-SHIRT-014, FK-JEAN-022, FK-SOCK-003, FK-HAT-017, FK-BELT-008 | Flipkart Basics Cotton Tee |
-| SLR-8842 | FK-KURTA-101, FK-KURTA-102 | `  fk-party KURTA  ` |
-| SLR-8843 | FK-PHONE-77 (one SKU only) | NoiseCancel Buds |
-
-> <font color="red">**🎯 Instructor Note**</font> Flipkart is framing only; these rows are invented for teaching. Run code in Google Colab Python 3.
+> <font color="red">**🎯 Instructor Note**</font> Meesho is only the setting. Do not claim Meesho uses this data; the 120 seller rows in `data/seller_skus.csv` are invented for teaching.
+> Share the file before class. It has messy SKU text, messy titles, four blank titles, tied prices and prices from ₹49 to ₹4,999.
 
 ---
 
 ## <font color='blue'>Problem Statement</font>
 
-Seller SLR-8842 added two SKUs with **extend**, then used **append** on the whole batch list by mistake. The upload file now nests one list inside another. The title still has mixed case and spaces, so the catalog rejects the row.
+Seller SLR-201 pasted ten SKU codes into one Python list. Later, three more SKUs arrived in a second list. She joined them with the wrong call, so the last item in her list was itself a list. The catalogue could not read that item. Several titles were also typed with extra spaces and mixed capitals, such as `  graphic TEE `. No product went live that day.
 
-> <font color='purple'>**How should SLR-8842 fix the SKU list order, add new codes safely, and normalise the title in one Colab pass?**</font>
+> <font color='purple'>**How do we turn a seller's messy SKU text and price list into one clean, ordered list that the catalogue accepts?**</font>
 
-> <font color="red">**🎯 Instructor Note**</font> Poll: "Was the bug caused by append, extend, or sorted?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
+> <font color="red">**🎯 Instructor Note**</font> Poll: "Which call put a list inside the list: append, extend or sorted?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
 
 ---
 
 ## <font color='blue'>What We Will Use</font>
 
-Lists hold ordered catalog codes. Strings hold titles. You already store values in variables and run cells in Colab; last session you wrapped logic in a **def** function. Today you shape the data those functions will receive.
+A list holds many values in order under one name. A string holds text. Today you pick items and pieces by position, add items, sort, and clean text.
 
 | Topic | Tools | In one line |
-|:-:|:-|:-|
-| 1 | `[ ]`, `[i]`, `[start:stop:step]` | Pick one SKU or a sub-list |
-| 2 | `append`, `extend`, `sorted(..., reverse=)` | Add SKUs and rank prices |
-| 3 | string `[ ]`, slices on `str` | Pull a brand or size token from a title |
-| 4 | `strip`, `lower`, `title`, `replace` | Clean spaces and casing on titles |
+|:-:|:--|:--|
+| 1 | `[ ]`, `[start:stop:step]`, `len` | Pick one item or a sub-list by position |
+| 2 | `append`, `extend`, `sorted(..., reverse=)` | Add items to the end and order a list |
+| 3 | `[ ]` and `[start:stop]` on text | Cut a piece out of a string |
+| 4 | `strip`, `lower`, `upper`, `title`, `replace` | Fix spaces and capitals in text |
 
 ---
 
-## <font color='blue'>How: Walking Through the Flipkart-style catalog check</font>
+## <font color='blue'>How: Walking Through the Seller Upload Check</font>
 
 ```mermaid
 flowchart LR
-    A["Topic 1<br>Index & slice SKUs"] --> B["Topic 2<br>Append, extend, sort"]
-    B --> C["Topic 3<br>Slice titles"]
-    C --> D["Topic 4<br>Normalise text"]
-    D --> E["Closing<br>Approve upload"]
+    A["Topic 1<br>Read the SKU list"] --> B["Topic 2<br>Add and rank"]
+    B --> C["Topic 3<br>Cut the SKU code"]
+    C --> D["Topic 4<br>Clean the titles"]
+    D --> E["Closing<br>Catalogue-ready list"]
     style A fill:#dbeafe,stroke:#2563eb
     style B fill:#dcfce7,stroke:#16a34a
     style C fill:#fef3c7,stroke:#d97706
@@ -72,375 +69,802 @@ flowchart LR
 
 ---
 
-## <font color='blue'>Topic 1: Index and slice the SKU list</font> `32 min`
+## <font color='blue'>Topic 1: Read the SKU List by Position</font> `28 min`
 
-> <font color='purple'>**Which SKU is first, which is last, and which three codes sit in the middle of SLR-8841’s upload?**</font>
+> <font color='purple'>**Seller SLR-201 has ten SKUs in one list. How do we point at one SKU, and then at a few?**</font>
 
-Open from session 1.2: you stored one value per variable. A **list** keeps many SKUs in one name so a **for** loop from session 2.1 can visit each code without five separate variables.
+In Variables and Condition Logic in Colab you kept one value under one name. In Loops and Tracing What Runs you walked over a string one character at a time. A list keeps many values under one name, and every value has a position, so you can ask for any of them directly.
 
-### <font color='green'>Example: Read the first and last SKU</font>
+### <font color='green'>Example: write the list and read the first and last SKU</font>
 
-> <font color='purple'>**What are the endpoints of the five-code list for SLR-8841?**</font>
+> <font color='purple'>**Which SKU is first, which is last, and how many are there?**</font>
+
+Positions start at 0 from the front. From the back they start at -1, so -1 is always the last item.
+
+| Direction | Item 1 | Item 2 | Item 3 | Last item |
+|:--|:-:|:-:|:-:|:-:|
+| From the front | `0` | `1` | `2` | `9` |
+| From the back | `-10` | `-9` | `-8` | `-1` |
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expect `FK-SHIRT-014` and `FK-BELT-008`. Wrong guess: index `5` for the last item.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `KRT-0412-RD` first and `SHO-0621-BK` last. Common wrong guess: position 1 is the first item.
 
 ```python
-skus = ["FK-SHIRT-014", "FK-JEAN-022", "FK-SOCK-003", "FK-HAT-017", "FK-BELT-008"]
-print("First SKU:", skus[0])
-print("Last SKU:", skus[-1])
-print("Count:", len(skus))
+skus = ["KRT-0412-RD", "KRT-0413-BL", "TEE-0207-WH", " tee-0208-bk ",
+        "JNS-0331-BL", "jns-0332-bk", "SAR-0905-RD", " bag-0118-gn",
+        "SHO-0620-WH", "SHO-0621-BK"]
+print(skus[0])
+print(skus[-1])
+print(skus[-2])
+print(len(skus))
 ```
 
 **Output**
 
 ```
-First SKU: FK-SHIRT-014
-Last SKU: FK-BELT-008
-Count: 5
+KRT-0412-RD
+SHO-0621-BK
+SHO-0620-WH
+10
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** builds the ordered SKU list for one seller.
-- **Line 2** uses index `0` for the first item; **line 3** uses `-1` for the last.
-- **Line 4** reports length, which bounds every valid index.
+- **Lines 1 to 3** Square brackets with commas make a list of ten texts and store it in the name `skus`. These are rows 1 to 10 of `data/seller_skus.csv`.
+- **Line 4** `skus[0]` is the item at position 0, the first one.
+- **Line 5** `skus[-1]` counts from the back, so it is the last item.
+- **Line 6** `skus[-2]` is the second item from the back.
+- **Line 7** `len` counts the items in a list. It also counts the characters in a text.
 
-> <font color='green'>**Result**</font> The catalog checker can flag empty lists and read endpoints without opening the whole file.
+> <font color='green'>**Result**</font> The first SKU is `KRT-0412-RD`, the last is `SHO-0621-BK`, the second from the back is `SHO-0620-WH`, and the list holds 10 items.
 
-### <font color='green'>Extending it: Slice the middle three SKUs</font>
+### <font color='green'>Extending it: ask for a position that does not exist</font>
 
-> <font color='purple'>**Which slice returns Jean, Sock, and Hat only?**</font>
+> <font color='purple'>**Is `skus[9]` the same item as `skus[-1]`, and what does `skus[10]` give?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask learners for a prediction. Give learners 30 seconds to respond in chat. Expected: `True`, then an error, because the last position is 9.
+
+```python
+print(skus[9] == skus[-1])
+print(skus[10])
+```
+
+**Output**
+
+```
+True
+Traceback (most recent call last):
+  File "<cell>", line 2, in <module>
+IndexError: list index out of range
+```
+
+> <font color='green'>**Result**</font> Position 9 and position -1 point to the same last item. Position 10 does not exist, so Python stops with an `IndexError`.
+
+> <font color='#b45309'>**Common mistake**</font> Counting from 1. A list of 10 items ends at position 9, or at -1 from the back.
+
+### <font color='green'>Example: pick a sub-list with a slice</font>
+
+> <font color='purple'>**Which SKUs sit at positions 2 to 7, which are the first three, and which are the last three?**</font>
+
+A slice `skus[start:stop:step]` returns a new list. It starts at `start`, moves by `step` (1 if you leave it out), and stops before `stop`.
+
+$$\boxed{\text{start} \le i < \text{stop}}$$
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expect three strings. Common slip: include index `4` and pull Belt too.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `skus[2:8]` gives 6 items, positions 2 to 7. Common wrong guess: 7 items, because 8 is also included.
 
 ```python
-print(skus[1:4])
-print(skus[::2])
+print(skus[2:8])
+print(skus[:3])
+print(skus[-3:])
+```
+
+**Output**
+
+```
+['TEE-0207-WH', ' tee-0208-bk ', 'JNS-0331-BL', 'jns-0332-bk', 'SAR-0905-RD', ' bag-0118-gn']
+['KRT-0412-RD', 'KRT-0413-BL', 'TEE-0207-WH']
+[' bag-0118-gn', 'SHO-0620-WH', 'SHO-0621-BK']
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Start at position 2 and stop before position 8. Position 8 is not included.
+- **Line 2** Leaving out `start` means start at the front. This gives the first three.
+- **Line 3** `-3` as the start means three from the back. Leaving out `stop` means go to the end.
+
+> <font color='green'>**Result**</font> `skus[2:8]` returns six SKUs, `skus[:3]` the first three, and `skus[-3:]` the last three.
+
+<p align="center"><img src="images/01_list_positions_and_slices.png" alt="Ten SKUs drawn as boxes with positions 0 to 9 above and -10 to -1 below, and the slice skus[2:8:2] highlighted at positions 2, 4 and 6" width="900"></p>
+
+### <font color='green'>Extending it: add a step</font>
+
+> <font color='purple'>**What do we get if we take every second SKU from position 2 to 7, every third from the whole list, or the list reversed?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for the positions picked by `skus[2:8:2]` before running. Expected: 2, 4 and 6. A step of -1 walks from the back.
+
+```python
+print(skus[2:8:2])
+print(skus[::3])
 print(skus[::-1])
 ```
 
 **Output**
 
 ```
-['FK-JEAN-022', 'FK-SOCK-003', 'FK-HAT-017']
-['FK-SHIRT-014', 'FK-SOCK-003', 'FK-BELT-008']
-['FK-BELT-008', 'FK-HAT-017', 'FK-SOCK-003', 'FK-JEAN-022', 'FK-SHIRT-014']
+['TEE-0207-WH', 'JNS-0331-BL', 'SAR-0905-RD']
+['KRT-0412-RD', ' tee-0208-bk ', 'SAR-0905-RD', 'SHO-0621-BK']
+['SHO-0621-BK', 'SHO-0620-WH', ' bag-0118-gn', 'SAR-0905-RD', 'jns-0332-bk', 'JNS-0331-BL', ' tee-0208-bk ', 'TEE-0207-WH', 'KRT-0413-BL', 'KRT-0412-RD']
 ```
 
-> <font color='green'>**Result**</font> Stop index `4` excludes Belt; step `2` skips every second code; `-1` step reverses order for audit logs.
+> <font color='green'>**Result**</font> A step of 2 picks positions 2, 4 and 6. A step of 3 picks 0, 3, 6 and 9. A step of -1 returns the whole list from last to first.
 
-> <font color='#b45309'>**Common mistake**</font> Using `skus[1:3]` returns only two items because the stop position is excluded.
+### <font color='green'>Extending it: slice past the end</font>
+
+> <font color='purple'>**A slice may ask for more than the list holds. Does that fail like `skus[10]`?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Give learners 30 seconds to respond in chat. Expected: no error, only the items that exist.
+
+```python
+part = skus[8:20]
+print(part)
+print(len(skus))
+```
+
+**Output**
+
+```
+['SHO-0620-WH', 'SHO-0621-BK']
+10
+```
+
+> <font color='green'>**Result**</font> A slice that runs past the end returns what exists and gives no error. The original list still has 10 items, because a slice builds a new list.
 
 ### <font color='purple'>Quiz 1</font>
 
-**Question:** For `codes = ["P", "Q", "R", "S", "T"]`, what does `codes[-2:]` return?
+**Question:** For the ten-item list `skus`, which positions does `skus[1:9:2]` pick?
 
 **Options:**
-- A) `["S", "T"]`
-- B) `["R", "S"]`
-- C) `["T"]`
-- D) `["Q", "R"]`
+- A) Positions 1, 3, 5, 7 and 9
+- B) Positions 1, 3, 5 and 7
+- C) Positions 2, 4, 6 and 8
+- D) Positions 1 to 8, every position
 
-**Correct Answer:** A
+**Correct Answer:** B
 
 **Explanation:**
-- **A)** Correct: negative start counts from the end; the slice runs through the last item.
-- **B)** Wrong: that needs stop index `4`, not start `-2` with default stop.
-- **C)** Wrong: that is only the final element, not a two-item slice.
-- **D)** Wrong: that pair sits earlier in the list.
+- **A)** Wrong: the stop value 9 is not included, so position 9 is never picked.
+- **B)** Correct: start at 1, step by 2, and stop before 9, giving 1, 3, 5 and 7.
+- **C)** Wrong: the slice starts at 1, not 2.
+- **D)** Wrong: the step is 2, so every second position is skipped.
 
 ---
 
-## <font color='blue'>Topic 2: Append, extend, and sort</font> `32 min`
+## <font color='blue'>Topic 2: Add Late SKUs and Rank Prices</font> `30 min`
 
-> <font color='purple'>**How do we add FK-CAP-099 and a two-SKU batch without nesting a list inside the catalog?**</font>
+> <font color='purple'>**Three late SKUs arrived after the first ten. How do we add them without breaking the list, and which prices should the seller check first?**</font>
 
-You traced loops in session 2.1; growing a list is how you feed the next iteration fresh data.
+The list from Topic 1 can be read by position. Now the seller has a second list, `late`, with the three late SKUs. Both `append` and `extend` add to the end of a list, but they treat what you give them in different ways.
 
-### <font color='green'>Example: One new SKU versus a batch</font>
+### <font color='green'>Example: append the whole late list</font>
 
-> <font color='purple'>**What changes when append meets a string versus when extend meets a list?**</font>
+> <font color='purple'>**How many items does a copy of `skus` have after we append the list `late`?**</font>
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> The final append line should surprise anyone who expected a flat list.
+> <font color="red">**🎯 Instructor Note**</font> Expected: 11, not 13. Common wrong guess: 13, because learners expect the three SKUs to be added one by one.
 
 ```python
-skus2 = ["FK-SHIRT-014", "FK-JEAN-022"]
-skus2.append("FK-CAP-099")
-extras = ["FK-SCARF-011", "FK-GLOVE-012"]
-skus2.extend(extras)
-skus2.append(extras)
-print(skus2)
+late = ["SAR-0910-GN", "TEE-0210-YL", "SAR-0911-RD"]
+trial = skus[:]
+trial.append(late)
+print(len(trial))
+print(trial[-1])
 ```
 
 **Output**
 
 ```
-['FK-SHIRT-014', 'FK-JEAN-022', 'FK-CAP-099', 'FK-SCARF-011', 'FK-GLOVE-012', ['FK-SCARF-011', 'FK-GLOVE-012']]
+11
+['SAR-0910-GN', 'TEE-0210-YL', 'SAR-0911-RD']
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 2** `append` adds one SKU string as a single new slot.
-- **Line 4** `extend` unpacks the batch so each string gets its own slot.
-- **Line 5** `append(extras)` stores the whole batch as one nested list.
+- **Line 1** The three late SKUs are rows 11 to 13 of `data/seller_skus.csv`.
+- **Line 2** `skus[:]` is a slice of the whole list, so it makes a copy. We test on the copy and keep `skus` safe.
+- **Line 3** `append` adds exactly one item to the end. Here that one item is the whole list `late`.
+- **Lines 4 and 5** The length is 11, and the last item is a list inside the list.
 
-> <font color='green'>**Result**</font> SLR-8842’s bug is the nested list at the end; **extend** was correct, the final **append** was not.
+> <font color='green'>**Result**</font> `append` added one item, the whole list `late`. This is the seller's bug: the catalogue sees a list where it expects a SKU text.
 
-### <font color='green'>Extending it: Rank prices for the pricing widget</font>
+### <font color='green'>Extending it: extend with the late list</font>
 
-> <font color='purple'>**Which order should the price picker show: low to high or high to low?**</font>
+> <font color='purple'>**Which call adds the three SKUs one by one?**</font>
 
-**Predict before running: What will happen?**
-
-> <font color="red">**🎯 Instructor Note**</font> `sorted` leaves the original list unchanged; mention that before learners mutate data.
+> <font color="red">**🎯 Instructor Note**</font> Ask learners for the new length. Give learners 30 seconds to respond in chat. Expected: 13, with the three late SKUs as the last three items.
 
 ```python
-prices = [1299, 499, 2499, 799, 199]
-print(sorted(prices))
-print(sorted(prices, reverse=True))
+skus.extend(late)
+print(len(skus))
+print(skus[-3:])
+print(len(trial))
 ```
 
 **Output**
 
 ```
-[199, 499, 799, 1299, 2499]
-[2499, 1299, 799, 499, 199]
+13
+['SAR-0910-GN', 'TEE-0210-YL', 'SAR-0911-RD']
+11
 ```
 
-> <font color='green'>**Result**</font> Finance can read the expensive SKUs first with `reverse=True`, matching how they review margins.
+> <font color='green'>**Result**</font> `extend` walks through the list it receives and adds each item. `skus` now has 13 flat items, while the trial copy still has 11.
 
-> <font color='#b45309'>**Common mistake**</font> Calling `prices.sort()` when you still need the original order for a return-value check.
+### <font color='green'>Extending it: extend with a plain text</font>
+
+> <font color='purple'>**What happens if we give `extend` one text such as `"TEE"`?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Expected: three one-letter items, because a text is walked letter by letter.
+
+```python
+demo = ["KRT-0412-RD"]
+demo.append("KRT-0413-BL")
+demo.extend("TEE")
+print(demo)
+```
+
+**Output**
+
+```
+['KRT-0412-RD', 'KRT-0413-BL', 'T', 'E', 'E']
+```
+
+> <font color='green'>**Result**</font> `append` added the text as one item. `extend` split `"TEE"` into the items `'T'`, `'E'` and `'E'`.
+
+> <font color='#b45309'>**Common mistake**</font> Using `extend` for one SKU text. Use `append` for one item and `extend` for a list of items.
+
+<p align="center"><img src="images/02_append_vs_extend.png" alt="Bar chart of list length: skus has 10 items, a copy after append has 11 items with the last one a list, and skus after extend has 13 items" width="900"></p>
+
+### <font color='green'>Example: sort the prices</font>
+
+> <font color='purple'>**What do the 13 prices look like from lowest to highest, and does the original list change?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: a new list from 49 to 4999, and the original order unchanged. Common wrong guess: `sorted` reorders `prices` itself.
+
+```python
+prices = [499, 549, 299, 349, 299, 899, 1299, 749, 599, 399]
+prices.extend([649, 49, 4999])
+print(sorted(prices))
+print(prices[:3])
+```
+
+**Output**
+
+```
+[49, 299, 299, 349, 399, 499, 549, 599, 649, 749, 899, 1299, 4999]
+[499, 549, 299]
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** The ten prices in rupees are rows 1 to 10. Two of them are 299, a tie.
+- **Line 2** `extend` adds the prices of the late SKUs, rows 11 to 13, one by one.
+- **Line 3** `sorted` returns a new list from smallest to largest.
+- **Line 4** The first three items of `prices` are still in the seller's order.
+
+> <font color='green'>**Result**</font> The sorted list runs from 49 to 4999, with the tie 299 and 299 side by side. `prices` itself was not changed.
+
+### <font color='green'>Extending it: highest first</font>
+
+> <font color='purple'>**Which three prices are the highest?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for the highest price before running. Expected: 4999, then 1299, then 899.
+
+```python
+top = sorted(prices, reverse=True)
+print(top[:3])
+```
+
+**Output**
+
+```
+[4999, 1299, 899]
+```
+
+> <font color='green'>**Result**</font> With `reverse=True` the largest price comes first, so the first three items are 4999, 1299 and 899. The slice from Topic 1 picks them.
+
+### <font color='green'>Extending it: sort the SKU text</font>
+
+> <font color='purple'>**Does `sorted` put the SKU texts in the order a person expects?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask where `jns-0332-bk` will land. Expected: last, because small letters sort after capitals and a leading space sorts first.
+
+```python
+ordered = sorted(skus)
+print(ordered[:3])
+print(ordered[-1])
+```
+
+**Output**
+
+```
+[' bag-0118-gn', ' tee-0208-bk ', 'JNS-0331-BL']
+jns-0332-bk
+```
+
+> <font color='green'>**Result**</font> The two SKUs with a leading space come first, and `jns-0332-bk` comes last, far from `JNS-0331-BL`. `sorted` follows the exact characters, including spaces and capitals.
+
+<p align="center"><img src="images/03_prices_sorted.png" alt="Bar chart of the 13 prices sorted from highest to lowest, with the highest 4999, the lowest 49 and the tied 299 prices highlighted" width="900"></p>
 
 ### <font color='purple'>Quiz 2</font>
 
-**Question:** `batch = ["A"]`; `batch.extend(["B", "C"])`. What is `len(batch)`?
+**Question:** `ready = ["A1", "A2"]`, then `ready.extend(["A3", "A4"])`, then `ready.append(["A5", "A6"])`. What is `len(ready)`?
 
 **Options:**
-- A) `3`
-- B) `2`
-- C) `1`
-- D) `4`
+- A) 4
+- B) 6
+- C) 2
+- D) 5
 
-**Correct Answer:** A
+**Correct Answer:** D
 
 **Explanation:**
-- **A)** Correct: extend adds two separate slots after the original one.
-- **B)** Wrong: that would be true only if one item were added.
-- **C)** Wrong: the list grows beyond the starting single element.
-- **D)** Wrong: no fourth element is added in this call.
+- **A)** Wrong: this ignores the `append`, but `append` still adds one item.
+- **B)** Wrong: this treats `append` like `extend`, but `append` adds the whole list as one item, not two.
+- **C)** Wrong: this counts only the starting items, but both calls change the list.
+- **D)** Correct: 2 starting items, plus 2 from `extend`, plus 1 list from `append`, makes 5.
 
 ---
 
-## <font color='blue'>Topic 3: Slice product titles</font> `28 min`
+## <font color='blue'>Topic 3: Cut the SKU Code Apart</font> `22 min`
 
-> <font color='purple'>**Which letters in the title identify the brand and the product family?**</font>
+> <font color='purple'>**The list is flat and ranked. Inside one SKU such as `KRT-0412-RD`, the first letters name the category. How do we cut a piece out of a text?**</font>
 
-Strings behave like ordered sequences. Session 2.1 already looped over characters in a string; slicing picks a range without a loop.
+A text is ordered like a list: every character has a position, from 0 at the front and from -1 at the back. You already looped over a string one character at a time. Now you use the same positions to pick pieces, with the same slice rule as in Topic 1.
 
-### <font color='green'>Example: Letters and words inside one title</font>
+### <font color='green'>Example: category, style number and colour</font>
 
-> <font color='purple'>**What substring is `Basics` inside `Flipkart Basics Cotton Tee`?**</font>
+> <font color='purple'>**What are the category, the style number and the colour code inside the first SKU?**</font>
+
+A clean SKU has 11 characters: three letters, a dash, four digits, a dash, and two letters.
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Point out that space counts as a character when learners count by eye.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `KRT`, `0412` and `RD`. Common wrong guess: `sku[4:8]` includes the dash at position 8.
 
 ```python
-title = "Flipkart Basics Cotton Tee"
-print(title[0])
-print(title[9:15])
-print(title[:8])
-print(title[-3:])
+sku = skus[0]
+print(sku[0])
+print(sku[:3], sku[4:8], sku[9:])
+print(sku[-2:])
 ```
 
 **Output**
 
 ```
-F
-Basics
-Flipkart
-Tee
+K
+KRT 0412 RD
+RD
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 2** reads the first character for a SKU prefix check.
-- **Line 3** slices indices 9 through 14 to isolate the family name.
-- **Line 4** takes the brand token from the start; **line 5** grabs the last three letters.
+- **Line 1** Takes the first item of the list with `skus[0]` and stores that text in `sku`.
+- **Line 2** `sku[0]` is the first character.
+- **Line 3** `sku[:3]` is the first three characters. `sku[4:8]` is positions 4 to 7, the four digits. `sku[9:]` runs from position 9 to the end.
+- **Line 4** `sku[-2:]` takes the last two characters, the same colour code.
 
-> <font color='green'>**Result**</font> SLR-8841’s title splits into brand, family, and size token without manual copy-paste.
+> <font color='green'>**Result**</font> The SKU `KRT-0412-RD` splits into category `KRT`, style number `0412` and colour `RD`.
 
-### <font color='green'>Extending it: Match a size token at the end</font>
+<p align="center"><img src="images/04_sku_anatomy.png" alt="The SKU KRT-0412-RD drawn as 11 character boxes with positions 0 to 10, coloured by the slices sku[:3], sku[4:8] and sku[9:]" width="900"></p>
 
-> <font color='purple'>**How would you pull only `Buds` from `NoiseCancel Buds`?**</font>
+### <font color='green'>Extending it: the same slices on the last three SKUs</font>
+
+> <font color='purple'>**Do the same slices work on the late SKUs we added in Topic 2?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask learners to predict the first line. Give learners 30 seconds to respond in chat. Expected: `SAR 0910 GN`.
 
 ```python
-short = "NoiseCancel Buds"
-print(short[-4:])
-print(short[12:])
+for item in skus[-3:]:
+    print(item[:3], item[4:8], item[9:])
 ```
 
 **Output**
 
 ```
-Buds
-Buds
+SAR 0910 GN
+TEE 0210 YL
+SAR 0911 RD
 ```
 
-> <font color='green'>**Result**</font> Negative slice length matches the four-letter token; positive start skips the space after `NoiseCancel`.
+> <font color='green'>**Result**</font> Every clean SKU has the same layout, so one set of slices cuts all of them.
+
+### <font color='green'>Extending it: the same slices on a messy SKU</font>
+
+> <font color='purple'>**Does the same cut work on `" tee-0208-bk "`, which has a space at each end?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Expected: wrong pieces, because the extra space shifts every position by one.
+
+```python
+messy = skus[3]
+print(messy[:3], messy[4:8], messy[9:])
+print(len(messy))
+```
+
+**Output**
+
+```
+ te -020 -bk 
+13
+```
+
+> <font color='green'>**Result**</font> The pieces are ` te`, `-020` and `-bk `, which are not the category, number or colour. The length is 13, not 11, so the positions moved.
+
+> <font color='#b45309'>**Common mistake**</font> Slicing a SKU before its text is clean. Slice positions only work when the text has the layout you expect.
 
 ### <font color='purple'>Quiz 3</font>
 
-**Question:** For `word = "Flipkart"`, what is `word[2:5]`?
+**Question:** The text `s = "SAR-0905-RD"`. Which expression returns the style number `"0905"`?
 
 **Options:**
-- A) `ipk`
-- B) `lip`
-- C) `Fla`
-- D) `art`
+- A) `s[4:8]`
+- B) `s[5:9]`
+- C) `s[4:7]`
+- D) `s[4:9]`
 
 **Correct Answer:** A
 
 **Explanation:**
-- **A)** Correct: index 2 through 4 yields three letters starting at `i`.
-- **B)** Wrong: that starts one position too early.
-- **C)** Wrong: that slice begins at index 0.
-- **D)** Wrong: that slice sits at the end of the word.
+- **A)** Correct: positions 4, 5, 6 and 7 hold the digits 0, 9, 0 and 5, and the stop 8 is excluded.
+- **B)** Wrong: this starts at position 5 and returns `"905-"`, which includes the dash.
+- **C)** Wrong: the stop 7 is excluded, so this returns only `"090"`.
+- **D)** Wrong: this goes one position too far and returns `"0905-"`.
 
 ---
 
-## <font color='blue'>Topic 4: Normalise listing text</font> `18 min`
+## <font color='blue'>Topic 4: Clean the Title Text</font> `30 min`
 
-> <font color='purple'>**How do we turn `  fk-party KURTA  ` into a catalog-safe title?**</font>
+> <font color='purple'>**The slice failed on `" tee-0208-bk "`, and `sorted` put a small-letter SKU last. How do we fix spaces and capitals in text before we use it?**</font>
 
-In session 2.2 you returned cleaned values from a function. Today you prepare the string before that **return** runs.
+In Variables and Condition Logic in Colab you stored text in named variables. Now you change how that text looks with string methods. A method is a call written after the text, like `text.strip()`.
 
-### <font color='green'>Example: Strip and title-case a seller paste</font>
+### <font color='green'>Example: four methods on one messy title</font>
 
-> <font color='purple'>**What sequence removes spaces then fixes casing?**</font>
+> <font color='purple'>**What do `strip`, `lower`, `upper` and `title` do to `"  cotton KURTA  set "`?**</font>
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Show `repr` so hidden spaces are visible before **strip**.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `strip` removes only the end spaces, `title` leaves the double space inside, and `messy` itself does not change. Common wrong guess: `strip` fixes the double space.
 
 ```python
-raw = "  fk-party KURTA  "
-print(repr(raw))
-clean = raw.strip().lower().title()
-print(clean)
+messy = "  cotton KURTA  set "
+print([messy.strip(), messy.lower()])
+print([messy.upper(), messy.title()])
+print([messy])
 ```
 
 **Output**
 
 ```
-'  fk-party KURTA  '
-Fk-Party Kurta
+['cotton KURTA  set', '  cotton kurta  set ']
+['  COTTON KURTA  SET ', '  Cotton Kurta  Set ']
+['  cotton KURTA  set ']
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 2** `repr` exposes leading and trailing spaces.
-- **Line 3** chains **strip**, **lower**, and **title** for a consistent display form.
+- **Line 1** Stores a title with two spaces at the front, mixed capitals, a double space inside and one space at the end.
+- **Line 2** `strip()` removes spaces at both ends. `lower()` makes every letter small. Square brackets show the exact text, spaces included.
+- **Line 3** `upper()` makes every letter a capital. `title()` makes the first letter of each word a capital and the rest small.
+- **Line 4** `messy` is unchanged. A method gives back new text and never edits the old one.
 
-> <font color='green'>**Result**</font> SLR-8842’s title becomes readable; the hyphen stays because **title** works per word fragment.
+> <font color='green'>**Result**</font> `strip` fixed the ends only, `title` fixed the capitals only, and the double space inside `KURTA  set` survived every method.
 
-### <font color='green'>Extending it: Standardise a code separator</font>
+### <font color='green'>Extending it: chain the methods in order</font>
 
-> <font color='purple'>**How can we swap `-` for `_` in a SKU token?**</font>
+> <font color='purple'>**Which chain turns `messy` into `Cotton Kurta Set`?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask which method fixes the double space. Expected: `replace`, which swaps every two spaces for one.
 
 ```python
-code = "FK-TEE"
-print(repr(code.replace("-", "_")))
+tidy_title = messy.strip().replace("  ", " ").lower().title()
+print([tidy_title])
+print(len(messy), len(tidy_title))
 ```
 
 **Output**
 
 ```
-'FK_TEE'
+['Cotton Kurta Set']
+20 16
 ```
 
-> <font color='green'>**Result**</font> Downstream SQL loaders that ban hyphens accept the underscored token.
+> <font color='green'>**Result**</font> The chain gives `Cotton Kurta Set`. Each method works on the text the one before it returned, and the length fell from 20 to 16.
+
+### <font color='green'>Extending it: clean the SKU, then slice it</font>
+
+> <font color='purple'>**Does the Topic 3 slice work once `" tee-0208-bk "` is cleaned?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Expected: `TEE`, `0208` and `BK`, because the clean text has the layout the slices expect.
+
+```python
+fixed = skus[3].strip().upper()
+print(fixed)
+print(fixed[:3], fixed[4:8], fixed[9:])
+```
+
+**Output**
+
+```
+TEE-0208-BK
+TEE 0208 BK
+```
+
+> <font color='green'>**Result**</font> After `strip` and `upper` the SKU is `TEE-0208-BK`, and the same slices now return `TEE`, `0208` and `BK`.
+
+### <font color='green'>Extending it: a title with only spaces</font>
+
+> <font color='purple'>**What is left of a title that holds only spaces?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for the length after `strip`. Expected: 0, an empty text, so the seller must supply a title.
+
+```python
+blank = "   "
+print(len(blank), len(blank.strip()))
+if blank.strip() == "":
+    print("title missing: ask the seller")
+```
+
+**Output**
+
+```
+3 0
+title missing: ask the seller
+```
+
+> <font color='green'>**Result**</font> Three spaces become an empty text of length 0. Cleaning cannot invent a title, so this row goes back to the seller.
+
+### <font color='green'>Extending it: capitals after an apostrophe</font>
+
+> <font color='purple'>**What does `title` do to `"women's printed kurti"`?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a prediction. Expected: `Women'S`, because `title` treats the letter after the apostrophe as a new word.
+
+```python
+text = "women's printed kurti"
+print(text.title())
+print(text.title().replace("'S", "'s"))
+```
+
+**Output**
+
+```
+Women'S Printed Kurti
+Women's Printed Kurti
+```
+
+> <font color='green'>**Result**</font> `title` gave `Women'S`. A second `replace` turns `'S` back into `'s`.
+
+> <font color='#b45309'>**Common mistake**</font> Trusting `title` without reading the result. Check the output on titles with an apostrophe.
+
+### <font color='green'>Extending it: how messy are all 120 titles?</font>
+
+> <font color='purple'>**How many of the 120 titles have end spaces, a double space, wrong capitals, or nothing at all?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a guess out of 120. Give learners 30 seconds to respond in chat. Reveal the counts after the run.
+
+```python
+lines = open("data/seller_skus.csv").read().splitlines()[1:]
+print(len(lines))
+print(lines[0])
+```
+
+**Output**
+
+```
+120
+1,SLR-201,KRT-0412-RD,Cotton Kurta Set,499
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** `open(...).read()` reads the file as one text. `splitlines()` cuts it into a list with one text per row. `[1:]` is a slice that drops the header row.
+- **Line 2** `len` counts the rows.
+- **Line 3** Position 0 of the list is the first data row, one text with five fields.
+
+> <font color='green'>**Result**</font> `lines` is a list of 120 row texts. Each row is one text, so the string methods of this topic apply to it.
+
+```python
+edge = 0
+inner = 0
+case = 0
+for line in lines:
+    t = line.split(",")[3]
+    s = t.strip()
+    if t != s: edge += 1
+    if s != s.replace("  ", " "): inner += 1
+    if s != s.title(): case += 1
+print(edge, inner, case)
+```
+
+**Output**
+
+```
+35 13 72
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Lines 1 to 3** Three counters start at 0.
+- **Line 4** The loop from Loops and Tracing What Runs visits every row text.
+- **Line 5** `split(",")` cuts a row at each comma into a list, and `[3]` picks the title.
+- **Lines 6 to 9** `strip` removes end spaces. Each `if` compares the title with its fixed form and adds 1 when they differ.
+- **Line 10** Prints the three counts.
+
+> <font color='green'>**Result**</font> Of the 120 titles, 35 have end spaces, 13 have a double space inside, and 72 have wrong capitals.
+
+```python
+blank = 0
+for line in lines:
+    if line.split(",")[3].strip() == "":
+        blank += 1
+print(blank)
+```
+
+**Output**
+
+```
+4
+```
+
+> <font color='green'>**Result**</font> Four titles are empty or only spaces. Cleaning cannot fix those, so they return to the sellers.
+
+<p align="center"><img src="images/05_title_issue_profile.png" alt="Bar chart of the 120 raw titles: 35 with end spaces, 13 with a double space inside, 72 with wrong capitals and 4 empty or only spaces" width="900"></p>
 
 ### <font color='purple'>Quiz 4</font>
 
-**Question:** `messy = "  HELLO  "`; `tidy = messy.strip().lower()`. What is `tidy`?
+**Question:** What does `"  silk  SAREE ".strip().lower().title()` return?
 
 **Options:**
-- A) `hello`
-- B) `  hello  `
-- C) `Hello`
-- D) `HELLO`
+- A) `"Silk Saree"`
+- B) `"  Silk  Saree "`
+- C) `"Silk  Saree"`
+- D) `"SILK  SAREE"`
 
-**Correct Answer:** A
+**Correct Answer:** C
 
 **Explanation:**
-- **A)** Correct: strip trims edges, then lower folds case.
-- **B)** Wrong: strip removes the outer spaces first.
-- **C)** Wrong: lower does not capitalise; title is not called.
-- **D)** Wrong: lower changes every letter.
+- **A)** Wrong: this needs the double space inside collapsed, but neither `strip` nor `title` changes it.
+- **B)** Wrong: `strip` runs first and removes the spaces at both ends.
+- **C)** Correct: `strip` removes the end spaces, `lower` makes every letter small, and `title` capitalises each word. The double space inside stays.
+- **D)** Wrong: this is what `upper` would give, but the chain ends with `title`.
 
 ---
 
 ## <font color='blue'>Closing: Outcome & Summary</font> `10 min`
 
-Return to SLR-8842: remove the nested list, keep the flat five SKUs plus batch, sort prices for review, and normalise the title.
+Back to seller SLR-201 and the question: how do we turn messy SKU text and a price list into one clean, ordered list the catalogue accepts?
 
-> <font color='purple'>**1. Which index mistakes were ruled out for the first and last SKU?**</font>
-
-Positive `0` and negative `-1` read the endpoints without an off-by-one error.
-
-> <font color='purple'>**2. What fixed the nested list bug?**</font>
-
-Use **extend** for batches; avoid **append** on a whole list. That matches the opening poll answer: **append** caused the nest.
-
-> <font color='purple'>**3. Can one pipeline approve the seller row?**</font>
+> <font color='purple'>**1. Is the late batch now one flat list, and where do the late SKUs sit? (Topic 1 and Topic 2)**</font>
 
 ```python
-skus_ok = ["FK-KURTA-101", "FK-KURTA-102", "FK-SCARF-011", "FK-GLOVE-012"]
-title_ok = "  fk-party KURTA  ".strip().lower().title()
-print(len(skus_ok), title_ok)
+print(len(skus), skus[-3:])
 ```
 
 **Output**
 
 ```
-4 Fk-Party Kurta
+13 ['SAR-0910-GN', 'TEE-0210-YL', 'SAR-0911-RD']
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** keeps a flat SKU list ready for a **def** upload helper from session 2.2.
-- **Line 2** normalises the title before SQL or JSON work in the next session.
+- **Line 1** `len` gives 13 items. The slice `[-3:]` from Topic 1 shows the three late SKUs at the end, added with `extend` from Topic 2.
+
+> <font color='purple'>**2. Which three prices should the seller check first? (Topic 2)**</font>
+
+```python
+print(sorted(prices, reverse=True)[:3])
+```
+
+**Output**
+
+```
+[4999, 1299, 899]
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** `sorted(..., reverse=True)` from Topic 2 puts the highest price first, and the slice keeps three.
+
+> <font color='purple'>**3. Are the 13 SKUs clean, in order, and ready to cut apart? (Topic 2, Topic 3 and Topic 4)**</font>
+
+```python
+clean = []
+fixed = 0
+for sku in skus:
+    clean.append(sku.strip().upper())
+    if clean[-1] != sku:
+        fixed += 1
+ordered = sorted(clean)
+print(fixed, ordered[:3])
+last = ordered[-1]
+print(last, last[:3], last[4:8], last[9:])
+```
+
+**Output**
+
+```
+3 ['BAG-0118-GN', 'JNS-0331-BL', 'JNS-0332-BK']
+TEE-0210-YL TEE 0210 YL
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Lines 1 and 2** An empty list `clean` and a counter `fixed` start the work.
+- **Lines 3 and 4** The loop visits each SKU. `strip` and `upper` from Topic 4 clean it, and `append` from Topic 2 adds it to `clean`.
+- **Lines 5 and 6** `clean[-1]` from Topic 1 is the SKU just added. If it differs from the raw text, `fixed` goes up by 1.
+- **Lines 7 and 8** `sorted` from Topic 2 orders the clean list. The three first items show the order.
+- **Lines 9 and 10** The slices from Topic 3 cut the last SKU into category, number and colour.
+
+<p align="center"><img src="images/06_sorted_raw_vs_clean.png" alt="Two columns of the 13 SKUs: sorted as typed, with messy SKUs misplaced, and sorted after strip and upper, in a clean order" width="900"></p>
+
+> <font color='purple'>**4. How many of the 120 titles does one tidy rule change? (Topic 4)**</font>
+
+```python
+def tidy(text):
+    return text.strip().replace("  ", " ").lower().title().replace("'S", "'s")
+
+fixed = 0
+for line in lines:
+    raw = line.split(",")[3]
+    if tidy(raw) != raw:
+        fixed += 1
+print(fixed, tidy("WOMEN'S PRINTED KURTI"))
+```
+
+**Output**
+
+```
+84 Women's Printed Kurti
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Lines 1 and 2** A function with `def` and `return`, as in Functions for Reusable Code and Reading Classes, holds the chain from Topic 4.
+- **Lines 4 to 8** The loop from Loops and Tracing What Runs compares every raw title with its tidy form and counts the ones that change.
+- **Line 9** Prints the count and one apostrophe title cleaned by the same rule.
 
 ### <font color='green'>Outcome</font>
 
-| Check | Before fix | After fix |
+| | Seller's first upload | After today's fixes |
 |:--|:-:|:-:|
-| SKU list shape | Nested list inside list | Flat string codes |
-| Price review order | Unsorted paste | High to low via `reverse=True` |
-| Title casing | Mixed spaces and case | Stripped title form |
+| Items in the SKU list | 11, the last one a list | 13 single SKUs |
+| SKUs with stray spaces or small letters (of 13) | 3 | 0 |
+| Where `jns-0332-bk` sorts | last | 3rd, as `JNS-0332-BK` |
+| Titles that need a fix (of 120) | 84 | 0 |
+| Blank titles that go back to the seller | 4 | 4 |
 
-> <font color='green'>**Therefore,**</font> SLR-8842 can re-run the Colab checker: slice and index verify structure, **extend** adds batches safely, **sorted** ranks prices, and string methods clean titles for upload.
+> <font color='green'>**Therefore,**</font> use `extend` to add late SKUs, strip and upper-case each SKU before sorting or slicing, and run one tidy rule over every title. The list is then flat, ordered and readable, and only the 4 blank titles need the seller.
 
-> <font color="red">**🎯 Instructor Note**</font> Reveal poll: append caused the nested list. Preview dictionaries in session 3.2 for JSON columns.
+> <font color="red">**🎯 Instructor Note**</font> Poll reveal: `append` put the list inside the list; `extend` and `sorted` did not. Show the 11 versus 13 result from Topic 2.
 
 ### <font color='green'>Summary</font>
 
 | Learning objective | Takeaway |
 |:--|:--|
-| Write a list and access its elements using positive and negative indexing | `0` and `-1` reach the ends; `len` bounds every index |
-| Extract a sub-list using slice notation with start, stop and step | Stop is excluded; step and negatives reverse or skip |
-| Apply append and extend to add items to the end of a list | `append` adds one slot; `extend` flattens a batch |
-| Apply sorted to order a list, controlling direction with the reverse flag | `sorted` returns a new order; `reverse=True` flips it |
-| Extract a substring using indexing and slicing | Strings slice like lists; spaces count as characters |
-| Apply string methods to normalise casing and whitespace in a text value | Chain `strip`, `lower`, `title`, and `replace` before upload |
-| **Practical value** | Catalog teams catch seller mistakes in Colab before rows hit SQL |
+| Write a list and access its elements | Square brackets make a list; position 0 is first and -1 is last |
+| Extract a sub-list using slice notation | `[start:stop:step]` includes start, excludes stop, and returns a new list |
+| Apply append and extend | `append` adds one item; `extend` adds each item of a list |
+| Apply sorted with the reverse flag | `sorted` returns a new ordered list; `reverse=True` puts the largest first |
+| Extract a substring | The same positions and slices work on text, such as `sku[4:8]` |
+| Apply string methods to casing and whitespace | `strip`, `lower`, `upper`, `title` and `replace` clean text and return new text |
+| **Practical value** | Clean lists and text stop a bad upload before it reaches a catalogue, a report or a SQL table |
 
 ---
 

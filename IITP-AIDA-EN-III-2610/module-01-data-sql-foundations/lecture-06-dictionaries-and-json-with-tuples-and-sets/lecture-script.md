@@ -1,70 +1,95 @@
 # <font color='#1d4ed8'>Lecture Script: Dictionaries and JSON with Tuples and Sets</font>
 
+---
+
 ## <font color='blue'>Agenda</font>
 
 The lecture runs as four topics. Each topic ends with a quiz.
 
 | Topic | What we do | Learning objectives covered | Minutes |
 |:-:|:--|:--|:-:|
-| 1 | Merchant records with keys and safe lookup | Build a dictionary of key-value pairs, retrieving a value by its key<br>Retrieve a dictionary value with get, supplying a fallback for a missing key | 28 |
-| 2 | Membership on lists and dictionaries | Write a membership test using the in operator on a list and a dictionary | 25 |
-| 3 | Fixed rows, unique tags | Write a tuple and unpack it into named variables<br>Build a set to remove duplicate values from a list | 28 |
-| 4 | API text into Python types | Classify JSON values by the Python types they become when parsed | 29 |
+| 1 | Payee records and safe lookup | Build a dictionary of key-value pairs, retrieving a value by its key<br>Retrieve a dictionary value with get, supplying a fallback for a missing key | 32 |
+| 2 | Is this id on the list? | Write a membership test using the in operator on a list and a dictionary | 22 |
+| 3 | Fixed rows and unique tags | Write a tuple and unpack it into named variables<br>Build a set to remove duplicate values from a list | 28 |
+| 4 | Reading API text | Classify JSON values by the Python types they become when parsed | 28 |
 | — | Closing: Outcome & Summary | | 10 |
 | | **Total** | | **120** |
 
-> <font color="red">**🎯 Instructor Note**</font> Spend extra time on `get` fallbacks and on JSON type labels; keep tuple unpacking brisk if chat is confident.
-> Leave five minutes at the end of Topic 4 for the closing poll reveal.
+> <font color="red">**🎯 Instructor Note**</font> Pace: spend the most time on `get` with a fallback in Topic 1 and on the JSON type labels in Topic 4.
+> Keep the `in` operator in Topic 2 and the tuple unpacking in Topic 3 quick; both return in the Closing.
 
 ---
 
 ## <font color='blue'>Scenario</font>
 
-**RupeeRing** is a PhonePe-style UPI app invented for teaching. The risk team must read merchant settings, allow only listed UPI ids, and parse payment events from an API string.
+A PhonePe-style UPI app settles today's payments to local payees: tea stalls, cab rides, recharges, rent.
 
-| Field | Sample value |
-|:--|:--|
-| Merchant UPI | `chai@rupeering` |
-| Tier | `gold` |
-| Fee (%) | `1.2` |
-| Allowed ids (list from last session) | `pay@rupeering`, `shop@rupeering`, `chai@rupeering` |
-| Event tags (with repeats) | `food`, `food`, `travel`, `food`, `upi`, `travel` |
+**The single risk:** one record with a missing field can stop the whole settlement run.
 
-> <font color="red">**🎯 Instructor Note**</font> RupeeRing is framing only; these numbers are invented for teaching. Run code in Colab with Python 3.10 or later.
+- 120 transactions today, paid to 12 payees
+- 10 payee ids are on the approved list; 2 are not
+- Only some transactions carry a `cashback` field
+- A payment event also arrives from the app's API as plain text
+
+> <font color="red">**🎯 Instructor Note**</font> The app is only the setting; the 120 transactions in `data/` are invented for teaching, with no claim about PhonePe.
+> Run the code in Google Colab (Python 3). Error layouts differ slightly between Python versions.
 
 ---
 
 ## <font color='blue'>Problem Statement</font>
 
-A mentor once credited cashback using `merchant["cashback"]` when that key was never stored. The notebook stopped with `KeyError`, and RupeeRing's training dashboard showed a failed run.
+An analyst had to credit cashback to today's 120 transactions. Her script read `t["cashback"]` for every row. The very first row had no cashback, so the script stopped with an error, nobody was credited, and a payee that was never approved went through unchecked.
 
-> <font color='purple'>**How should RupeeRing read merchant fields, check allowlists, dedupe tags, and parse API text without crashing on a missing key?**</font>
+> <font color='purple'>**How can a script read payee records, check ids against a list, and read API text without stopping on one missing field?**</font>
 
-> <font color="red">**🎯 Instructor Note**</font> Poll: "Would you use `merchant[key]` or `merchant.get(key, default)` for optional fields?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
+> <font color="red">**🎯 Instructor Note**</font> Poll: "How many different tags are in today's 120 transactions: 3, 7 or 12?" Give learners 30 seconds to respond in chat. Reveal the answer in the Closing.
 
 ---
 
 ## <font color='blue'>What We Will Use</font>
 
-Last session you stored payee ids in a **list**, sliced strings, and used `.strip()` on messy text. Today you add **labeled records**, **fixed-size rows**, **unique tags**, and **json** parsing.
+Four small tools, each used on the same 120 transactions. Run the setup cell once before Topic 1, as given.
 
 | Topic | Tools | In one line |
 |:-:|:--|:--|
-| 1 | `{ }`, `[]`, `.get` | Map one key to one value; missing keys need a fallback |
-| 2 | `in` on list and dict | Test membership without scanning by hand |
-| 3 | `( )`, `set()`, unpacking | Keep order fixed in a tuple; unique values in a set |
-| 4 | `import json`, `json.loads` | Turn API text into dict, list, and scalar types |
+| 1 | `{}` dictionary, `[key]`, `.get(key, fallback)` | Store a record by field name and read it back, safely |
+| 2 | `in` | Ask "is this item present?" on a list or a dictionary |
+| 3 | `( )` tuple, unpacking, `set()` | Fixed rows with named parts, and a list without repeats |
+| 4 | `json.loads` | Turn text from an API into Python values |
+
+The setup cell fills two names: `txns`, a list of 120 transactions, and `payees`, 12 payee records stored by UPI id.
+
+```python
+import json
+txns = json.loads(open("data/transactions.json").read())
+payees = json.loads(open("data/payees.json").read())
+print(len(txns), len(payees))
+```
+
+**Output**
+
+```
+120 12
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Loads the `json` module, which reads JSON text.
+- **Lines 2 and 3** Read the two data files and turn their text into Python values.
+- **Line 4** Prints how many transactions and payees were loaded.
+
+> <font color='green'>**Result**</font> `txns` holds 120 transactions and `payees` holds 12 payee records.
 
 ---
 
-## <font color='blue'>How: Walking Through RupeeRing merchant checks</font>
+## <font color='blue'>How: Walking Through Today's Settlement</font>
 
 ```mermaid
 flowchart LR
-    A["Topic 1<br/>Dictionary and get"] --> B["Topic 2<br/>Search with in"]
-    B --> C["Topic 3<br/>Tuple and set"]
-    C --> D["Topic 4<br/>JSON types"]
-    D --> E["Closing<br/>Safe payout rule"]
+    A["Topic 1<br>Payee records<br>and safe lookup"] --> B["Topic 2<br>Is this id<br>on the list?"]
+    B --> C["Topic 3<br>Fixed rows and<br>unique tags"]
+    C --> D["Topic 4<br>Reading<br>API text"]
+    D --> E["Closing<br>Settle without<br>a crash"]
     style A fill:#dbeafe,stroke:#2563eb
     style B fill:#dcfce7,stroke:#16a34a
     style C fill:#fef3c7,stroke:#d97706
@@ -74,100 +99,281 @@ flowchart LR
 
 ---
 
-## <font color='blue'>Topic 1: Merchant records with keys and safe lookup</font> `28 min`
+## <font color='blue'>Topic 1: Payee Records and Safe Lookup</font> `32 min`
 
-> <font color='purple'>**What is the safest way to read RupeeRing's merchant tier and optional cashback?**</font>
+> <font color='purple'>**How do we store one payee's name, tier and fee so each can be found by its name, not by its position?**</font>
 
-### <font color='green'>Example: Read tier and a missing cashback key</font>
+Last session you wrote lists, picked items by position, sliced them, appended to them and sorted them. Earlier you wrote functions, looped over sequences and chose branches with if/else. A list finds an item by its position. A payee record needs to find a field by its name, and that is what a dictionary does.
 
-> <font color='purple'>**What prints when we read `tier` and ask for `cashback` with a default?**</font>
+### <font color='green'>Example: build one payee record and read a field by its key</font>
+
+> <font color='purple'>**How do we write a payee as key-value pairs and read the tier back?**</font>
+
+A dictionary is written with curly braces. Each entry is a **key**, a colon, and its **value**. Reading `payee["tier"]` returns the value stored under the key `"tier"`.
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expect `gold` then `0`. A common wrong guess is that missing keys return `None` without `.get`.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `gold` and then `1.2`. Common guess: learners expect the whole record to print.
 
 ```python
-merchant = {"upi_id": "chai@rupeering", "tier": "gold", "fee_pct": 1.2}
-print(merchant["tier"])
-print(merchant.get("cashback", 0))
+payee = {"upi": "chai@payhub", "name": "Sharma Chai Stall",
+         "tier": "gold", "fee_pct": 1.2}
+print(payee["tier"])
+print(payee["fee_pct"])
 ```
 
 **Output**
 
 ```
 gold
-0
+1.2
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Builds a dictionary with string keys and mixed value types.
-- **Line 2** Uses `[]` when the key `tier` is always present.
-- **Line 3** Uses `.get` so a missing `cashback` returns `0` instead of an error.
+- **Lines 1 and 2** Build a dictionary named `payee` with four keys: `upi`, `name`, `tier` and `fee_pct`.
+- **Line 3** Reads the value stored under the key `"tier"`.
+- **Line 4** Reads the value stored under the key `"fee_pct"`; a value can be a number as well as text.
 
-> <font color='green'>**Result**</font> RupeeRing reads the tier directly and treats missing cashback as zero.
+> <font color='green'>**Result**</font> A dictionary reads a value by its key, not by its position.
 
-### <font color='green'>Extending it: Add cashback, then read an unknown limit</font>
+### <font color='green'>Extending it: add a key to the record</font>
 
-> <font color='purple'>**How does `.get` behave after we add a key versus when the key is still missing?**</font>
+> <font color='purple'>**What if we learn the payee's city and want to store it too?**</font>
 
-> <font color="red">**🎯 Instructor Note**</font> Ask chat to predict the third printed line before you run.
+> <font color="red">**🎯 Instructor Note**</font> Ask: "How many keys will the record have now?" Give learners 30 seconds to respond in chat. Expected: 5.
 
 ```python
-merchant["cashback"] = 5
-print(merchant.get("cashback", 0))
-print(merchant.get("limit", "not set"))
+payee["city"] = "Pune"
+print(payee["city"])
+print(len(payee))
 ```
 
 **Output**
 
 ```
+Pune
 5
-not set
 ```
 
-> <font color='green'>**Result**</font> After assignment, `.get` returns the stored value; for `limit` it returns the string fallback.
+#### <font color='#c2410c'>Code Explanation</font>
 
-> <font color='#b45309'>**Common mistake**</font> Using `merchant["limit"]` on an optional field raises `KeyError` and stops the whole notebook cell.
+- **Line 1** Assigns a value to a key that is not there yet, which adds the pair.
+- **Line 2** Reads the new key back.
+- **Line 3** `len` counts the key-value pairs: four old plus one new.
 
-### <font color='purple'>Quiz 1</font>
+> <font color='green'>**Result**</font> Assigning to a new key adds it to the dictionary.
 
-**Question:** `merchant` has keys `upi_id` and `tier` only. Which line reads `tier` safely and returns `"bronze"` if `tier` were missing?
+### <font color='green'>Extending it: find a payee by its id, then a field</font>
 
-**Options:**
-- A) `print(merchant.get("tier", "bronze"))`
-- B) `print(merchant["tier", "bronze"])`
-- C) `print(merchant.get("bronze", "tier"))`
-- D) `print(merchant.tier)`
+> <font color='purple'>**What if the value stored under a key is itself a dictionary?**</font>
 
-**Correct Answer:** A
+```python
+print(payees["dosa@payhub"]["name"])
+print(txns[0]["amount_inr"], txns[0]["tag"])
+```
 
-**Explanation:**
-- **A)** Correct: key first, fallback second.
-- **B)** Wrong: `[]` accepts one key, not a pair.
-- **C)** Wrong: the key name and fallback are swapped.
-- **D)** Wrong: dictionaries use bracket or `.get` access, not dot names.
+**Output**
 
----
+```
+Dosa Corner
+5 upi
+```
 
-## <font color='blue'>Topic 2: Membership on lists and dictionaries</font> `25 min`
+#### <font color='#c2410c'>Code Explanation</font>
 
-> <font color='purple'>**Is this payer on RupeeRing's allowlist, and does the merchant record already define `tier`?**</font>
+- **Line 1** `payees` is keyed by UPI id, and each value is a payee record, so two keys in a row reach the name.
+- **Line 2** `txns[0]` is a list position and gives the first transaction, a dictionary; the two keys read its amount and tag.
 
-### <font color='green'>Example: Test allowlist and dictionary keys</font>
+> <font color='green'>**Result**</font> Square brackets work on a list by position and on a dictionary by key; they can be chained.
 
-> <font color='purple'>**What does `in` return for a listed UPI id versus a fake id versus a dict key?**</font>
+### <font color='green'>Example: ask for a key that is not there</font>
+
+> <font color='purple'>**What happens when we read a key the record never stored?**</font>
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expect `True`, `False`, `True`. Remind learners that `in` on a dict checks keys, not values.
+> <font color="red">**🎯 Instructor Note**</font> Expected: an error, not an empty value. Common guess: `0` or an empty line.
 
 ```python
-allowed = ["pay@rupeering", "shop@rupeering", "chai@rupeering"]
-payer = "chai@rupeering"
-print(payer in allowed)
-print("blocked@fake" in allowed)
-print("tier" in merchant)
+print(payee["cashback"])
+```
+
+**Output**
+
+```
+Traceback (most recent call last):
+  File "cell.py", line 1, in <module>
+    print(payee["cashback"])
+          ~~~~~^^^^^^^^^^^^
+KeyError: 'cashback'
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Square brackets demand that the key exists. Python stops with `KeyError` and names the missing key, `'cashback'`.
+
+> <font color='green'>**Result**</font> A missing key with square brackets stops the program. This is the mistake from the Problem Statement.
+
+### <font color='green'>Extending it: get, with and without a fallback</font>
+
+> <font color='purple'>**Is there a way to ask for a key that does not crash when the key is missing?**</font>
+
+The method `get` takes the key and, as a second argument, a **fallback**: the value to return when the key is missing.
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `None` for the first call, then `0` and `gold` for the second block. Common guess: learners expect `0` from the first call.
+
+```python
+print(payee.get("cashback"))
+```
+
+**Output**
+
+```
+None
+```
+
+```python
+print(payee.get("cashback", 0))
+print(payee.get("tier", "unknown"))
+```
+
+**Output**
+
+```
+0
+gold
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **First block** `get` with no fallback returns `None` (no value) for a missing key instead of stopping.
+- **Second block, line 1** `get("cashback", 0)` returns the fallback `0`, because the key is missing.
+- **Second block, line 2** `get("tier", "unknown")` returns `gold`; the fallback is ignored when the key exists.
+
+> <font color='green'>**Result**</font> `get(key, fallback)` returns the stored value when the key exists and the fallback when it does not.
+
+### <font color='green'>Extending it: the failing run, then the fixed run</font>
+
+> <font color='purple'>**What happens when we add up the cashback of all 120 transactions with square brackets, and then with get?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `KeyError` right away, because the first transaction has no `cashback`. Then a total for the second run.
+
+```python
+total = 0
+for t in txns:
+    total = total + t["cashback"]
+print(total)
+```
+
+**Output**
+
+```
+Traceback (most recent call last):
+  File "cell.py", line 3, in <module>
+    total = total + t["cashback"]
+                    ~^^^^^^^^^^^^
+KeyError: 'cashback'
+```
+
+```python
+total = 0
+paid = 0
+for t in txns:
+    total = total + t.get("cashback", 0)
+    if t.get("cashback", 0) > 0:
+        paid = paid + 1
+print(total, paid)
+```
+
+**Output**
+
+```
+438 48
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **First block, line 3** `t["cashback"]` fails on the first transaction that has no cashback, so the total never prints.
+- **Second block, line 4** `t.get("cashback", 0)` adds 0 when the key is missing, so the loop continues.
+- **Second block, lines 5 and 6** Count the transactions whose cashback, with the fallback, is above 0.
+
+<p align="center"><img src="images/01_cashback_get.png" alt="Bar chart of the 120 transactions: 71 have no cashback key, 1 has the key stored as 0, and 48 have cashback above 0, with Rs 438 credited in total" width="900"></p>
+
+> <font color='green'>**Result**</font> With a fallback of 0, all 120 transactions are read: 48 carry cashback above 0 and the total is Rs 438.
+
+> <font color='#b45309'>**Common mistake**</font> Using square brackets on a field that only some records have. Use `get` with a fallback when a key may be missing.
+
+### <font color='green'>Extending it: the fallback is only for a missing key</font>
+
+> <font color='purple'>**What does get return when the key is there but its stored value is None?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Ask first. Expected: `None` for `note` (the key exists, its value is `None`), and `no memo` for `memo` (the key is missing).
+
+```python
+print(txns[0].get("note", "no note"))
+print(txns[0].get("memo", "no memo"))
+```
+
+**Output**
+
+```
+None
+no memo
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** The first transaction stores `note` with the value `None`, so `get` returns that stored value and ignores the fallback.
+- **Line 2** The key `memo` was never stored, so the fallback `no memo` is returned.
+
+> <font color='green'>**Result**</font> The fallback replaces a missing key only. A key that exists with `None` gives back `None`.
+
+### <font color='purple'>Quiz 1</font>
+
+**Question:** The dictionary `payee = {"upi": "chai@payhub", "tier": "gold"}` has no key `"cashback"`. What does `payee.get("cashback", 0)` return?
+
+**Options:**
+- A) A `KeyError` that stops the program
+- B) `0`
+- C) `None`
+- D) The text `"cashback"`
+
+**Correct Answer:** B
+
+**Explanation:**
+- **A)** `KeyError` comes from `payee["cashback"]` with square brackets; `get` never raises it.
+- **B)** The key is missing, so `get` returns the fallback you supplied: `0`.
+- **C)** `None` is returned only when no fallback is given.
+- **D)** `get` returns a value or the fallback; it never returns the key's name.
+
+---
+
+## <font color='blue'>Topic 2: Is This Id on the List?</font> `22 min`
+
+> <font color='purple'>**Safe lookup stops the crash; but how do we check whether a payee id is on the approved list before we pay it?**</font>
+
+Last session you wrote lists. A list can hold the approved UPI ids, and the `in` operator asks whether an item is present and gives back `True` or `False`, just like the comparison operators from earlier.
+
+### <font color='green'>Example: a membership test on a list</font>
+
+> <font color='purple'>**Is `chai@payhub` approved, and is `gadget@payhub`?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `True` for `chai@payhub` (in the list) and `False` for `gadget@payhub` (not in the list).
+
+```python
+allowed_ids = ["chai@payhub", "metro@payhub", "cab@payhub",
+               "kirana@payhub", "dosa@payhub", "power@payhub",
+               "mobile@payhub", "flat@payhub", "tailor@payhub",
+               "friend@payhub"]
+print("chai@payhub" in allowed_ids)
+print("gadget@payhub" in allowed_ids)
 ```
 
 **Output**
@@ -175,265 +381,659 @@ print("tier" in merchant)
 ```
 True
 False
-True
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Reuses a list shape from the last session for allowed UPI ids.
-- **Lines 3–4** Membership on the list answers allowlist questions.
-- **Line 5** `in merchant` tests whether the string `tier` is a dictionary key.
+- **Lines 1 to 4** Build the list `allowed_ids` of ten approved UPI ids.
+- **Line 5** `"chai@payhub" in allowed_ids` is `True` because the list contains that text.
+- **Line 6** `"gadget@payhub"` is not in the list, so the test is `False`.
 
-> <font color='green'>**Result**</font> RupeeRing can gate payouts with `in` on both lists and merchant maps.
+> <font color='green'>**Result**</font> `item in a_list` gives `True` or `False` without a loop.
 
-### <font color='green'>Extending it: Spot a channel tag in recent payments</font>
+### <font color='green'>Extending it: a membership test on a dictionary</font>
 
-> <font color='purple'>**Is `CARD` among recent channel strings, and is any allowed channel present?**</font>
-
-```python
-recent = ["UPI", "UPI", "CARD", "UPI", "WALLET"]
-print("CARD" in recent)
-print(any(x in recent for x in ["UPI", "NB"]))
-```
-
-**Output**
-
-```
-True
-True
-```
-
-> <font color='green'>**Result**</font> List membership handles one id; combining tests covers multiple channels.
-
-### <font color='purple'>Quiz 2</font>
-
-**Question:** `allowed = ["a@rupeering", "b@rupeering"]`. What is `print("c@rupeering" in allowed)`?
-
-**Options:**
-- A) `True`
-- B) `False`
-- C) `KeyError`
-- D) `None`
-
-**Correct Answer:** B
-
-**Explanation:**
-- **A)** Wrong: `c@rupeering` is not in the two-item list.
-- **B)** Correct: `in` returns `False` when no element matches.
-- **C)** Wrong: `in` does not raise on a missing list item.
-- **D)** Wrong: `in` returns a bool, not `None`.
-
----
-
-## <font color='blue'>Topic 3: Fixed rows, unique tags</font> `28 min`
-
-> <font color='purple'>**How do we keep one payment row fixed and count unique spend tags?**</font>
-
-### <font color='green'>Example: Unpack one payment tuple</font>
-
-> <font color='purple'>**What names receive id, amount, and status from one tuple?**</font>
+> <font color='purple'>**What does `in` check when the right-hand side is a dictionary: keys or values?**</font>
 
 **Predict before running: What will happen?**
 
-> <font color="red">**🎯 Instructor Note**</font> Expect one line: `TXN8841 499 SUCCESS`.
+> <font color="red">**🎯 Instructor Note**</font> Expected: `True`, `False`, `False`. Common guess: learners expect `"gold" in payee` to be `True`.
 
 ```python
-row = ("TXN8841", 499, "SUCCESS")
-txn_id, amount, status = row
-print(txn_id, amount, status)
+print("tier" in payee)
+print("gold" in payee)
+print("cashback" in payee)
 ```
 
 **Output**
 
 ```
-TXN8841 499 SUCCESS
+True
+False
+False
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** A tuple holds three fields in fixed order.
-- **Line 2** Unpacking assigns each position to a variable name.
-- **Line 3** Prints the three values in one line.
+- **Line 1** `"tier"` is a key of `payee`, so the result is `True`.
+- **Line 2** `"gold"` is a value, not a key, so the result is `False`.
+- **Line 3** `"cashback"` is not a key, so the result is `False`.
 
-> <font color='green'>**Result**</font> RupeeRing can pass one immutable row between functions without reordering fields.
+> <font color='green'>**Result**</font> On a dictionary, `in` checks the keys only.
 
-### <font color='green'>Extending it: Dedupe RupeeRing tag strings</font>
+> <font color='#b45309'>**Common mistake**</font> Testing for a value with `in` on a dictionary. Test the key, or read the value with `get`.
 
-> <font color='purple'>**How many unique tags appear in six history labels?**</font>
+### <font color='green'>Extending it: known payee, approved payee</font>
+
+> <font color='purple'>**Is a payee that is stored in `payees` also on the approved list?**</font>
+
+```python
+print("gadget@payhub" in payees)
+print("gadget@payhub" in allowed_ids)
+```
+
+**Output**
+
+```
+True
+False
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** `payees` is keyed by UPI id, so `in` finds `gadget@payhub` there: the record exists.
+- **Line 2** The list of approved ids does not contain it.
+
+> <font color='green'>**Result**</font> Having a record and being approved are two different checks, and each one uses its own `in`.
+
+### <font color='green'>Extending it: hold the transactions that fail the test</font>
+
+> <font color='purple'>**How many of today's transactions go to ids that are not on the list, and how much money is that?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Ask for a guess between 0 and 20 first. Expected: 8 transactions and Rs 13150.
+
+```python
+blocked = 0
+held = 0
+for t in txns:
+    if t["payee_upi"] not in allowed_ids:
+        blocked = blocked + 1
+        held = held + t["amount_inr"]
+print(blocked, held)
+```
+
+**Output**
+
+```
+8 13150
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Lines 1 and 2** Start two counters at 0.
+- **Line 4** `not in` is `True` when the id is missing from the list.
+- **Lines 5 and 6** Count that transaction and add its amount to the held total.
+
+<p align="center"><img src="images/02_allowed_blocked.png" alt="Two bar charts: 112 transactions are on the allowed list and 8 are not; the 8 held transactions add up to Rs 13,150" width="900"></p>
+
+> <font color='green'>**Result**</font> 8 of the 120 transactions, worth Rs 13,150, go to ids that are not approved and are held back.
+
+### <font color='green'>Extending it: which records lack the cashback key?</font>
+
+> <font color='purple'>**Can we count the transactions with no cashback key without any error?**</font>
+
+```python
+no_key = 0
+for t in txns:
+    if "cashback" not in t:
+        no_key = no_key + 1
+print(no_key)
+```
+
+**Output**
+
+```
+71
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 3** `"cashback" not in t` checks the keys of each transaction dictionary.
+- **Line 4** Adds 1 for every transaction without the key.
+
+> <font color='green'>**Result**</font> 71 transactions have no `cashback` key, so 49 have it. One of those 49 stores the value 0, which is why 48 had cashback above 0 in Topic 1.
+
+### <font color='purple'>Quiz 2</font>
+
+**Question:** For `payee = {"tier": "gold", "fee_pct": 1.2}`, what does `"gold" in payee` return?
+
+**Options:**
+- A) `True`, because `"gold"` is stored in the dictionary
+- B) A `KeyError`, because `"gold"` is not a key
+- C) `False`, because `in` checks keys and `"gold"` is a value
+- D) `"tier"`, the key that holds `"gold"`
+
+**Correct Answer:** C
+
+**Explanation:**
+- **A)** `gold` is stored, but only as a value; `in` does not look at values.
+- **B)** `in` never raises `KeyError`; it only answers `True` or `False`.
+- **C)** `in` looks at the keys `tier` and `fee_pct`, and `gold` is neither.
+- **D)** `in` returns `True` or `False`, never a key.
+
+---
+
+## <font color='blue'>Topic 3: Fixed Rows and Unique Tags</font> `28 min`
+
+> <font color='purple'>**We can find and check payees; but how do we keep a transaction row that cannot change by accident, and how do we count the tags without repeats?**</font>
+
+### <font color='green'>Example: a tuple and unpacking</font>
+
+> <font color='purple'>**How do we pack a transaction's id, payee and amount into one fixed row, then name each part?**</font>
+
+A **tuple** is written with round brackets and cannot be changed after it is made. **Unpacking** assigns each item of the tuple to its own variable in one line.
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: the tuple prints with round brackets, then the three parts print on one line.
+
+```python
+t = txns[0]
+row = (t["txn_id"], t["payee_upi"], t["amount_inr"])
+print(row)
+txn_id, upi, amount = row
+print(txn_id, upi, amount)
+```
+
+**Output**
+
+```
+('T001', 'friend@payhub', 5)
+T001 friend@payhub 5
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Takes the first transaction, a dictionary.
+- **Line 2** Builds a tuple of three of its values.
+- **Line 4** Unpacks the tuple: the first item goes to `txn_id`, the second to `upi`, the third to `amount`.
+- **Lines 3 and 5** Print the tuple, and then the three named variables.
+
+> <font color='green'>**Result**</font> One tuple holds three values, and one line gives each its own name.
+
+### <font color='green'>Extending it: tuples are fixed, and counts must match</font>
+
+> <font color='purple'>**What happens if we try to change one item of the tuple, or unpack it into too few names?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: an error for each. A tuple cannot be changed, and the number of names must equal the number of items.
+
+```python
+row[2] = 0
+```
+
+**Output**
+
+```
+Traceback (most recent call last):
+  File "cell.py", line 1, in <module>
+    row[2] = 0
+    ~~~^^^
+TypeError: 'tuple' object does not support item assignment
+```
+
+```python
+txn_id, upi = row
+```
+
+**Output**
+
+```
+Traceback (most recent call last):
+  File "cell.py", line 1, in <module>
+    txn_id, upi = row
+    ^^^^^^^^^^^
+ValueError: too many values to unpack (expected 2, got 3)
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **First block** Assigning to `row[2]` is refused with `TypeError`: a tuple does not allow assignment.
+- **Second block** Two names for three items gives `ValueError`, and the message says how many were expected.
+
+> <font color='green'>**Result**</font> A tuple is a fixed row, and unpacking needs one name per item.
+
+### <font color='green'>Extending it: unpack inside a loop</font>
+
+> <font color='purple'>**Can we build a tuple for every transaction and name the parts as we loop?**</font>
+
+```python
+rows = []
+for t in txns:
+    rows.append((t["txn_id"], t["payee_upi"], t["amount_inr"]))
+for txn_id, upi, amount in rows[:3]:
+    print(txn_id, upi, amount)
+```
+
+**Output**
+
+```
+T001 friend@payhub 5
+T002 flat@payhub 18500
+T003 chai@payhub 45
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Lines 1 to 3** Build an empty list, then append one tuple per transaction.
+- **Line 4** The loop variables `txn_id, upi, amount` unpack each tuple as the loop reaches it.
+- **Line 5** Prints the named parts of the first three rows (`rows[:3]` is a slice, as in the lists session).
+
+> <font color='green'>**Result**</font> A loop can unpack each tuple into named variables, so the body reads like plain words.
+
+### <font color='green'>Example: a set removes repeated values</font>
+
+> <font color='purple'>**A list of six event tags has repeats; how many different tags are there?**</font>
+
+A **set** keeps each value once. `set(a_list)` creates one from a list, and the repeats disappear.
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `6 3`, then the three tags in order. Common guess: learners expect 4 from counting `food` twice.
 
 ```python
 tags = ["food", "food", "travel", "food", "upi", "travel"]
 unique = set(tags)
-print(sorted(unique))
 print(len(tags), len(unique))
+print(sorted(unique))
 ```
 
 **Output**
 
 ```
-['food', 'travel', 'upi']
 6 3
-```
-
-> <font color='green'>**Result**</font> A set drops duplicate strings; the list length stays six while the set size is three.
-
-### <font color='purple'>Quiz 3</font>
-
-**Question:** `t = (10, 20)`. Which line sets `x` to `10` and `y` to `20`?
-
-**Options:**
-- A) `x, y = t`
-- B) `x = t[0]; y = t[0]`
-- C) `set(t)`
-- D) `x, y = list(t, 2)`
-
-**Correct Answer:** A
-
-**Explanation:**
-- **A)** Correct: unpacking matches position to name.
-- **B)** Wrong: both variables would hold `10`.
-- **C)** Wrong: `set` removes order and does not assign names.
-- **D)** Wrong: `list` takes one iterable, not two arguments.
-
----
-
-## <font color='blue'>Topic 4: API text into Python types</font> `29 min`
-
-> <font color='purple'>**After `json.loads`, what Python type does each RupeeRing API field become?**</font>
-
-### <font color='green'>Example: Classify types in one payment payload</font>
-
-> <font color='purple'>**What type name prints for each key in the parsed dict?**</font>
-
-**Predict before running: What will happen?**
-
-> <font color="red">**🎯 Instructor Note**</font> Expect `str`, `int`, `bool`, `list`, `NoneType`. Stress that JSON `null` becomes Python `None`.
-
-```python
-import json
-payload = '{"merchant":"chai@rupeering","amount":499,"paid":true,"tags":["food","upi"],"meta":null}'
-data = json.loads(payload)
-for key, value in data.items():
-    print(key, type(value).__name__)
-```
-
-**Output**
-
-```
-merchant str
-amount int
-paid bool
-tags list
-meta NoneType
+['food', 'travel', 'upi']
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 2** JSON must be a string with double quotes before parsing.
-- **Line 3** `json.loads` returns a dictionary you can loop like any other dict.
-- **Lines 4–5** `type(...).__name__` labels each value for logging rules.
+- **Line 2** `set(tags)` builds a set from the list; repeated values are kept once.
+- **Line 3** `len` of the list is 6; `len` of the set is the number of different tags.
+- **Line 4** A set has no order, so `sorted` gives a list in alphabetical order for printing.
 
-> <font color='green'>**Result**</font> RupeeRing can route each API field to the right check once types are classified.
+> <font color='green'>**Result**</font> The 6 tags hold 3 different values: `food`, `travel` and `upi`.
 
-### <font color='green'>Extending it: Map common JSON scalars</font>
+### <font color='green'>Extending it: the tags of all 120 transactions</font>
 
-> <font color='purple'>**Which Python types match integer, float, string, boolean, and array JSON values?**</font>
+> <font color='purple'>**How many different tags are in the 120 transactions, and how often does each appear?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> This is the opening poll. Compare learners' guesses with the output.
 
 ```python
-import json
-sample = json.loads('{"count":3,"rate":1.5,"name":"RupeeRing","ok":false,"items":[1,2]}')
-print(type(sample["count"]).__name__)
-print(type(sample["rate"]).__name__)
-print(type(sample["name"]).__name__)
-print(type(sample["ok"]).__name__)
-print(type(sample["items"]).__name__)
+all_tags = []
+for t in txns:
+    all_tags.append(t["tag"])
+print(len(all_tags), len(set(all_tags)))
+print(sorted(set(all_tags)))
 ```
 
 **Output**
 
 ```
-int
-float
-str
-bool
-list
+120 7
+['bills', 'food', 'recharge', 'rent', 'shopping', 'travel', 'upi']
 ```
 
-> <font color='green'>**Result**</font> Numbers without a decimal point are `int`; with a decimal they are `float`; JSON arrays become Python lists.
+```python
+counts = {}
+for tag in all_tags:
+    counts[tag] = counts.get(tag, 0) + 1
+print(counts)
+```
 
-### <font color='purple'>Quiz 4</font>
+**Output**
 
-**Question:** After `data = json.loads('{"active": true, "ids": [1, 2]}')`, what are the types of `data["active"]` and `data["ids"]`?
+```
+{'upi': 7, 'rent': 4, 'food': 31, 'shopping': 33, 'travel': 31, 'bills': 4, 'recharge': 10}
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **First block** Collects every transaction's tag into a list of 120, then prints its size and the size of its set.
+- **Second block, line 3** `counts.get(tag, 0) + 1` starts at the fallback 0 for a new tag, the same `get` from Topic 1.
+
+<p align="center"><img src="images/03_tag_counts.png" alt="Bar chart of tag counts across the 120 transactions: shopping 33, food 31, travel 31, recharge 10, upi 7, rent 4, bills 4; seven unique tags" width="900"></p>
+
+> <font color='green'>**Result**</font> 120 tags hold 7 different values. Shopping, food and travel make up most of the day.
+
+### <font color='green'>Extending it: a set has no positions</font>
+
+> <font color='purple'>**Can we read the first item of a set by position, as we do with a list?**</font>
+
+```python
+print(unique[0])
+```
+
+**Output**
+
+```
+Traceback (most recent call last):
+  File "cell.py", line 1, in <module>
+    print(unique[0])
+          ~~~~~~^^^
+TypeError: 'set' object is not subscriptable
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** A set has no order, so there is no first item to read by position; Python refuses with `TypeError`.
+
+> <font color='green'>**Result**</font> A set only answers "is it there?" and "how many?". Turn it into a sorted list when you need an order.
+
+### <font color='purple'>Quiz 3</font>
+
+**Question:** For `tags = ["food", "food", "travel", "food", "upi", "travel"]`, what does `len(set(tags))` return?
 
 **Options:**
-- A) `bool` and `list`
-- B) `str` and `dict`
-- C) `int` and `tuple`
-- D) `bool` and `set`
+- A) 3
+- B) 6
+- C) 2
+- D) 4
 
 **Correct Answer:** A
 
 **Explanation:**
-- **A)** Correct: JSON booleans and arrays map to `bool` and `list`.
-- **B)** Wrong: `true` is not a string; `[1,2]` is not a dict.
-- **C)** Wrong: JSON arrays become lists, not tuples.
-- **D)** Wrong: `json.loads` does not build a set from JSON arrays.
+- **A)** The set keeps `food`, `travel` and `upi` once each, so its length is 3.
+- **B)** 6 is `len(tags)`, the list with its repeats.
+- **C)** 2 leaves out `food`; the set keeps every different value, `food` included.
+- **D)** 4 counts one repeat of `food` or `travel` a second time; a set keeps each value once.
+
+---
+
+## <font color='blue'>Topic 4: Reading API Text</font> `28 min`
+
+> <font color='purple'>**Our records sit in Python already; but the app's API sends a payment event as plain text, so what Python values does that text become?**</font>
+
+The API sends a payment event as one line of text in JSON, a format with a few kinds of values: text, numbers, true and false, `null`, arrays and objects. The `json.loads` function turns that text into Python values.
+
+### <font color='green'>Example: text in, dictionary out</font>
+
+> <font color='purple'>**What is the event before `json.loads`, and what is it after?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `str`, then `dict`, then `249.5`. Common guess: learners think the text is already a dictionary.
+
+```python
+import json
+event_text = '{"txn_id": "T121", "payee_upi": "chai@payhub", "amount": 249.5, "retries": 2, "refunded": false, "note": null, "tags": ["food", "upi"], "payee": {"tier": "gold"}}'
+print(type(event_text))
+event = json.loads(event_text)
+print(type(event))
+print(event["amount"])
+```
+
+**Output**
+
+```
+<class 'str'>
+<class 'dict'>
+249.5
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Loads the `json` module (the setup cell already used it).
+- **Line 2** `event_text` is one line of text in single quotes; the JSON inside it uses double quotes.
+- **Line 3** `type` shows that `event_text` is a `str`, plain text.
+- **Line 4** `json.loads` turns the text into Python values.
+- **Lines 5 and 6** The result is a `dict`, and its `amount` is a number you can read by key.
+
+> <font color='green'>**Result**</font> `json.loads` turns a text into a dictionary, and the values inside it are real Python values.
+
+### <font color='green'>Extending it: the Python type of every value</font>
+
+> <font color='purple'>**What Python type does each field of the event become?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Ask learners to name the type of `refunded` and `note` first. Expected: `bool` and `NoneType`.
+
+```python
+for key in event:
+    print(key, "->", type(event[key]).__name__)
+```
+
+**Output**
+
+```
+txn_id -> str
+payee_upi -> str
+amount -> float
+retries -> int
+refunded -> bool
+note -> NoneType
+tags -> list
+payee -> dict
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** A `for` loop over a dictionary visits its keys, one at a time.
+- **Line 2** `event[key]` reads the value, `type(...)` finds its type, and `.__name__` gives the type's short name.
+
+<p align="center"><img src="images/04_json_types.png" alt="Table of the event fields with their JSON value and the Python type they become: str, str, float, int, bool, NoneType, list, dict" width="900"></p>
+
+> <font color='green'>**Result**</font> JSON string becomes `str`, a whole number `int`, a decimal `float`, true or false `bool`, `null` becomes `None`, an array a `list` and an object a `dict`.
+
+### <font color='green'>Extending it: read what is inside</font>
+
+> <font color='purple'>**How do we reach the first tag, and the tier inside the nested payee?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `False None` on the first line and `food gold` on the second. `false` has become `False`, with a capital F.
+
+```python
+print(event["refunded"], event["note"])
+print(event["tags"][0], event["payee"]["tier"])
+```
+
+**Output**
+
+```
+False None
+food gold
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** JSON `false` is now the Python `False`, and JSON `null` is now `None`.
+- **Line 2** `event["tags"]` is a list, so `[0]` picks its first item; `event["payee"]` is a dictionary, so `["tier"]` reads its tier.
+
+> <font color='green'>**Result**</font> An array becomes a list and an object becomes a dictionary, so the square brackets from Topics 1 and 3 work on them.
+
+### <font color='green'>Extending it: quotes and decimal points decide the type</font>
+
+> <font color='purple'>**What types do `"249.5"` in quotes, `1` and `1.0` become?**</font>
+
+**Predict before running: What will happen?**
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: `str`, `int`, `float`. Common guess: learners call `"249.5"` a number because it looks like one.
+
+```python
+a = json.loads('{"amount": "249.5", "fee": 1, "rate": 1.0}')
+for key in a:
+    print(key, "->", type(a[key]).__name__)
+```
+
+**Output**
+
+```
+amount -> str
+fee -> int
+rate -> float
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Parses a small JSON text with three fields in one call.
+- **Lines 2 and 3** Print each key and the type of its value.
+
+> <font color='green'>**Result**</font> Quotes make a JSON value text, so `"249.5"` is a `str`. Without quotes, `1` is an `int` and `1.0` is a `float`.
+
+### <font color='green'>Extending it: text that is not valid JSON</font>
+
+> <font color='purple'>**What if the text uses single quotes inside, like a Python dictionary?**</font>
+
+> <font color="red">**🎯 Instructor Note**</font> Expected: an error. JSON needs double quotes around names and text. The error is long; read the last line.
+
+```python
+json.loads("{'amount': 249.5}")
+```
+
+**Output**
+
+```
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** The inside of the text uses `'amount'` in single quotes, which JSON does not allow, so Python stops.
+- **Output** The traceback lists several lines of the `json` module; its last line, shown here, gives the reason.
+
+> <font color='green'>**Result**</font> `json.loads` accepts only valid JSON: double quotes around keys and text.
+
+> <font color='#b45309'>**Common mistake**</font> Calling the JSON text a dictionary before parsing it. It is a `str` until `json.loads` turns it into a `dict`.
+
+### <font color='purple'>Quiz 4</font>
+
+**Question:** After `json.loads` on the text `{"retries": 2, "amount": 249.5, "refunded": false}`, what are the Python types of `retries`, `amount` and `refunded`?
+
+**Options:**
+- A) `str`, `str`, `str`
+- B) `int`, `int`, `bool`
+- C) `int`, `float`, `str`
+- D) `int`, `float`, `bool`
+
+**Correct Answer:** D
+
+**Explanation:**
+- **A)** Only the whole JSON text is a `str` before parsing; the values inside become numbers and a bool.
+- **B)** `249.5` has a decimal point, so it is a `float`, not an `int`.
+- **C)** `false` without quotes is a `bool`, not a `str`.
+- **D)** `2` is an `int`, `249.5` is a `float` and `false` becomes the `bool` `False`.
 
 ---
 
 ## <font color='blue'>Closing: Outcome & Summary</font> `10 min`
 
-RupeeRing's mistake was treating optional merchant fields like required ones. The fix chains every tool from today's four topics.
+Back to the Problem Statement: a script must settle today's transactions without stopping on one missing field. We answer it using each topic once.
 
-> <font color='purple'>**1. Can this merchant id pass if it is on the allowlist and cashback is optional?**</font>
+> <font color='purple'>**1. Which transactions can we settle, and how much cashback do we credit? (Topics 1 and 2)**</font>
 
-Use `[]` or `.get` for known keys, and test the UPI id with `in` on the allowlist list.
-
-> <font color='purple'>**2. Does one quick check show the payout rule without crashing?**</font>
+Check each payee id with `in`, read cashback with `get`, and keep the two results in a tuple (Topic 3).
 
 ```python
-record = {"upi_id": "chai@rupeering", "amount": 499}
-allowed = ["chai@rupeering", "shop@rupeering"]
-print(record["upi_id"] in allowed)
-print(record.get("risk", "low"))
+settled = 0
+cashback = 0
+for t in txns:
+    if t["payee_upi"] in allowed_ids:
+        settled = settled + 1
+        cashback = cashback + t.get("cashback", 0)
+report = (settled, cashback)
+print(report)
 ```
 
 **Output**
 
 ```
-True
-low
+(112, 438)
 ```
 
 #### <font color='#c2410c'>Code Explanation</font>
 
-- **Line 1** Dictionary holds the live payment fields (Topic 1).
-- **Line 3** List membership gates the UPI id (Topic 2).
-- **Line 4** `.get` supplies a default risk label when the key is absent (Topic 1).
+- **Line 4** `in allowed_ids` is the membership test from Topic 2.
+- **Line 6** `t.get("cashback", 0)` is the safe lookup from Topic 1; transactions without the key add 0.
+- **Line 7** `(settled, cashback)` packs the two results into one tuple (Topic 3).
+
+> <font color='purple'>**2. Which payees were held, and how many different tags were there? (Topic 3)**</font>
+
+```python
+settled_count, cashback_total = report
+held = []
+for t in txns:
+    if t["payee_upi"] not in allowed_ids:
+        held.append(t["payee_upi"])
+print(settled_count, cashback_total)
+print(sorted(set(held)), len(set(all_tags)))
+```
+
+**Output**
+
+```
+112 438
+['gadget@payhub', 'promo@payhub'] 7
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** Unpacks the tuple from the last cell into two named variables (Topic 3).
+- **Lines 2 to 5** Collect the ids that fail the `not in` test into a list (Topic 2).
+- **Line 7** `set(held)` removes repeated ids, and `set(all_tags)` counts the 7 different tags (Topic 3).
+
+> <font color='purple'>**3. Can the new API event be processed? (Topic 4)**</font>
+
+```python
+event = json.loads(event_text)
+ok = event["payee_upi"] in allowed_ids
+bonus = event.get("cashback", 0)
+print(ok, bonus, type(event["amount"]).__name__)
+```
+
+**Output**
+
+```
+True 0 float
+```
+
+#### <font color='#c2410c'>Code Explanation</font>
+
+- **Line 1** `json.loads` turns the event text into a dictionary (Topic 4).
+- **Line 2** The event's `payee_upi` is tested against the approved list (Topic 2).
+- **Line 3** The event has no `cashback`, so `get` returns the fallback 0 (Topic 1).
+- **Line 4** The amount arrives as a `float`, because JSON `249.5` has a decimal point (Topic 4).
+
+<p align="center"><img src="images/05_closing_outcome.png" alt="Left: direct lookup processes 0 of 120 rows while get with a fallback processes all 120. Right: 112 transactions settled and 8 held, with Rs 438 cashback on settled rows" width="900"></p>
 
 ### <font color='green'>Outcome</font>
 
-| | Crashes on missing `cashback` | Uses `.get` and allowlist |
+| | Square brackets `t["cashback"]` | `get` with fallback and `in` |
 |:--|:-:|:-:|
-| Notebook completes | No | Yes |
-| Wrong merchant paid | Possible | Blocked when id not in list |
-| Tag counts honest | No | Yes, after `set` on tags |
+| Rows processed | 0 of 120 (stops at T001) | 120 of 120 |
+| Rows settled | 0 | 112 |
+| Rows held, id not approved | not checked | 8 |
+| Cashback credited | Rs 0 | Rs 438 |
 
-> <font color='green'>**Therefore,**</font> RupeeRing should read required keys with care, use `.get` for optional fields, test allowlists with `in`, unpack fixed tuples, dedupe with sets, and classify API JSON before rules run.
+> <font color='green'>**Therefore,**</font> a script that reads cashback with `get(key, 0)` and checks each id with `in` settles 112 transactions, holds 8, and credits Rs 438 without stopping. The 120 transactions carry 7 different tags, and the API event reads as a dictionary with real Python types.
 
-> <font color="red">**🎯 Instructor Note**</font> Reveal the poll: optional fields should use `.get` with a clear default. Give learners 30 seconds to respond in chat if you repeat the poll.
+> <font color="red">**🎯 Instructor Note**</font> Reveal the opening poll: 7 different tags. Compare it with learners' answers of 3, 7 or 12.
 
 ### <font color='green'>Summary</font>
 
 | Learning objective | Takeaway |
 |:--|:--|
-| Build a dictionary of key-value pairs, retrieving a value by its key | `{}` maps one label to one value; use `[key]` when the key must exist. |
-| Retrieve a dictionary value with get, supplying a fallback for a missing key | `.get(key, default)` avoids `KeyError` on optional fields. |
-| Write a membership test using the in operator on a list and a dictionary | `in` on a list checks values; on a dict it checks keys. |
-| Write a tuple and unpack it into named variables | Tuples keep field order; unpacking assigns each slot to a name. |
-| Build a set to remove duplicate values from a list | `set(list)` keeps unique items; order may change. |
-| Classify JSON values by the Python types they become when parsed | `json.loads` yields `dict`/`list`/scalars; `null` becomes `None`. |
-| **Practical value** | You can read RupeeRing-style API payloads in Colab without stopping on missing keys or double-counted tags. |
+| Dictionary and key lookup | `{"tier": "gold"}` stores values under keys; `payee["tier"]` reads one by its key |
+| `get` with a fallback | `payee.get("cashback", 0)` returns the fallback when the key is missing instead of stopping the program |
+| Membership with `in` | `x in a_list` checks items; `x in a_dict` checks keys only |
+| Tuple and unpacking | `(id, upi, amount)` is a fixed row; `a, b, c = row` names each part |
+| Set for unique values | `set(a_list)` keeps each value once, so `len(set(tags))` counts different tags |
+| JSON types | `json.loads` makes `str`, `int`, `float`, `bool`, `None`, `list` and `dict` from JSON values |
+| **Practical value** | Scripts that read records, API text and id lists stay running when one field is missing |
 
 ---
 

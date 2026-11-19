@@ -1,0 +1,74 @@
+{
+ "chai@payhub": {
+  "upi": "chai@payhub",
+  "name": "Sharma Chai Stall",
+  "tier": "gold",
+  "fee_pct": 1.2
+ },
+ "metro@payhub": {
+  "upi": "metro@payhub",
+  "name": "City Metro Recharge",
+  "tier": "gold",
+  "fee_pct": 0.8
+ },
+ "cab@payhub": {
+  "upi": "cab@payhub",
+  "name": "Quick Cab Rides",
+  "tier": "gold",
+  "fee_pct": 1.5
+ },
+ "kirana@payhub": {
+  "upi": "kirana@payhub",
+  "name": "Anand Kirana Store",
+  "tier": "silver",
+  "fee_pct": 1.0
+ },
+ "dosa@payhub": {
+  "upi": "dosa@payhub",
+  "name": "Dosa Corner",
+  "tier": "silver",
+  "fee_pct": 1.1
+ },
+ "power@payhub": {
+  "upi": "power@payhub",
+  "name": "State Power Bills",
+  "tier": "gold",
+  "fee_pct": 0.5
+ },
+ "mobile@payhub": {
+  "upi": "mobile@payhub",
+  "name": "Mobile Top-up Hub",
+  "tier": "silver",
+  "fee_pct": 0.9
+ },
+ "flat@payhub": {
+  "upi": "flat@payhub",
+  "name": "Green Flat Rent",
+  "tier": "basic",
+  "fee_pct": 0.0
+ },
+ "tailor@payhub": {
+  "upi": "tailor@payhub",
+  "name": "Rani Tailors",
+  "tier": "basic",
+  "fee_pct": 1.8
+ },
+ "friend@payhub": {
+  "upi": "friend@payhub",
+  "name": "Friend Transfer",
+  "tier": "basic",
+  "fee_pct": 0.0
+ },
+ "gadget@payhub": {
+  "upi": "gadget@payhub",
+  "name": "Gadget Galli",
+  "tier": "silver",
+  "fee_pct": 1.4
+ },
+ "promo@payhub": {
+  "upi": "promo@payhub",
+  "name": "Lucky Promo Desk",
+  "tier": "basic",
+  "fee_pct": 2.5
+ }
+}
