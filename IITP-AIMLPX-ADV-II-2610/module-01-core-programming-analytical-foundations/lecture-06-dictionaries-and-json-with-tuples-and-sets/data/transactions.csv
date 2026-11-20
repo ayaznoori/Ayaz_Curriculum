@@ -1,0 +1,121 @@
+txn_id,payee_upi,amount_inr,tag,refunded,note,cashback
+T001,friend@payhub,5,upi,False,,
+T002,flat@payhub,18500,rent,False,lunch,
+T003,chai@payhub,45,food,False,,0
+T004,chai@payhub,45,food,True,,5
+T005,chai@payhub,319,food,False,gift,
+T006,kirana@payhub,2174,shopping,False,,
+T007,kirana@payhub,932.5,shopping,False,,10
+T008,metro@payhub,499,travel,False,,2
+T009,kirana@payhub,2547,shopping,False,,
+T010,chai@payhub,422,food,False,festival offer,
+T011,dosa@payhub,216,food,False,lunch,
+T012,power@payhub,3739,bills,False,,10
+T013,metro@payhub,785,travel,False,,
+T014,kirana@payhub,2253,shopping,False,,
+T015,chai@payhub,129,food,True,festival offer,
+T016,cab@payhub,260,travel,False,festival offer,
+T017,cab@payhub,772,travel,False,,10
+T018,power@payhub,2576,bills,False,festival offer,5
+T019,chai@payhub,328.75,food,False,,
+T020,kirana@payhub,2352,shopping,False,festival offer,10
+T021,kirana@payhub,2420,shopping,False,urgent,
+T022,kirana@payhub,3114.5,shopping,False,urgent,
+T023,cab@payhub,333.25,travel,False,,10
+T024,chai@payhub,304.75,food,False,,
+T025,friend@payhub,2086,upi,False,,10
+T026,flat@payhub,11172,rent,False,,
+T027,chai@payhub,32,food,False,,20
+T028,chai@payhub,199,food,False,gift,5
+T029,metro@payhub,205,travel,False,,
+T030,chai@payhub,163.75,food,False,gift,5
+T031,cab@payhub,615.75,travel,False,gift,2
+T032,kirana@payhub,1115,shopping,False,,
+T033,friend@payhub,3143,upi,False,,10
+T034,kirana@payhub,2435,shopping,False,split bill,
+T035,chai@payhub,290,food,False,,
+T036,chai@payhub,56,food,False,festival offer,
+T037,dosa@payhub,352,food,False,,10
+T038,kirana@payhub,2581.5,shopping,False,,
+T039,metro@payhub,470,travel,False,,
+T040,cab@payhub,303,travel,False,,
+T041,chai@payhub,110,food,False,monthly,
+T042,metro@payhub,678,travel,False,,
+T043,kirana@payhub,1028,shopping,False,,
+T044,chai@payhub,281,food,False,,
+T045,kirana@payhub,691.5,shopping,False,split bill,
+T046,metro@payhub,832.75,travel,False,,10
+T047,kirana@payhub,1906.75,shopping,False,monthly,15
+T048,power@payhub,2335,bills,False,lunch,20
+T049,chai@payhub,263,food,False,,10
+T050,tailor@payhub,2319,shopping,False,urgent,
+T051,cab@payhub,135,travel,False,urgent,20
+T052,cab@payhub,612,travel,True,,10
+T053,tailor@payhub,2038,shopping,False,festival offer,
+T054,mobile@payhub,306,recharge,False,festival offer,
+T055,kirana@payhub,1486,shopping,False,,2
+T056,mobile@payhub,304,recharge,False,,
+T057,tailor@payhub,2200,shopping,True,,
+T058,gadget@payhub,992,shopping,True,,
+T059,flat@payhub,13714,rent,False,,
+T060,gadget@payhub,1180,shopping,False,monthly,
+T061,flat@payhub,11316,rent,False,,
+T062,chai@payhub,242,food,False,lunch,
+T063,cab@payhub,586.5,travel,False,,
+T064,chai@payhub,114,food,True,,
+T065,dosa@payhub,356,food,False,,
+T066,cab@payhub,632,travel,False,urgent,2
+T067,mobile@payhub,569,recharge,False,split bill,2
+T068,kirana@payhub,1370,shopping,False,urgent,
+T069,cab@payhub,660,travel,False,,
+T070,chai@payhub,315,food,False,,5
+T071,mobile@payhub,775,recharge,True,urgent,5
+T072,chai@payhub,330,food,False,,
+T073,metro@payhub,113,travel,False,,
+T074,dosa@payhub,161,food,False,monthly,
+T075,chai@payhub,46.75,food,False,,
+T076,dosa@payhub,354,food,True,,
+T077,tailor@payhub,158.25,shopping,False,morning ride,2
+T078,mobile@payhub,615,recharge,False,gift,2
+T079,mobile@payhub,784,recharge,True,,20
+T080,chai@payhub,429,food,False,,
+T081,cab@payhub,143,travel,True,festival offer,5
+T082,power@payhub,1611,bills,False,,
+T083,mobile@payhub,173,recharge,False,,
+T084,mobile@payhub,109,recharge,True,,5
+T085,cab@payhub,150.75,travel,False,split bill,
+T086,dosa@payhub,130.75,food,False,split bill,2
+T087,mobile@payhub,387,recharge,False,,20
+T088,dosa@payhub,298,food,False,lunch,
+T089,gadget@payhub,654,shopping,False,,
+T090,promo@payhub,3267,upi,False,festival offer,
+T091,cab@payhub,270,travel,False,festival offer,15
+T092,tailor@payhub,2406,shopping,False,,15
+T093,kirana@payhub,611,shopping,False,,5
+T094,promo@payhub,727,upi,False,festival offer,
+T095,metro@payhub,172,travel,False,gift,20
+T096,promo@payhub,3158,upi,False,split bill,
+T097,mobile@payhub,439,recharge,False,,5
+T098,chai@payhub,343.75,food,False,,10
+T099,cab@payhub,693.5,travel,False,,15
+T100,kirana@payhub,3079,shopping,False,,15
+T101,gadget@payhub,2345,shopping,False,,
+T102,metro@payhub,590,travel,True,urgent,5
+T103,kirana@payhub,584,shopping,False,,2
+T104,dosa@payhub,133,food,False,urgent,
+T105,kirana@payhub,741.25,shopping,False,morning ride,
+T106,cab@payhub,195,travel,False,lunch,
+T107,metro@payhub,281,travel,False,,5
+T108,metro@payhub,216,travel,False,,10
+T109,dosa@payhub,170,food,False,,
+T110,tailor@payhub,1510,shopping,False,lunch,
+T111,gadget@payhub,827,shopping,False,,
+T112,tailor@payhub,2363,shopping,False,,
+T113,metro@payhub,101,travel,False,morning ride,
+T114,cab@payhub,105.25,travel,False,,10
+T115,friend@payhub,740,upi,False,,15
+T116,kirana@payhub,1720,shopping,False,,
+T117,kirana@payhub,1389,shopping,False,,
+T118,cab@payhub,280,travel,False,,10
+T119,cab@payhub,810,travel,False,,
+T120,cab@payhub,105,travel,False,,
