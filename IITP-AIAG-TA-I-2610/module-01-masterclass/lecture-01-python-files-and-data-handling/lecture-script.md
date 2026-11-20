@@ -8,15 +8,15 @@ The lecture runs as four topics. Each topic ends with a quiz.
 
 | Topic | What we do | Learning objectives covered | Minutes |
 |:-:|:--|:--|:-:|
-| 1 | Read notes and the product table | Write a script that reads a text file into a string using a with-block<br>Parse a CSV file into rows using the csv module's reader | 28 |
-| 2 | Build clean_export.csv on disk | Write a list of records to a CSV file including a header row | 30 |
-| 3 | Load JSON and count settlement tags | Parse a JSON file from disk into Python dictionaries and lists<br>Apply a standard library module such as datetime, random or collections to a stated task | 30 |
-| 4 | Fix a broken total script with AI help | Debug a failing script, query or formula with an AI tool's fix, testing it before accepting | 22 |
-| — | Closing: Outcome & Summary | | 10 |
-| | **Total** | | **120** |
+| 1 | Read notes and the product table | Write a script that reads a text file into a string using a with-block<br>Parse a CSV file into rows using the csv module's reader | 21 |
+| 2 | Build clean_export.csv on disk | Write a list of records to a CSV file including a header row | 22 |
+| 3 | Load JSON and count settlement tags | Parse a JSON file from disk into Python dictionaries and lists<br>Apply a standard library module such as datetime, random or collections to a stated task | 22 |
+| 4 | Fix a broken total script with AI help | Debug a failing script, query or formula with an AI tool's fix, testing it before accepting | 16 |
+| — | Closing: Outcome & Summary | | 9 |
+| | **Total** | | **90** |
 
-> <font color="red">**🎯 Instructor Note**</font> Pace: spend the most time on `csv.DictWriter` and `writeheader()` in Topic 2, and on paste-fix-run in Topic 4.
-> Keep the notes file read in Topic 1 quick; learners need hands-on time on file paths.
+> <font color="red">**🎯 Instructor Note**</font> **90-minute class:** keep the notes read under five minutes; spend the most time on `csv.DictWriter` and `writeheader()` in Topic 2 and paste-fix-run in Topic 4.
+> In each topic, run the main Example live; do one **Extending it** with learners; treat extra extensions as optional or homework if you are behind.
 
 ---
 
@@ -78,7 +78,7 @@ flowchart LR
 
 ---
 
-## <font color='blue'>Topic 1: Read Notes and the Product Table</font> `28 min`
+## <font color='blue'>Topic 1: Read Notes and the Product Table</font> `21 min`
 
 > <font color='purple'>**The checklist lives in upload_notes.txt. How do we load it without retyping, then open the 120-row product table?**</font>
 
@@ -172,6 +172,8 @@ print(len(seller_a_rows), blanks, seller_a_rows[0]["product_code_raw"])
 
 ### <font color='green'>Extending it: count blank titles in the full product table</font>
 
+> <font color="red">**🎯 Instructor Note**</font> Optional in a 90-minute run if Topic 1 is already at time; mention the four blanks in Closing instead.
+
 > <font color='purple'>**The notes file mentions four blank titles in the shared file. Does the CSV match?**</font>
 
 ```python
@@ -210,7 +212,7 @@ print(blanks, len(rows))
 
 ---
 
-## <font color='blue'>Topic 2: Build clean_export.csv on Disk</font> `30 min`
+## <font color='blue'>Topic 2: Build clean_export.csv on Disk</font> `22 min`
 
 > <font color='purple'>**Seller A needs a smaller table file with a header row. How do we write her thirteen cleaned rows to clean_export.csv?**</font>
 
@@ -298,7 +300,7 @@ KRT-0412-RD Cotton Kurta Set 13
 
 ---
 
-## <font color='blue'>Topic 3: Load JSON and Count Settlement Tags</font> `30 min`
+## <font color='blue'>Topic 3: Load JSON and Count Settlement Tags</font> `22 min`
 
 > <font color='purple'>**A kurta detail file and a settlement JSON sit in the same folder. How do we load them and summarise tags with a stdlib helper?**</font>
 
@@ -383,6 +385,8 @@ shopping 33 7
 
 ### <font color='green'>Extending it: stamp the export time with datetime</font>
 
+> <font color="red">**🎯 Instructor Note**</font> Optional in a 90-minute run if Counter and JSON load already filled Topic 3; the stdlib LO is still met via **Counter** in the prior extension.
+
 > <font color='purple'>**What timestamp and export row count should appear on the upload log line?**</font>
 
 ```python
@@ -422,7 +426,7 @@ print(stamp, n)
 
 ---
 
-## <font color='blue'>Topic 4: Fix a Broken Total Script with AI Help</font> `22 min`
+## <font color='blue'>Topic 4: Fix a Broken Total Script with AI Help</font> `16 min`
 
 > <font color='purple'>**Seller A wants the sum of all prices in seller_product_codes.csv. Her script crashes. How do we use an AI fix and only keep it after a test run?**</font>
 
@@ -512,7 +516,7 @@ print(total, "all_sellers")
 
 ---
 
-## <font color='blue'>Closing: Outcome & Summary</font> `10 min`
+## <font color='blue'>Closing: Outcome & Summary</font> `9 min`
 
 Seller A moved from pasted cells to a small folder on disk. Each topic added one piece: read text and the shared table, write her export, load JSON with a stdlib tally, then test an AI fix on the price sum.
 
