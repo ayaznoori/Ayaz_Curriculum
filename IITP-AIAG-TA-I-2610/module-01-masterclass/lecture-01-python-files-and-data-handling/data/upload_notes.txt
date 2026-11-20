@@ -1,0 +1,5 @@
+Seller A — upload checklist for 19 March 2026
+- Fix 4 blank titles before the online upload window closes at 6 PM.
+- Double-check the cotton kurta row price matches the JSON detail file.
+- Export only Seller A rows (shop code SHOP-A) to clean_export.csv after title cleanup.
+- Thirteen Seller A rows need title case; do not mix in shop code SHOP-B.
