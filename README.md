@@ -29,6 +29,7 @@ Published course content for IITP AIML batches. Each batch is a top-level folder
 | `IITP-AIDA-EN-III-2610` |
 | `IITP-AIAG-TA-I-2610` |
 | `IITREICT-DSAI-EN-IV-2611` |
+| `IITREICT-AIML-EN-III-2611` |
 
 Session folders are created when pre-reads and lecture scripts are added. Optional assets for a session (for example `images/` or `data/`) live inside that session’s `lecture-XX-<topic>/` folder.
 
