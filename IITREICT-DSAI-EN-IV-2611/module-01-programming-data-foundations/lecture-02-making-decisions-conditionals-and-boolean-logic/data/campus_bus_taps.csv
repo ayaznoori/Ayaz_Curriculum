@@ -1,0 +1,121 @@
+tap_id,rider_name,card_active,balance_rupees,is_student,expected_message
+T001,Priya,True,25,True,Student pass ₹15
+T002,Arjun,True,8,True,Top up first — need ₹15 balance
+T003,Meera,False,50,True,Card inactive — renew at help desk
+T004,Rohan,True,30,False,Guest pass ₹40
+T005,Kavya,True,100,False,Guest pass ₹40
+T006,Dev,False,0,True,Card inactive — renew at help desk
+T007,Ananya,True,15,True,Student pass ₹15
+T008,Vikram,True,8,True,Top up first — need ₹15 balance
+T009,Rider_009,True,14,True,Top up first — need ₹15 balance
+T010,Rider_010,True,5,True,Top up first — need ₹15 balance
+T011,Rider_011,True,40,True,Student pass ₹15
+T012,Rider_012,True,40,True,Student pass ₹15
+T013,Rider_013,True,30,False,Guest pass ₹40
+T014,Rider_014,True,0,False,Guest pass ₹40
+T015,Rider_015,True,0,False,Guest pass ₹40
+T016,Rider_016,True,5,True,Top up first — need ₹15 balance
+T017,Rider_017,True,16,True,Student pass ₹15
+T018,Rider_018,True,14,True,Top up first — need ₹15 balance
+T019,Rider_019,False,8,False,Card inactive — renew at help desk
+T020,Rider_020,True,5,True,Top up first — need ₹15 balance
+T021,Rider_021,True,25,True,Student pass ₹15
+T022,Rider_022,True,25,True,Student pass ₹15
+T023,Rider_023,True,0,False,Guest pass ₹40
+T024,Rider_024,True,25,True,Student pass ₹15
+T025,Rider_025,True,16,True,Student pass ₹15
+T026,Rider_026,True,40,True,Student pass ₹15
+T027,Rider_027,True,15,True,Student pass ₹15
+T028,Rider_028,True,14,True,Top up first — need ₹15 balance
+T029,Rider_029,True,10,False,Guest pass ₹40
+T030,Rider_030,True,14,True,Top up first — need ₹15 balance
+T031,Rider_031,False,8,True,Card inactive — renew at help desk
+T032,Rider_032,False,0,False,Card inactive — renew at help desk
+T033,Rider_033,True,0,True,Top up first — need ₹15 balance
+T034,Rider_034,True,0,False,Guest pass ₹40
+T035,Rider_035,True,30,False,Guest pass ₹40
+T036,Rider_036,True,55,False,Guest pass ₹40
+T037,Rider_037,True,80,True,Student pass ₹15
+T038,Rider_038,True,14,True,Top up first — need ₹15 balance
+T039,Rider_039,False,0,False,Card inactive — renew at help desk
+T040,Rider_040,True,16,True,Student pass ₹15
+T041,Rider_041,False,50,False,Card inactive — renew at help desk
+T042,Rider_042,True,0,True,Top up first — need ₹15 balance
+T043,Rider_043,True,55,False,Guest pass ₹40
+T044,Rider_044,True,15,True,Student pass ₹15
+T045,Rider_045,True,8,True,Top up first — need ₹15 balance
+T046,Rider_046,True,5,True,Top up first — need ₹15 balance
+T047,Rider_047,True,55,False,Guest pass ₹40
+T048,Rider_048,True,14,True,Top up first — need ₹15 balance
+T049,Rider_049,True,55,False,Guest pass ₹40
+T050,Rider_050,True,0,False,Guest pass ₹40
+T051,Rider_051,True,55,False,Guest pass ₹40
+T052,Rider_052,True,40,True,Student pass ₹15
+T053,Rider_053,True,100,False,Guest pass ₹40
+T054,Rider_054,True,14,True,Top up first — need ₹15 balance
+T055,Rider_055,True,16,True,Student pass ₹15
+T056,Rider_056,True,8,True,Top up first — need ₹15 balance
+T057,Rider_057,True,30,False,Guest pass ₹40
+T058,Rider_058,False,120,True,Card inactive — renew at help desk
+T059,Rider_059,True,15,True,Student pass ₹15
+T060,Rider_060,False,0,True,Card inactive — renew at help desk
+T061,Rider_061,True,8,True,Top up first — need ₹15 balance
+T062,Rider_062,False,50,False,Card inactive — renew at help desk
+T063,Rider_063,True,55,False,Guest pass ₹40
+T064,Rider_064,True,80,True,Student pass ₹15
+T065,Rider_065,True,30,False,Guest pass ₹40
+T066,Rider_066,True,0,False,Guest pass ₹40
+T067,Rider_067,True,8,True,Top up first — need ₹15 balance
+T068,Rider_068,True,14,True,Top up first — need ₹15 balance
+T069,Rider_069,True,10,False,Guest pass ₹40
+T070,Rider_070,True,0,False,Guest pass ₹40
+T071,Rider_071,False,200,False,Card inactive — renew at help desk
+T072,Rider_072,True,55,False,Guest pass ₹40
+T073,Rider_073,True,55,False,Guest pass ₹40
+T074,Rider_074,True,16,True,Student pass ₹15
+T075,Rider_075,True,100,False,Guest pass ₹40
+T076,Rider_076,True,0,True,Top up first — need ₹15 balance
+T077,Rider_077,True,14,True,Top up first — need ₹15 balance
+T078,Rider_078,False,15,False,Card inactive — renew at help desk
+T079,Rider_079,True,80,True,Student pass ₹15
+T080,Rider_080,True,25,True,Student pass ₹15
+T081,Rider_081,True,8,True,Top up first — need ₹15 balance
+T082,Rider_082,True,40,True,Student pass ₹15
+T083,Rider_083,True,25,True,Student pass ₹15
+T084,Rider_084,True,40,True,Student pass ₹15
+T085,Rider_085,True,100,False,Guest pass ₹40
+T086,Rider_086,True,8,True,Top up first — need ₹15 balance
+T087,Rider_087,True,40,True,Student pass ₹15
+T088,Rider_088,True,14,True,Top up first — need ₹15 balance
+T089,Rider_089,True,0,True,Top up first — need ₹15 balance
+T090,Rider_090,True,14,True,Top up first — need ₹15 balance
+T091,Rider_091,True,30,False,Guest pass ₹40
+T092,Rider_092,False,15,False,Card inactive — renew at help desk
+T093,Rider_093,False,0,True,Card inactive — renew at help desk
+T094,Rider_094,True,55,False,Guest pass ₹40
+T095,Rider_095,True,5,True,Top up first — need ₹15 balance
+T096,Rider_096,True,30,False,Guest pass ₹40
+T097,Rider_097,True,100,False,Guest pass ₹40
+T098,Rider_098,True,0,True,Top up first — need ₹15 balance
+T099,Rider_099,True,10,False,Guest pass ₹40
+T100,Rider_100,True,5,True,Top up first — need ₹15 balance
+T101,Rider_101,True,0,False,Guest pass ₹40
+T102,Rider_102,True,14,True,Top up first — need ₹15 balance
+T103,Rider_103,True,10,False,Guest pass ₹40
+T104,Rider_104,False,8,True,Card inactive — renew at help desk
+T105,Rider_105,True,15,True,Student pass ₹15
+T106,Rider_106,True,8,True,Top up first — need ₹15 balance
+T107,Rider_107,True,8,True,Top up first — need ₹15 balance
+T108,Rider_108,True,10,False,Guest pass ₹40
+T109,Rider_109,True,8,True,Top up first — need ₹15 balance
+T110,Rider_110,True,5,True,Top up first — need ₹15 balance
+T111,Rider_111,True,5,True,Top up first — need ₹15 balance
+T112,Rider_112,True,8,True,Top up first — need ₹15 balance
+T113,Rider_113,True,100,False,Guest pass ₹40
+T114,Rider_114,False,200,True,Card inactive — renew at help desk
+T115,Rider_115,True,8,True,Top up first — need ₹15 balance
+T116,Rider_116,True,25,True,Student pass ₹15
+T117,Rider_117,True,0,False,Guest pass ₹40
+T118,Rider_118,True,100,False,Guest pass ₹40
+T119,Rider_119,True,25,True,Student pass ₹15
+T120,Rider_120,True,40,True,Student pass ₹15
