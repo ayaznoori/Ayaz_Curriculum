@@ -82,7 +82,7 @@ flowchart LR
 
 > <font color='purple'>**Meera's query starts with SELECT. Does the database run it in that order?**</font>
 
-In Relational Databases and SELECT Queries you wrote `SELECT`, `WHERE` and `ORDER BY`. Last session, in Aggregation and GROUP BY, you added `GROUP BY` and `HAVING`. Today all of them sit in one query, and you trace the order the database follows. The written order is not the running order.
+In Relational Databases and SELECT Queries you wrote `SELECT`, `WHERE` and `ORDER BY`. Last session, in Aggregation and GROUP BY, you added `GROUP BY` and `HAVING`. Today all of them sit in one query, and you trace the order the database follows. The written order is not the running order. One new clause appears here: `LIMIT 3` keeps only the first 3 rows of the sorted result.
 
 | Run order | Clause | What it does to the rows |
 |:-:|:--|:--|

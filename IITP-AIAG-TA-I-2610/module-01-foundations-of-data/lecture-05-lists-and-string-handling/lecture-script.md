@@ -31,7 +31,7 @@ The lecture runs as four topics. Each topic ends with a quiz.
 
 ## <font color='blue'>Problem Statement</font>
 
-Seller SLR-201 pasted ten product codes into one Python list. Later, three more product codes arrived in a second list. She joined them with the wrong call, so the last item in her list was itself a list. The catalogue could not read that item. Several titles were also typed with extra spaces and mixed capitals, such as `  graphic TEE `. No product went live that day.
+Seller A pasted ten product codes for shop **SHOP-A** into one Python list. Later, three more product codes arrived in a second list. She joined them with the wrong call, so the last item in her list was itself a list. The catalogue could not read that item. Several titles were also typed with extra spaces and mixed capitals, such as `  graphic TEE `. No product went live that day.
 
 > <font color='purple'>**How do we turn a seller's messy product code text and price list into one clean, ordered list that the catalogue accepts?**</font>
 
@@ -71,7 +71,7 @@ flowchart LR
 
 ## <font color='blue'>Topic 1: Read the Product Code List by Position</font> `28 min`
 
-> <font color='purple'>**Seller SLR-201 has ten product codes in one list. How do we point at one product code, and then at a few?**</font>
+> <font color='purple'>**Seller A has ten product codes in one list. How do we point at one product code, and then at a few?**</font>
 
 In Variables and Condition Logic in Colab you kept one value under one name. In Loops and Tracing What Runs you walked over a string one character at a time. A list keeps many values under one name, and every value has a position, so you can ask for any of them directly.
 
@@ -750,7 +750,7 @@ print(blank)
 
 ## <font color='blue'>Closing: Outcome & Summary</font> `10 min`
 
-Back to seller SLR-201 and the question: how do we turn messy product code text and a price list into one clean, ordered list the catalogue accepts?
+Back to Seller A and the question: how do we turn messy product code text and a price list into one clean, ordered list the catalogue accepts?
 
 > <font color='purple'>**1. Is the late batch now one flat list, and where do the late product codes sit? (Topic 1 and Topic 2)**</font>
 

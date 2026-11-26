@@ -6,9 +6,9 @@
 %%{init: {'flowchart': {'nodeSpacing': 45, 'rankSpacing': 55, 'padding': 20}}}%%
 flowchart TB
   CUR["<b>Current Session</b><br/>AI-Assisted SQL Writing and Checking"]
-  Q["<b>The Big Question</b><br/><i>How does Seller A prove an AI-written query matches the review question before it hits the slide?</i>"]
-  CV["<b>Course use case</b><br/>Ask ChatGPT or Claude for a March category total query, then check it against shop_a_products in Workbench"]
-  RL["<b>Real-world example</b><br/>A student pastes a homework answer from a chat bot and the teacher asks them to walk through each step"]
+  Q["<b>The Big Question</b><br/><i>How do you get a correct answer from an AI helper and prove it matches what you asked?</i>"]
+  CV["<b>Course use case</b><br/>Check a chat assistant's draft against a 100-row product table before it reaches a slide"]
+  RL["<b>Real-world example</b><br/>You ask a friend to build a 5-song road-trip playlist from a shared sheet"]
 
   CUR ==> Q
   Q ==>|&nbsp;Used in the course&nbsp;| CV
@@ -16,7 +16,7 @@ flowchart TB
 
   classDef currSes fill:#ffe0b2,stroke:#ef6c00,color:#4e342e,stroke-width:3px
   classDef ask fill:#e3f2fd,stroke:#1565c0,color:#0d47a1,stroke-width:3px
-  classDef val fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20,stroke-width:3px
+  classDef val fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
 
   class CUR currSes
   class Q ask
@@ -29,90 +29,83 @@ flowchart TB
 
 ### <span style="color:#2F7DDE">What You'll Learn</span>
 
-Have you ever seen a query run with no red error line and still show the wrong total?
+Have you ever wondered why a friend's playlist looks perfect and still holds the wrong songs?
 
 By the end of this session, you will be able to:
 
-- <span style="color:#D9660B">**trace**</span> the order SQL clauses run in before you trust a result grid.
-- <span style="color:#D9660B">**write**</span> a prompt that names the table columns and the business question.
-- <span style="color:#D9660B">**compare**</span> zero-shot and few-shot prompts when the question needs a pattern.
-- <span style="color:#D9660B">**check**</span> an AI draft against the real column names in **shop_a_products**.
-- <span style="color:#D9660B">**fix**</span> a query that runs but drops the March date filter.
-- <span style="color:#D9660B">**explain**</span> in plain words what an unfamiliar **SELECT** returns.
+- <span style="color:#D9660B">**Interpret**</span> the rule "Hindi songs under 5 minutes, shortest first, first 5" in one sentence.
+- <span style="color:#D9660B">**Solve**</span> a playlist rule that returns 9 songs instead of 5 by finding its wrong part.
+- <span style="color:#D9660B">**Trace**</span> the order a playlist rule follows: open the sheet, filter, count, sort, then cut the list.
+- <span style="color:#D9660B">**Compare**</span> asking a helper with no sample against asking with one playlist you already like.
+- <span style="color:#D9660B">**Check**</span> a friend's rule against the sheet's column headings and against the request you made.
+- <span style="color:#D9660B">**Write**</span> a clear request that names the sheet's columns and says what you want back.
 
-> <span style="color:#2F7DDE">**Topics you will meet:**</span> Clause order; SQL prompts; zero-shot and few-shot; schema checks; debugging wrong totals; reading a query in prose.
+> <span style="color:#2F7DDE">**Topics you will meet:**</span> Clause order in a query; Prompt for a SQL query; Zero-shot or few-shot: adding a worked example to a SQL prompt.
 >
-> Join the session to learn each in detail.
+> Check AI SQL against the schema; Fix AI SQL mistakes; Explain what a query returns.
+>
+> Join the session to learn each of these in detail.
 
 ---
 
 ### <span style="color:#2F7DDE">Why You Are Learning This Topic</span>
 
-Seller A's analyst Meera needs March totals per category for shop **SHOP-A** before the 11:00 review.
+You and four friends plan a road trip. You ask one friend to pick songs from a shared sheet.
 
-A chat assistant returned a query that ran cleanly in Workbench.
+The reply is a neat list of 5 songs. On the road, you hear a 9-minute song and a Tamil song. You wanted neither.
 
-The slide number was ₹3,344 too high because the draft forgot the March filter.
+The list looked right, but nobody compared it with the sheet or with your request.
 
-> <span style="color:#2F7DDE">**Think about it:**</span> What is the difference between “no error” and “answers the question”?
+A <span style="color:#D9660B">**schema**</span> means the list of column headings in a table and what each heading holds.
+
+In this course, an AI helper drafts a database question. You check the draft before you trust its numbers.
+
+> <span style="color:#2F7DDE">**Think about it:**</span> What would you check before you play that playlist for the whole bus?
 
 ---
 
-### <span style="color:#2F7DDE">The Review-Slide Puzzle</span>
+### <span style="color:#2F7DDE">The Road-Trip Playlist Puzzle</span>
 
-| Check | What you look for |
-|:--|:--|
-| Column names | Do they match **shop_a_products**? |
-| Filters | Does **March 2025** appear where the question needs it? |
-| Totals | Does one category row match a hand-count on three sample rows? |
+Each row is one song on the shared sheet.
+
+| Song | Language | Minutes | Mood |
+|:----:|:--------:|:-------:|:----:|
+| Highway Sunrise | Hindi | 4 | Happy |
+| Chai Stop | Hindi | 3 | Calm |
+| Midnight Rail | Tamil | 5 | Calm |
+| Monsoon Drive | Hindi | 6 | Sad |
+| Dhol Beat | Punjabi | 3 | Happy |
 
 <span style="color:#D9660B">**What you want to happen:**</span>
 
-- Paste schema and question, not just the question alone.
-- Run the draft in Workbench before copying numbers.
-- Say in one sentence what the final query returns.
-
-Here is how a prompt might start. You do not need to understand it yet.
-
-```text
-Table shop_a_products columns: product_code, shop_id, title, category, price_rupees, listed_on
-Question: For SHOP-A, count products and sum price_rupees per category in March 2025 only.
-Return one SELECT query for SQLite.
-```
+- Keep only Hindi songs shorter than 5 minutes.
+- Put the shortest song first.
+- Stop after the first 5 songs.
 
 > <span style="color:#D9660B">**Wonder about this:**</span>
 >
-> - Why list column names in the prompt?
-> - Why keep one worked example query in a few-shot prompt?
+> - Which songs does that rule pick from this sheet?
+> - What goes wrong if the helper writes "length" when the sheet says "Minutes"?
 
 ---
 
 ### <span style="color:#2F7DDE">Think It Through</span>
 
-**1. A **SELECT** runs. Which clause usually shrinks rows first?**
+There is no wrong first try. Keep your guesses for the session.
 
-- A) **ORDER BY**
-- B) **WHERE**
-- C) **SELECT** list aliases
-- D) The result grid headers
+**1. Which songs stay when the rule says "Hindi, shorter than 5 minutes"?**
+Hint: Test each row against both parts of the rule.
 
-**2. Meera's draft has no March filter. The tool shows no error. What failed?**
+**2. Your friend writes "length" for the minutes column. Where do you look to spot it?**
+Hint: Compare the word with the headings in the table.
 
-- A) The question, not the syntax
-- B) The keyboard
-- C) **SQLite** was not installed
-- D) The table had too many rows
+**3. The list shows a Tamil song, but you asked for Hindi only. Which part of the rule is missing?**
+Hint: Read the rule one wish at a time.
 
-**3. A few-shot prompt adds one worked query before the new question. When is that most helpful?**
+---
 
-- A) When the question needs a fixed pattern like **GROUP BY**
-- B) When you never plan to run SQL
-- C) When the table has no columns
-- D) When you want to skip **Workbench**
+### <span style="color:#2F7DDE">One Question to Carry Into the Session</span>
 
-**4. You read an unfamiliar query aloud. What should you name first?**
-
-- A) Which tables and filters define the rows
-- B) The colour of the Workbench toolbar
-- C) How fast the laptop fan spins
-- D) The mentor's email address
+> <span style="color:#2F7DDE">**How can you prove a helper's answer matches your request, and not only that it looks neat?**</span>
+>
+> Bring one check you would run before you share the list.
