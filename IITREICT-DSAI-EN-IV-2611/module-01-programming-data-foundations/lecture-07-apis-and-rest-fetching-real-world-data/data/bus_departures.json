@@ -1,0 +1,1205 @@
+{
+  "departures": [
+    {
+      "trip_id": "T001",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 5,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T002",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 42,
+      "status": "delayed",
+      "delay_min": 11
+    },
+    {
+      "trip_id": "T003",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 41,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T004",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 39,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T005",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 19,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T006",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 30,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T007",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 41,
+      "status": "delayed",
+      "delay_min": 12
+    },
+    {
+      "trip_id": "T008",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 39,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T009",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 25,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T010",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 29,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T011",
+      "stop_id": "ST11",
+      "stop_name": "Peenya",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 37,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T012",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 25,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T013",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 35,
+      "status": "delayed",
+      "delay_min": 6
+    },
+    {
+      "trip_id": "T014",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 27,
+      "status": "delayed",
+      "delay_min": 4
+    },
+    {
+      "trip_id": "T015",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 3,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T016",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 33,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T017",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 0,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T018",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 40,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T019",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 20,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T020",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 21,
+      "status": "delayed",
+      "delay_min": 18
+    },
+    {
+      "trip_id": "T021",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 23,
+      "status": "delayed",
+      "delay_min": 11
+    },
+    {
+      "trip_id": "T022",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 14,
+      "status": "delayed",
+      "delay_min": 7
+    },
+    {
+      "trip_id": "T023",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 5,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T024",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 19,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T025",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 23,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T026",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 3,
+      "status": "delayed",
+      "delay_min": 14
+    },
+    {
+      "trip_id": "T027",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 6,
+      "status": "delayed",
+      "delay_min": 12
+    },
+    {
+      "trip_id": "T028",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 19,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T029",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 28,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T030",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 37,
+      "status": "delayed",
+      "delay_min": 11
+    },
+    {
+      "trip_id": "T031",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 41,
+      "status": "delayed",
+      "delay_min": 18
+    },
+    {
+      "trip_id": "T032",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 14,
+      "status": "delayed",
+      "delay_min": 3
+    },
+    {
+      "trip_id": "T033",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 26,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T034",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 14,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T035",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 17,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T036",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 28,
+      "status": "delayed",
+      "delay_min": 3
+    },
+    {
+      "trip_id": "T037",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 2,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T038",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 41,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T039",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 20,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T040",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 41,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T041",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 4,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T042",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 36,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T043",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 17,
+      "status": "delayed",
+      "delay_min": 3
+    },
+    {
+      "trip_id": "T044",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 0,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T045",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 10,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T046",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 12,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T047",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 26,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T048",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 38,
+      "status": "delayed",
+      "delay_min": 6
+    },
+    {
+      "trip_id": "T049",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 22,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T050",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 16,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T051",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 31,
+      "status": "delayed",
+      "delay_min": 8
+    },
+    {
+      "trip_id": "T052",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 29,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T053",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 2,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T054",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 19,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T055",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 7,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T056",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 24,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T057",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 25,
+      "status": "delayed",
+      "delay_min": 9
+    },
+    {
+      "trip_id": "T058",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 37,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T059",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 24,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T060",
+      "stop_id": "ST11",
+      "stop_name": "Peenya",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 40,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T061",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 18,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T062",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 12,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T063",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 6,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T064",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 29,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T065",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 23,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T066",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 36,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T067",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 39,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T068",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 41,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T069",
+      "stop_id": "ST11",
+      "stop_name": "Peenya",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 20,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T070",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 14,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T071",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 26,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T072",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 9,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T073",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 12,
+      "status": "delayed",
+      "delay_min": 18
+    },
+    {
+      "trip_id": "T074",
+      "stop_id": "ST02",
+      "stop_name": "Indiranagar",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 40,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T075",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 19,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T076",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 29,
+      "status": "delayed",
+      "delay_min": 18
+    },
+    {
+      "trip_id": "T077",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 30,
+      "status": "delayed",
+      "delay_min": 8
+    },
+    {
+      "trip_id": "T078",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 38,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T079",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 11,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T080",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 15,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T081",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 10,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T082",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 18,
+      "status": "delayed",
+      "delay_min": 17
+    },
+    {
+      "trip_id": "T083",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 23,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T084",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 7,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T085",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 30,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T086",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 18,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T087",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 21,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T088",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 0,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T089",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 1,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T090",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 31,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T091",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 38,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T092",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 29,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T093",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 20,
+      "status": "delayed",
+      "delay_min": 6
+    },
+    {
+      "trip_id": "T094",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 10,
+      "status": "delayed",
+      "delay_min": 16
+    },
+    {
+      "trip_id": "T095",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 1,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T096",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 29,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T097",
+      "stop_id": "ST11",
+      "stop_name": "Peenya",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 12,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T098",
+      "stop_id": "ST03",
+      "stop_name": "Whitefield",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 28,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T099",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 9,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T100",
+      "stop_id": "ST06",
+      "stop_name": "Hebbal",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 30,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T101",
+      "stop_id": "ST07",
+      "stop_name": "Jayanagar",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 30,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T102",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 42,
+      "status": "delayed",
+      "delay_min": 10
+    },
+    {
+      "trip_id": "T103",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 23,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T104",
+      "stop_id": "ST10",
+      "stop_name": "Marathahalli",
+      "route_id": "R108",
+      "route_name": "MF-1",
+      "eta_min": 41,
+      "status": "delayed",
+      "delay_min": 4
+    },
+    {
+      "trip_id": "T105",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 15,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T106",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R106",
+      "route_name": "356",
+      "eta_min": 33,
+      "status": "delayed",
+      "delay_min": 10
+    },
+    {
+      "trip_id": "T107",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R101",
+      "route_name": "500A",
+      "eta_min": 16,
+      "status": "delayed",
+      "delay_min": 5
+    },
+    {
+      "trip_id": "T108",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 26,
+      "status": "delayed",
+      "delay_min": 17
+    },
+    {
+      "trip_id": "T109",
+      "stop_id": "ST04",
+      "stop_name": "Koramangala",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 24,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T110",
+      "stop_id": "ST08",
+      "stop_name": "Yelahanka",
+      "route_id": "R110",
+      "route_name": "303",
+      "eta_min": 24,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T111",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 21,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T112",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 7,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T113",
+      "stop_id": "ST01",
+      "stop_name": "MG Road",
+      "route_id": "R102",
+      "route_name": "335E",
+      "eta_min": 27,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T114",
+      "stop_id": "ST11",
+      "stop_name": "Peenya",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 12,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T115",
+      "stop_id": "ST09",
+      "stop_name": "Banashankari",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 7,
+      "status": "delayed",
+      "delay_min": 12
+    },
+    {
+      "trip_id": "T116",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R107",
+      "route_name": "401",
+      "eta_min": 5,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T117",
+      "stop_id": "ST12",
+      "stop_name": "Silk Board",
+      "route_id": "R104",
+      "route_name": "V-500",
+      "eta_min": 29,
+      "status": "delayed",
+      "delay_min": 6
+    },
+    {
+      "trip_id": "T118",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R109",
+      "route_name": "500K",
+      "eta_min": 25,
+      "status": "cancelled",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T119",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R105",
+      "route_name": "KIA-14",
+      "eta_min": 21,
+      "status": "on_time",
+      "delay_min": 0
+    },
+    {
+      "trip_id": "T120",
+      "stop_id": "ST05",
+      "stop_name": "Electronic City",
+      "route_id": "R103",
+      "route_name": "201",
+      "eta_min": 8,
+      "status": "cancelled",
+      "delay_min": 0
+    }
+  ],
+  "count": 120
+}

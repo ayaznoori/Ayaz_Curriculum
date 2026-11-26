@@ -1,0 +1,121 @@
+line_id,meal_day,meal_slot,raw_line
+M001,Mon,BREAKFAST,     Idli Sambhar  (IDL - 001 - NV) ₹75  
+M002,Tue,LUNCH,   Butter Naan  (BUT - 002 - NV) ₹45  
+M003,Wed,SNACKS,   Paneer Butter Masala  (pan-003-nv) ₹75  
+M004,Thu,DINNER,     Chapati  (cha-004-veg) ₹45   
+M005,Fri,BREAKFAST,   Butter Naan  (BUT - 005 - VEG) ₹75  
+M006,Sat,LUNCH,  Fruit Bowl  (FRU-006-VEG) ₹75  
+M007,Sun,SNACKS,   jeera RICE  (jee-007-veg) ₹65 
+M008,Mon,DINNER,    Butter Naan  (but - 008 - veg) ₹99  
+M009,Tue,BREAKFAST,  Idli Sambhar  (IDL-009-NV) ₹55  
+M010,Wed,LUNCH,   Jeera Rice  (JEE-010-NV) ₹75  
+M011,Thu,SNACKS,  Paratha  (par - 011 - veg) ₹75  
+M012,Fri,DINNER,     Rajma Curry  (RAJ-012-NV) ₹45    
+M013,Sat,BREAKFAST,     Raita  (rai-013-nv) ₹99   
+M014,Sun,LUNCH,  Paratha  (PAR-014-VEG) ₹65   
+M015,Mon,SNACKS,  Idli Sambhar  (IDL-015-NV) ₹99  
+M016,Tue,DINNER,     Chapati  (CHA-016-NV) ₹75    
+M017,Wed,BREAKFAST,    Chapati  (CHA - 017 - VEG) ₹45   
+M018,Thu,LUNCH,   Masala Dosa  (mas - 018 - veg) ₹65  
+M019,Fri,SNACKS,     Chapati  (CHA-019-VEG) ₹45  
+M020,Sat,DINNER,    Upma  (upm - 020 - nv) ₹55  
+M021,Sun,BREAKFAST,  Green Salad  (GRE-021-NV) ₹65   
+M022,Mon,LUNCH,
+M023,Tue,SNACKS,     Butter Naan  (but - 023 - veg) ₹99  
+M024,Wed,DINNER,     Chapati  (cha - 024 - nv) ₹99    
+M025,Thu,BREAKFAST,   Poha  (poh-025-veg) ₹75  
+M026,Fri,LUNCH,    Paneer Butter Masala  (PAN - 026 - VEG) ₹65   
+M027,Sat,SNACKS,    Jeera Rice  (JEE-027-VEG) ₹99    
+M028,Sun,DINNER,  Masala Dosa  (mas-028-veg) ₹99   
+M029,Mon,BREAKFAST,     Idli Sambhar  (idl-029-veg) ₹45  
+M030,Tue,LUNCH,     Rajma Curry  (raj-030-nv) ₹55    
+M031,Wed,SNACKS,    Paneer Butter Masala  (PAN-031-NV) ₹55   
+M032,Thu,DINNER,    Rajma Curry  (RAJ - 032 - VEG) ₹65    
+M033,Fri,BREAKFAST,   Fruit Bowl  (fru - 033 - veg) ₹85   
+M034,Sat,LUNCH,  Veg Biryani  (VEG - 034 - VEG) ₹75  
+M035,Sun,SNACKS,    Paneer Butter Masala  (PAN - 035 - VEG) ₹55   
+M036,Mon,DINNER,    Paratha  (par-036-veg) ₹85   
+M037,Tue,BREAKFAST,  Green Salad  (gre - 037 - nv) ₹99    
+M038,Wed,LUNCH,  Upma  (upm - 038 - nv) ₹85   
+M039,Thu,SNACKS,   Veg Biryani  (veg-039-veg) ₹55   
+M040,Fri,DINNER,    Butter Naan  (but-040-nv) ₹45  
+M041,Sat,BREAKFAST,  Raita  (RAI - 041 - NV) ₹85  
+M042,Sun,LUNCH,  Fruit Bowl  (fru - 042 - nv) ₹99    
+M043,Mon,SNACKS,     Paratha  (par-043-veg) ₹55    
+M044,Tue,DINNER,  PANEER  butter  MASALA  (pan-044-veg) ₹85  
+M045,Wed,BREAKFAST,     Chapati  (CHA - 045 - NV) ₹55    
+M046,Thu,LUNCH,    Upma  (upm-046-nv) ₹65    
+M047,Fri,SNACKS,    Veg Biryani  (veg-047-veg) ₹65    
+M048,Sat,DINNER,    Dal Fry  (DAL-048-VEG) ₹55   
+M049,Sun,BREAKFAST,  Rajma Curry  (RAJ-049-NV) ₹75  
+M050,Mon,LUNCH,  Chapati  (CHA - 050 - VEG) ₹75   
+M051,Tue,SNACKS,    Veg Biryani  (VEG-051-VEG) ₹65  
+M052,Wed,DINNER,     Rajma Curry  (raj-052-veg) ₹65  
+M053,Thu,BREAKFAST,     Green Salad  (GRE - 053 - NV) ₹85   
+M054,Fri,LUNCH,    Raita  (rai - 054 - nv) ₹85    
+M055,Sat,SNACKS,   Paratha  (par-055-veg) ₹65  
+M056,Sun,DINNER,   Green Salad  (GRE-056-VEG) ₹65  
+M057,Mon,BREAKFAST,     Green Salad  (GRE-057-NV) ₹45    
+M058,Tue,LUNCH,     Butter Naan  (BUT-058-NV) ₹85    
+M059,Wed,SNACKS,   Dal Fry  (dal-059-veg) ₹75    
+M060,Thu,DINNER,MASOOR DAL (mas-060-veg) ₹45
+M061,Fri,BREAKFAST,     Chapati  (cha - 061 - veg) ₹75   
+M062,Sat,LUNCH,  Fruit Bowl  (fru-062-nv) ₹99  
+M063,Sun,SNACKS,  Paratha  (par - 063 - nv) ₹45    
+M064,Mon,DINNER,     Dal Fry  (DAL-064-VEG) ₹99  
+M065,Tue,BREAKFAST,    Green Salad  (gre - 065 - nv) ₹99  
+M066,Wed,LUNCH,   Green Salad  (gre - 066 - veg) ₹45    
+M067,Thu,SNACKS,  Green Salad  (gre-067-veg) ₹45   
+M068,Fri,DINNER,     Paneer Butter Masala  (PAN-068-NV) ₹45   
+M069,Sat,BREAKFAST,    Upma  (upm - 069 - veg) ₹75    
+M070,Sun,LUNCH,  Dal Fry  (DAL - 070 - VEG) ₹65   
+M071,Mon,SNACKS,     Masala Dosa  (mas - 071 - nv) ₹85   
+M072,Tue,DINNER,     Veg Biryani  (veg-072-veg) ₹75   
+M073,Wed,BREAKFAST,    Chapati  (CHA - 073 - NV) ₹55   
+M074,Thu,LUNCH,  Raita  (RAI - 074 - NV) ₹65   
+M075,Fri,SNACKS,  Raita  (rai-075-nv) ₹45  
+M076,Sat,DINNER,     Dal Fry  (DAL-076-VEG) ₹85   
+M077,Sun,BREAKFAST,    Idli Sambhar  (idl-077-nv) ₹65  
+M078,Mon,LUNCH,  Poha  (poh - 078 - nv) ₹55    
+M079,Tue,SNACKS,   Butter Naan  (but - 079 - nv) ₹45   
+M080,Wed,DINNER,    Paneer Butter Masala  (PAN-080-VEG) ₹85  
+M081,Thu,BREAKFAST,     Idli Sambhar  (IDL - 081 - NV) ₹65  
+M082,Fri,LUNCH,     Paratha  (par - 082 - veg) ₹99  
+M083,Sat,SNACKS,     Idli Sambhar  (IDL - 083 - VEG) ₹55    
+M084,Sun,DINNER,    Poha  (poh-084-nv) ₹85   
+M085,Mon,BREAKFAST,  Chapati  (CHA-085-NV) ₹75   
+M086,Tue,LUNCH,  Jeera Rice  (JEE-086-NV) ₹99    
+M087,Wed,SNACKS,    Chapati  (CHA - 087 - NV) ₹75    
+M088,Thu,DINNER,    fruit   bowl   (fru-088-veg) ₹55   
+M089,Fri,BREAKFAST,     Paratha  (PAR - 089 - NV) ₹99    
+M090,Sat,LUNCH,  Butter Naan  (BUT - 090 - NV) ₹45  
+M091,Sun,SNACKS,     Rajma Curry  (raj - 091 - nv) ₹65    
+M092,Mon,DINNER,    Idli Sambhar  (idl - 092 - nv) ₹75   
+M093,Tue,BREAKFAST,   Chapati  (cha - 093 - nv) ₹99  
+M094,Wed,LUNCH,  Upma  (upm - 094 - nv) ₹45    
+M095,Thu,SNACKS,  Idli Sambhar  (IDL - 095 - NV) ₹99    
+M096,Fri,DINNER,     Fruit Bowl  (fru-096-nv) ₹99   
+M097,Sat,BREAKFAST,  Fruit Bowl  (FRU-097-VEG) ₹45  
+M098,Sun,LUNCH,     Dal Fry  (dal - 098 - veg) ₹65  
+M099,Mon,SNACKS,    Jeera Rice  (jee-099-veg) ₹99  
+M100,Tue,DINNER,  Raita  (rai - 100 - veg) ₹75  
+M101,Wed,BREAKFAST,    Poha  (POH-101-NV) ₹65    
+M102,Thu,LUNCH,    Paneer Butter Masala  (pan-102-veg) ₹55   
+M103,Fri,SNACKS,  Masala Dosa  (mas - 103 - nv) ₹65  
+M104,Sat,DINNER,   Raita  (rai-104-veg) ₹65    
+M105,Sun,BREAKFAST,   Upma  (upm-105-nv) ₹45   
+M106,Mon,LUNCH,    Butter Naan  (but - 106 - nv) ₹85  
+M107,Tue,SNACKS,   Paneer Butter Masala  (pan-107-nv) ₹85  
+M108,Wed,DINNER,     Paneer Butter Masala  (pan - 108 - nv) ₹55   
+M109,Thu,BREAKFAST,    Green Salad  (gre-109-nv) ₹45  
+M110,Fri,LUNCH,  Paratha  (PAR - 110 - VEG) ₹55    
+M111,Sat,SNACKS,   Raita  (rai-111-nv) ₹75   
+M112,Sun,DINNER,   Veg Biryani  (veg - 112 - veg) ₹99   
+M113,Mon,BREAKFAST,     Butter Naan  (but-113-nv) ₹85    
+M114,Tue,LUNCH,  Veg Biryani  (veg-114-veg) ₹75  
+M115,Wed,SNACKS,  Green Salad  (gre-115-nv) ₹99   
+M116,Thu,DINNER,     Green Salad  (gre - 116 - nv) ₹65  
+M117,Fri,BREAKFAST,    Dal Fry  (dal - 117 - veg) ₹45   
+M118,Sat,LUNCH,     Veg Biryani  (VEG - 118 - VEG) ₹55    
+M119,Sun,SNACKS,    Paratha  (par-119-nv) ₹55  
+M120,Mon,DINNER,   Butter Naan  (but - 120 - veg) ₹55    

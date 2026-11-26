@@ -1,0 +1,121 @@
+order_id,snack_name,qty,unit_price_rupees,block_code,order_date
+1,samosa,1,25,BLOCK-C,2025-11-03
+2,veg muffin,8,38,BLOCK-B,2025-11-05
+3,samosa,2,25,BLOCK-C,2025-11-07
+4,filter coffee,4,20,BLOCK-C,2025-11-09
+5,masala chai,1,15,BLOCK-A,2025-11-11
+6,mango juice,3,40,BLOCK-A,2025-11-13
+7,masala chai,5,15,BLOCK-A,2025-11-15
+8,kachori,4,30,BLOCK-A,2025-11-17
+9,namkeen mix,4,28,BLOCK-B,2025-11-19
+10,veg sandwich,4,45,BLOCK-C,2025-11-21
+11,namkeen mix,4,28,BLOCK-A,2025-11-23
+12,masala chai,4,15,BLOCK-B,2025-11-01
+13,filter coffee,2,20,BLOCK-A,2025-11-03
+14,namkeen mix,2,28,BLOCK-B,2025-11-05
+15,samosa,1,25,BLOCK-B,2025-11-07
+16,veg sandwich,5,45,BLOCK-A,2025-11-09
+17,masala chai,4,15,BLOCK-A,2025-11-11
+18,mango juice,2,40,BLOCK-C,2025-11-13
+19,kachori,3,30,BLOCK-B,2025-11-15
+20,filter coffee,1,20,BLOCK-A,2025-11-17
+21,masala chai,2,15,BLOCK-C,2025-11-19
+22,samosa,2,25,BLOCK-A,2025-11-21
+23,veg sandwich,3,45,BLOCK-C,2025-11-23
+24,masala chai,3,15,BLOCK-A,2025-11-01
+25,namkeen mix,1,28,BLOCK-C,2025-11-03
+26,mango juice,5,40,BLOCK-B,2025-11-05
+27,samosa,5,25,BLOCK-C,2025-11-07
+28,butter cookie,5,12,BLOCK-A,2025-11-09
+29,filter coffee,4,20,BLOCK-A,2025-11-11
+30,masala chai,1,15,BLOCK-B,2025-11-13
+31,veg muffin,2,38,BLOCK-A,2025-11-15
+32,namkeen mix,3,28,BLOCK-C,2025-11-17
+33,vada pav,1,35,BLOCK-B,2025-11-19
+34,masala chai,5,15,BLOCK-A,2025-11-21
+35,butter cookie,4,12,BLOCK-A,2025-11-23
+36,kachori,1,30,BLOCK-B,2025-11-01
+37,filter coffee,4,20,BLOCK-C,2025-11-03
+38,samosa,3,25,BLOCK-C,2025-11-05
+39,masala chai,2,15,BLOCK-C,2025-11-07
+40,butter cookie,1,12,BLOCK-C,2025-11-09
+41,veg sandwich,5,45,BLOCK-B,2025-11-11
+42,kachori,3,30,BLOCK-A,2025-11-13
+43,mango juice,1,40,BLOCK-C,2025-11-15
+44,butter cookie,4,12,BLOCK-A,2025-11-17
+45,filter coffee,5,20,BLOCK-C,2025-11-19
+46,veg sandwich,4,45,BLOCK-C,2025-11-21
+47,masala chai,1,15,BLOCK-A,2025-11-23
+48,butter cookie,2,12,BLOCK-C,2025-11-01
+49,mango juice,2,40,BLOCK-A,2025-11-03
+50,kachori,4,30,BLOCK-A,2025-11-05
+51,butter cookie,3,12,BLOCK-A,2025-11-07
+52,namkeen mix,2,28,BLOCK-A,2025-11-09
+53,vada pav,2,35,BLOCK-B,2025-11-11
+54,veg sandwich,4,45,BLOCK-B,2025-11-13
+55,masala chai,3,15,BLOCK-B,2025-11-15
+56,samosa,1,25,BLOCK-A,2025-11-17
+57,namkeen mix,5,28,BLOCK-C,2025-11-19
+58,kachori,1,30,BLOCK-C,2025-11-21
+59,kachori,3,30,BLOCK-C,2025-11-23
+60,veg muffin,2,38,BLOCK-C,2025-11-01
+61,mango juice,5,40,BLOCK-A,2025-11-03
+62,mango juice,4,40,BLOCK-A,2025-11-05
+63,vada pav,5,35,BLOCK-C,2025-11-07
+64,masala chai,5,15,BLOCK-A,2025-11-09
+65,mango juice,5,40,BLOCK-B,2025-11-11
+66,samosa,3,25,BLOCK-A,2025-11-13
+67,masala chai,3,15,BLOCK-B,2025-11-15
+68,namkeen mix,5,28,BLOCK-B,2025-11-17
+69,butter cookie,5,12,BLOCK-C,2025-11-19
+70,kachori,3,30,BLOCK-B,2025-11-21
+71,kachori,2,30,BLOCK-B,2025-11-23
+72,filter coffee,2,20,BLOCK-C,2025-11-01
+73,kachori,1,30,BLOCK-C,2025-11-03
+74,kachori,2,30,BLOCK-B,2025-11-05
+75,mango juice,1,40,BLOCK-B,2025-11-07
+76,filter coffee,2,20,BLOCK-A,2025-11-09
+77,veg sandwich,4,45,BLOCK-A,2025-11-11
+78,samosa,3,25,BLOCK-A,2025-11-13
+79,mango juice,4,40,BLOCK-C,2025-11-15
+80,masala chai,1,15,BLOCK-A,2025-11-17
+81,filter coffee,5,20,BLOCK-C,2025-11-19
+82,mango juice,2,40,BLOCK-A,2025-11-21
+83,namkeen mix,2,28,BLOCK-B,2025-11-23
+84,kachori,4,30,BLOCK-B,2025-11-01
+85,masala chai,5,15,BLOCK-A,2025-11-03
+86,filter coffee,2,20,BLOCK-B,2025-11-05
+87,kachori,3,30,BLOCK-A,2025-11-07
+88,masala chai,3,15,BLOCK-B,2025-11-09
+89,veg sandwich,4,45,BLOCK-A,2025-11-11
+90,filter coffee,2,20,BLOCK-C,2025-11-13
+91,vada pav,2,35,BLOCK-A,2025-11-15
+92,veg sandwich,5,45,BLOCK-B,2025-11-17
+93,mango juice,1,40,BLOCK-B,2025-11-19
+94,vada pav,2,35,BLOCK-A,2025-11-21
+95,masala chai,5,15,BLOCK-B,2025-11-23
+96,namkeen mix,1,28,BLOCK-B,2025-11-01
+97,butter cookie,4,12,BLOCK-C,2025-11-03
+98,namkeen mix,5,28,BLOCK-B,2025-11-05
+99,samosa,2,25,BLOCK-C,2025-11-07
+100,masala chai,2,15,BLOCK-A,2025-11-09
+101,veg muffin,3,38,BLOCK-C,2025-11-11
+102,filter coffee,1,20,BLOCK-B,2025-11-13
+103,butter cookie,3,12,BLOCK-B,2025-11-15
+104,mango juice,1,40,BLOCK-A,2025-11-17
+105,veg muffin,4,38,BLOCK-B,2025-11-19
+106,butter cookie,1,12,BLOCK-C,2025-11-21
+107,kachori,2,30,BLOCK-B,2025-11-23
+108,veg sandwich,4,45,BLOCK-B,2025-11-01
+109,filter coffee,4,20,BLOCK-C,2025-11-03
+110,namkeen mix,5,28,BLOCK-B,2025-11-05
+111,samosa,5,25,BLOCK-C,2025-11-07
+112,mango juice,4,40,BLOCK-C,2025-11-09
+113,vada pav,3,35,BLOCK-C,2025-11-11
+114,namkeen mix,3,28,BLOCK-A,2025-11-13
+115,namkeen mix,1,28,BLOCK-C,2025-11-15
+116,kachori,2,30,BLOCK-B,2025-11-17
+117,kachori,4,30,BLOCK-B,2025-11-19
+118,kachori,3,30,BLOCK-B,2025-11-21
+119,veg sandwich,2,45,BLOCK-B,2025-11-23
+120,namkeen mix,3,28,BLOCK-A,2025-11-01

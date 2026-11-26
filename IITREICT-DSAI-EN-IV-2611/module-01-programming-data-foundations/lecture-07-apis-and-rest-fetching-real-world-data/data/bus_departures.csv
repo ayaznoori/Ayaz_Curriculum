@@ -1,0 +1,121 @@
+trip_id,stop_id,stop_name,route_id,route_name,eta_min,status,delay_min
+T001,ST05,Electronic City,R105,KIA-14,5,on_time,0
+T002,ST01,MG Road,R104,V-500,42,delayed,11
+T003,ST05,Electronic City,R102,335E,41,on_time,0
+T004,ST08,Yelahanka,R102,335E,39,on_time,0
+T005,ST02,Indiranagar,R102,335E,19,cancelled,0
+T006,ST09,Banashankari,R108,MF-1,30,on_time,0
+T007,ST02,Indiranagar,R109,500K,41,delayed,12
+T008,ST09,Banashankari,R107,401,39,on_time,0
+T009,ST07,Jayanagar,R108,MF-1,25,on_time,0
+T010,ST01,MG Road,R101,500A,29,cancelled,0
+T011,ST11,Peenya,R102,335E,37,on_time,0
+T012,ST06,Hebbal,R107,401,25,on_time,0
+T013,ST02,Indiranagar,R104,V-500,35,delayed,6
+T014,ST02,Indiranagar,R101,500A,27,delayed,4
+T015,ST12,Silk Board,R101,500A,3,on_time,0
+T016,ST12,Silk Board,R102,335E,33,on_time,0
+T017,ST02,Indiranagar,R102,335E,0,on_time,0
+T018,ST03,Whitefield,R109,500K,40,on_time,0
+T019,ST05,Electronic City,R104,V-500,20,on_time,0
+T020,ST03,Whitefield,R110,303,21,delayed,18
+T021,ST06,Hebbal,R109,500K,23,delayed,11
+T022,ST03,Whitefield,R108,MF-1,14,delayed,7
+T023,ST05,Electronic City,R103,201,5,cancelled,0
+T024,ST03,Whitefield,R108,MF-1,19,on_time,0
+T025,ST01,MG Road,R110,303,23,on_time,0
+T026,ST01,MG Road,R103,201,3,delayed,14
+T027,ST02,Indiranagar,R101,500A,6,delayed,12
+T028,ST01,MG Road,R110,303,19,on_time,0
+T029,ST02,Indiranagar,R101,500A,28,cancelled,0
+T030,ST06,Hebbal,R102,335E,37,delayed,11
+T031,ST07,Jayanagar,R102,335E,41,delayed,18
+T032,ST10,Marathahalli,R105,KIA-14,14,delayed,3
+T033,ST02,Indiranagar,R104,V-500,26,on_time,0
+T034,ST06,Hebbal,R103,201,14,on_time,0
+T035,ST10,Marathahalli,R104,V-500,17,cancelled,0
+T036,ST02,Indiranagar,R107,401,28,delayed,3
+T037,ST01,MG Road,R102,335E,2,on_time,0
+T038,ST01,MG Road,R109,500K,41,on_time,0
+T039,ST04,Koramangala,R107,401,20,on_time,0
+T040,ST09,Banashankari,R107,401,41,on_time,0
+T041,ST04,Koramangala,R104,V-500,4,on_time,0
+T042,ST06,Hebbal,R102,335E,36,on_time,0
+T043,ST10,Marathahalli,R104,V-500,17,delayed,3
+T044,ST02,Indiranagar,R104,V-500,0,on_time,0
+T045,ST12,Silk Board,R108,MF-1,10,on_time,0
+T046,ST08,Yelahanka,R101,500A,12,on_time,0
+T047,ST07,Jayanagar,R104,V-500,26,on_time,0
+T048,ST07,Jayanagar,R106,356,38,delayed,6
+T049,ST03,Whitefield,R104,V-500,22,cancelled,0
+T050,ST07,Jayanagar,R101,500A,16,on_time,0
+T051,ST12,Silk Board,R104,V-500,31,delayed,8
+T052,ST06,Hebbal,R107,401,29,on_time,0
+T053,ST02,Indiranagar,R103,201,2,on_time,0
+T054,ST02,Indiranagar,R106,356,19,on_time,0
+T055,ST08,Yelahanka,R102,335E,7,on_time,0
+T056,ST07,Jayanagar,R109,500K,24,cancelled,0
+T057,ST04,Koramangala,R104,V-500,25,delayed,9
+T058,ST05,Electronic City,R110,303,37,on_time,0
+T059,ST04,Koramangala,R101,500A,24,cancelled,0
+T060,ST11,Peenya,R101,500A,40,on_time,0
+T061,ST10,Marathahalli,R105,KIA-14,18,cancelled,0
+T062,ST08,Yelahanka,R105,KIA-14,12,cancelled,0
+T063,ST06,Hebbal,R108,MF-1,6,on_time,0
+T064,ST06,Hebbal,R103,201,29,on_time,0
+T065,ST08,Yelahanka,R106,356,23,on_time,0
+T066,ST03,Whitefield,R106,356,36,on_time,0
+T067,ST02,Indiranagar,R101,500A,39,on_time,0
+T068,ST08,Yelahanka,R102,335E,41,on_time,0
+T069,ST11,Peenya,R104,V-500,20,cancelled,0
+T070,ST03,Whitefield,R104,V-500,14,on_time,0
+T071,ST12,Silk Board,R101,500A,26,on_time,0
+T072,ST01,MG Road,R110,303,9,on_time,0
+T073,ST10,Marathahalli,R106,356,12,delayed,18
+T074,ST02,Indiranagar,R104,V-500,40,on_time,0
+T075,ST12,Silk Board,R105,KIA-14,19,on_time,0
+T076,ST06,Hebbal,R102,335E,29,delayed,18
+T077,ST05,Electronic City,R109,500K,30,delayed,8
+T078,ST05,Electronic City,R102,335E,38,on_time,0
+T079,ST08,Yelahanka,R109,500K,11,on_time,0
+T080,ST04,Koramangala,R102,335E,15,on_time,0
+T081,ST06,Hebbal,R108,MF-1,10,on_time,0
+T082,ST09,Banashankari,R104,V-500,18,delayed,17
+T083,ST09,Banashankari,R102,335E,23,on_time,0
+T084,ST09,Banashankari,R106,356,7,on_time,0
+T085,ST03,Whitefield,R104,V-500,30,on_time,0
+T086,ST01,MG Road,R102,335E,18,on_time,0
+T087,ST08,Yelahanka,R103,201,21,cancelled,0
+T088,ST01,MG Road,R110,303,0,on_time,0
+T089,ST08,Yelahanka,R101,500A,1,on_time,0
+T090,ST09,Banashankari,R106,356,31,on_time,0
+T091,ST10,Marathahalli,R101,500A,38,cancelled,0
+T092,ST05,Electronic City,R110,303,29,cancelled,0
+T093,ST07,Jayanagar,R109,500K,20,delayed,6
+T094,ST04,Koramangala,R105,KIA-14,10,delayed,16
+T095,ST05,Electronic City,R102,335E,1,on_time,0
+T096,ST08,Yelahanka,R103,201,29,on_time,0
+T097,ST11,Peenya,R103,201,12,on_time,0
+T098,ST03,Whitefield,R107,401,28,on_time,0
+T099,ST01,MG Road,R110,303,9,cancelled,0
+T100,ST06,Hebbal,R105,KIA-14,30,on_time,0
+T101,ST07,Jayanagar,R107,401,30,on_time,0
+T102,ST08,Yelahanka,R102,335E,42,delayed,10
+T103,ST08,Yelahanka,R102,335E,23,cancelled,0
+T104,ST10,Marathahalli,R108,MF-1,41,delayed,4
+T105,ST04,Koramangala,R109,500K,15,on_time,0
+T106,ST09,Banashankari,R106,356,33,delayed,10
+T107,ST05,Electronic City,R101,500A,16,delayed,5
+T108,ST08,Yelahanka,R102,335E,26,delayed,17
+T109,ST04,Koramangala,R102,335E,24,on_time,0
+T110,ST08,Yelahanka,R110,303,24,on_time,0
+T111,ST12,Silk Board,R103,201,21,cancelled,0
+T112,ST12,Silk Board,R102,335E,7,on_time,0
+T113,ST01,MG Road,R102,335E,27,on_time,0
+T114,ST11,Peenya,R104,V-500,12,on_time,0
+T115,ST09,Banashankari,R109,500K,7,delayed,12
+T116,ST12,Silk Board,R107,401,5,on_time,0
+T117,ST12,Silk Board,R104,V-500,29,delayed,6
+T118,ST05,Electronic City,R109,500K,25,cancelled,0
+T119,ST05,Electronic City,R105,KIA-14,21,on_time,0
+T120,ST05,Electronic City,R103,201,8,cancelled,0

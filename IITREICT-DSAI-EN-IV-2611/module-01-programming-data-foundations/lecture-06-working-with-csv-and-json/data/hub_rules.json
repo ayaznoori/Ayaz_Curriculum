@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "required_columns": [
+    "slot_id",
+    "hub_code",
+    "item_name",
+    "boxes_packed",
+    "temp_c",
+    "packed_on"
+  ],
+  "hubs": {
+    "NORTH": {
+      "zones": [
+        "veg",
+        "dairy"
+      ],
+      "temp_range": {
+        "min_c": 2.0,
+        "max_c": 8.0
+      },
+      "lead": "Meera"
+    },
+    "SOUTH": {
+      "zones": [
+        "veg",
+        "bakery"
+      ],
+      "temp_range": {
+        "min_c": 2.0,
+        "max_c": 8.0
+      },
+      "lead": "Rohan"
+    },
+    "EAST": {
+      "zones": [
+        "dairy",
+        "frozen"
+      ],
+      "temp_range": {
+        "min_c": 2.0,
+        "max_c": 8.0
+      },
+      "lead": "Sita"
+    },
+    "WEST": {
+      "zones": [
+        "veg",
+        "frozen"
+      ],
+      "temp_range": {
+        "min_c": 2.0,
+        "max_c": 8.0
+      },
+      "lead": "Vijay"
+    }
+  },
+  "sample_slots": [
+    {
+      "slot_id": "SL0001",
+      "item_name": "Milk 1L",
+      "boxes_packed": 12
+    },
+    {
+      "slot_id": "SL0002",
+      "item_name": "Tomato 500g",
+      "boxes_packed": 30
+    }
+  ]
+}
