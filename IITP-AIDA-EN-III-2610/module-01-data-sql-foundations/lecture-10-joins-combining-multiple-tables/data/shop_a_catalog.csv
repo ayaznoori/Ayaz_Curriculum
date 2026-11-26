@@ -1,0 +1,31 @@
+product_id,title,category_id,price_rupees
+1,Cotton Kurta Red,1,499
+2,Linen Kurta Blue,1,650
+3,Festival Kurta Green,1,799
+4,Printed Kurti Yellow,1,549
+5,Straight Kurta Black,1,599
+6,Round Neck Tee White,2,299
+7,Graphic Tee Black,2,349
+8,Polo T-Shirt Green,2,449
+9,Silk Dupatta Gold,3,450
+10,Cotton Dupatta Pink,3,275
+11,Zari Silk Saree Maroon,4,1899
+12,Cotton Saree Blue,4,999
+13,Slim Fit Jeans Blue,5,899
+14,Straight Jeans Black,5,949
+15,Casual Sneakers Black,6,799
+16,Running Shoes White,6,1199
+17,Canvas Backpack Navy,7,1299
+18,Laptop Sling Bag Grey,7,1099
+19,Linen Kurta Beige,1,699
+20,Festival Kurta Orange,1,849
+21,Striped Tee Navy,2,379
+22,Printed Dupatta Red,3,325
+23,Silk Saree Green,4,2499
+24,Denim Jeans Grey,5,999
+25,Trail Sneakers Blue,6,1399
+26,Mini Backpack Pink,7,899
+27,Cotton Kurta White,1,479
+28,Oversized Tee Cream,2,399
+29,Block Print Dupatta Blue,3,375
+30,Tote Bag Beige,7,599

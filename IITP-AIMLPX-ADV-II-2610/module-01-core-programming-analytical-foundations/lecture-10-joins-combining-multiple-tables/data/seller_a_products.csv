@@ -1,0 +1,31 @@
+product_id,product_code,title,category,price_rupees
+1,KRT-0412-RD,Cotton Kurta Red,kurta,499
+2,KRT-0891-BL,Linen Kurta Blue,kurta,650
+3,KRT-1104-GR,Festival Kurta Green,kurta,799
+4,KRT-1153-YL,Festival Kurta Yellow,kurta,749
+5,KRT-1320-WH,Chikankari Kurta White,kurta,1199
+6,KRT-1402-MR,Maroon Silk Kurta,kurta,1499
+7,DUP-3300-GL,Silk Dupatta Gold,dupatta,450
+8,DUP-4228-YL,Cotton Dupatta Yellow,dupatta,249
+9,DUP-4410-PK,Net Dupatta Pink,dupatta,349
+10,DUP-4502-BL,Block Print Dupatta,dupatta,399
+11,TOP-2201-WH,Cotton Top White,top,299
+12,TOP-2250-BK,Cotton Top Black,top,329
+13,TOP-2318-RD,Ruffle Top Red,top,549
+14,TOP-2390-GR,Linen Top Green,top,599
+15,JNS-0688-BL,Straight Jeans Blue,jeans,899
+16,JNS-0780-BK,Slim Fit Jeans Black,jeans,1299
+17,JNS-4736-GY,Slim Fit Jeans Grey,jeans,999
+18,JNS-5120-LB,Wide Leg Jeans,jeans,1099
+19,BAG-1670-BL,Canvas Backpack,bag,1299
+20,BAG-1702-TN,Tote Bag Tan,bag,699
+21,BAG-1788-BK,Sling Bag Black,bag,799
+22,BAG-1811-GR,Laptop Sleeve Grey,bag,499
+23,SHO-0789-BK,Casual Sneakers Black,shoes,799
+24,SHO-1519-WH,Running Shoes White,shoes,1199
+25,SHO-1620-BR,Leather Sandals Brown,shoes,899
+26,SHO-1702-RD,Kolhapuri Chappal Red,shoes,649
+27,SHO-1811-GL,Gold Juttis,shoes,549
+28,KRT-1555-OR,Orange Anarkali Kurta,kurta,1799
+29,DUP-4620-GR,Georgette Dupatta Green,dupatta,299
+30,TOP-2455-LV,Lavender Crop Top,top,449
